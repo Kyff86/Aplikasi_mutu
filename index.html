@@ -465,22 +465,6 @@
       body.em-printing #printArea { display: block !important; }
     }
   </style>
-<style>
-    #tab-content-admin,#tab-content-admin>div{min-width:0;max-width:100%}
-    .admin-scroll{max-width:100%;max-height:calc(100vh - 300px);min-height:200px;overflow:auto;scroll-behavior:smooth;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border:1px solid #e2e8f0;border-radius:12px;background:#fff}
-    .admin-scroll thead th{position:sticky;top:0;z-index:2;background:#f1f5f9;white-space:nowrap}
-    .admin-scroll td{word-break:break-word}
-    @media(max-width:767px){
-      .admin-scroll{max-height:calc(100vh - 230px)}
-      .rtable thead{display:none}
-      .rtable,.rtable tbody,.rtable tr,.rtable td{display:block;width:100%}
-      .rtable tr{width:auto;border:1px solid #e2e8f0;border-radius:12px;margin:8px;padding:6px 12px;background:#fff}
-      .rtable td{display:flex!important;gap:10px;justify-content:space-between;align-items:center;padding:6px 0!important;text-align:right!important;white-space:normal!important}
-      .rtable td::before{content:attr(data-label);flex:0 0 36%;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#64748b}
-      .rtable td[data-label="Aksi"]{flex-wrap:wrap}
-      .rtable td[data-label="Aksi"]>div{justify-content:flex-end}
-    }
-  </style>
 </head>
 <body class="bg-surface-app text-text-primary font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
 
@@ -581,7 +565,7 @@
       <div class="nav-group" id="nav-grp-komite" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin"><button type="button" onclick="toggleNavGroup('komite')" id="nav-grp-btn-komite" aria-expanded="false" aria-controls="nav-sub-komite" class="nav-grp-btn w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] font-bold leading-tight text-text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px] shrink-0 text-primary">health_and_safety</span><span class="flex-1">Komite Mutu dan Keselamatan Pasien</span><span class="material-symbols-outlined text-[20px] nav-chev">expand_more</span></button><div id="nav-sub-komite" class="nav-sub hidden flex-col gap-1 mt-1 ml-4 pl-2 border-l border-border-subtle"><button onclick="switchTab('home')" id="nav-btn-home" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">home</span><span>Beranda Komite</span></button><button onclick="switchTab('sop')" id="nav-btn-sop" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">account_tree</span><span>Alur Persetujuan SOP</span></button><button onclick="switchTab('sopall')" id="nav-btn-sopall" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">library_books</span><span>Pustaka SOP</span></button><button onclick="switchTab('jadwal')" id="nav-btn-jadwal" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">event</span><span>Jadwal Kegiatan</span></button><button onclick="switchTab('perpus')" id="nav-btn-perpus" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">folder_open</span><span>Perpustakaan Dokumen</span></button></div></div>
       <div class="nav-group" id="nav-grp-insiden" data-roles="Staf,Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin"><button type="button" onclick="toggleNavGroup('insiden')" id="nav-grp-btn-insiden" aria-expanded="false" aria-controls="nav-sub-insiden" class="nav-grp-btn w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] font-bold leading-tight text-text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px] shrink-0 text-primary">report</span><span class="flex-1">Pelaporan Insiden</span><span class="material-symbols-outlined text-[20px] nav-chev">expand_more</span></button><div id="nav-sub-insiden" class="nav-sub hidden flex-col gap-1 mt-1 ml-4 pl-2 border-l border-border-subtle"><button onclick="switchTab('dashboard')" id="nav-btn-dashboard" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight bg-primary text-white shadow-sm"><span class="material-symbols-outlined text-[18px] shrink-0">dashboard</span><span>Dashboard Analitik</span></button><button onclick="switchTab('laporan')" id="nav-btn-laporan" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">assignment</span><span>Daftar Laporan Insiden</span></button><button onclick="switchTab('formulir')" id="nav-btn-formulir" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">edit_document</span><span>Formulir Pelaporan</span></button><button onclick="switchTab('jenis')" id="nav-btn-jenis" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">category</span><span>Jenis Insiden</span></button><button onclick="switchTab('cetak')" id="nav-btn-cetak" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">print</span><span>Lembar Cetak &amp; Audit</span></button></div></div>
       <div class="nav-group" id="nav-grp-mutu" data-roles="Staf,Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin"><button type="button" onclick="toggleNavGroup('mutu')" id="nav-grp-btn-mutu" aria-expanded="false" aria-controls="nav-sub-mutu" class="nav-grp-btn w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] font-bold leading-tight text-text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px] shrink-0 text-primary">monitoring</span><span class="flex-1">Pelaporan Mutu</span><span class="material-symbols-outlined text-[20px] nav-chev">expand_more</span></button><div id="nav-sub-mutu" class="nav-sub hidden flex-col gap-1 mt-1 ml-4 pl-2 border-l border-border-subtle"><button onclick="switchTab('em-dashboard')" id="nav-btn-em-dashboard" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">bar_chart</span><span>Dashboard Rekap</span></button><button onclick="switchTab('em-profilMutu')" id="nav-btn-em-profilMutu" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">workspace_premium</span><span>Profil &amp; Prioritas 2026</span></button><button onclick="switchTab('em-formLapor')" id="nav-btn-em-formLapor" data-roles="Karu,Komite,KetuaKomite,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">edit_note</span><span>Form Pelaporan</span></button><button onclick="switchTab('em-rekapBulanan')" id="nav-btn-em-rekapBulanan" data-roles="Karu,Komite,KetuaKomite,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">calendar_month</span><span>Formulir Bulanan</span></button><button onclick="switchTab('em-validation')" id="nav-btn-em-validation" data-roles="Komite,KetuaKomite,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">fact_check</span><span>Validasi Komite</span></button><button onclick="switchTab('em-templateEditor')" id="nav-btn-em-templateEditor" data-roles="Komite,KetuaKomite,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">view_column</span><span>Editor Template Form</span></button><button onclick="switchTab('em-masterData')" id="nav-btn-em-masterData" data-roles="Komite,KetuaKomite,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">tune</span><span>Master Data</span></button></div></div>
-      <button onclick="switchTab('admin')" id="nav-btn-admin" class="hidden w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">admin_panel_settings</span><span class="min-w-0 flex-1 whitespace-normal break-words">Pengaturan Admin</span></button>
+      <button onclick="switchTab('admin')" id="nav-btn-admin" class="hidden w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">admin_panel_settings</span><span>Pengaturan Admin</span></button>
     </nav>
     <div class="mt-auto px-4 py-3 border-t border-border-subtle flex items-center gap-1 text-[11px] text-text-muted">
       <span class="material-symbols-outlined text-[14px]">lock</span>
@@ -2477,26 +2461,18 @@
         <div id="tab-content-admin" class="hidden flex flex-col gap-6">
           <!-- User Governance Panel -->
           <div class="bg-surface-card rounded-xl p-5 shadow-sm border border-border-subtle space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-subtle pb-3">
-              <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+              <div>
                 <h3 class="font-display font-bold text-sm text-primary flex items-center gap-2">
                   <span class="material-symbols-outlined text-[18px]">manage_accounts</span>
-                  <span class="min-w-0 break-words">Manajemen Persetujuan Akun & Peran Pengguna</span>
+                  <span>Manajemen Persetujuan Akun & Peran Pengguna</span>
                 </h3>
                 <p class="text-xs text-text-secondary">Otorisasi akses Role-Based Access Control (RBAC) RSUD Merauke</p>
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2">
-              <input id="af-uq" type="search" oninput="renderAdminUsers()" placeholder="Cari username / nama / NIP..." class="flex-1 min-w-[200px] px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white">
-              <select id="af-urole" onchange="renderAdminUsers()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua peran</option><option value="Staf">Staf Pelapor</option><option value="Karu">Kepala Ruangan</option><option value="Komite">Komite Mutu</option><option value="KetuaKomite">Ketua Komite</option><option value="Manajemen">Manajemen</option><option value="Direktur">Direktur</option><option value="TU">Hukum / TU</option><option value="Admin">Administrator</option></select>
-              <select id="af-ustatus" onchange="renderAdminUsers()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua status</option><option value="Approved">Disetujui</option><option value="Pending">Menunggu</option><option value="Rejected">Ditolak</option></select>
-              <select id="af-uunit" onchange="renderAdminUsers()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua ruangan</option></select>
-              <button type="button" onclick="adminFilterReset('u')" class="px-3 py-1.5 text-xs rounded-lg border border-primary text-primary font-semibold">Reset</button>
-              <span id="af-ucount" class="text-[11px] text-text-muted basis-full sm:basis-auto sm:ml-auto"></span>
-            </div>
-            <div class="admin-scroll">
-              <table class="rtable w-full text-left text-xs border-collapse">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
                 <thead class="bg-surface-container-low text-text-secondary uppercase font-bold border-b border-border-subtle">
                   <tr>
                     <th class="p-3">Username</th>
@@ -2517,11 +2493,11 @@
 
           <!-- Form Questions Governance Panel -->
           <div class="bg-surface-card rounded-xl p-5 shadow-sm border border-border-subtle space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-subtle pb-3">
-              <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+              <div>
                 <h3 class="font-display font-bold text-sm text-primary flex items-center gap-2">
                   <span class="material-symbols-outlined text-[18px]">dynamic_form</span>
-                  <span class="min-w-0 break-words">Manajemen Pertanyaan Dinamis Formulir IKP</span>
+                  <span>Manajemen Pertanyaan Dinamis Formulir IKP</span>
                 </h3>
                 <p class="text-xs text-text-secondary">Atur tata urutan dan field pelaporan sesuai standar komite mutu</p>
               </div>
@@ -2531,17 +2507,8 @@
               </button>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2">
-              <input id="af-qq" type="search" oninput="renderFormQuestionsAdmin()" placeholder="Cari pertanyaan..." class="flex-1 min-w-[200px] px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white">
-              <select id="af-qtype" onchange="renderFormQuestionsAdmin()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua tipe</option></select>
-              <select id="af-qreq" onchange="renderFormQuestionsAdmin()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Wajib & opsional</option><option value="1">Wajib diisi</option><option value="0">Opsional</option></select>
-              <button type="button" onclick="adminFilterReset('q')" class="px-3 py-1.5 text-xs rounded-lg border border-primary text-primary font-semibold">Reset</button>
-              <span id="af-qcount" class="text-[11px] text-text-muted basis-full sm:basis-auto sm:ml-auto"></span>
-            </div>
-            <div class="admin-scroll p-2">
-              <div id="container-form-questions" class="space-y-2">
+            <div id="container-form-questions" class="space-y-2">
               <!-- Dynamically populated questions list with Up/Down/Edit/Delete -->
-            </div>
             </div>
           </div>
         </div>
@@ -6312,61 +6279,48 @@
     // --- Admin Governance Panel Logic ---
     function loadAdminUsers() {
       GS.withSuccessHandler(res => {
-        if (res.success && res.users) { adminUsersCache = res.users; renderAdminUsers(); }
-      }).apiGetUsers();
-    }
-    const adminVal = id => (document.getElementById(id) || {}).value || '';
-    function adminFilterReset(k) {
-      (k === 'u' ? ['af-uq', 'af-urole', 'af-ustatus', 'af-uunit'] : ['af-qq', 'af-qtype', 'af-qreq']).forEach(i => { const e = document.getElementById(i); if (e) e.value = ''; });
-      if (k === 'u') renderAdminUsers(); else renderFormQuestionsAdmin();
-    }
-    function adminFillSel(id, label, vals) {
-      const el = document.getElementById(id); if (!el) return; const cur = el.value;
-      el.innerHTML = `<option value="">${label}</option>` + vals.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join(''); el.value = vals.indexOf(cur) >= 0 ? cur : '';
-    }
-    function renderAdminUsers() {
-      const tbody = document.getElementById('tbody-admin-users'); if (!tbody) return;
-      adminFillSel('af-uunit', 'Semua ruangan', Array.from(new Set(adminUsersCache.map(u => unesc(u.ruangan)).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'id')));
-      const q = adminVal('af-uq').trim().toLowerCase(), fr = adminVal('af-urole'), fs = adminVal('af-ustatus'), fu = adminVal('af-uunit');
-      const rows = adminUsersCache.filter(u => (!fr || u.role === fr) && (!fs || u.status === fs) && (!fu || unesc(u.ruangan) === fu)
-        && (!q || (unesc(u.username) + ' ' + unesc(u.nama) + ' ' + unesc(u.nip || '')).toLowerCase().indexOf(q) >= 0));
-      const cnt = document.getElementById('af-ucount'); if (cnt) cnt.textContent = rows.length + ' dari ' + adminUsersCache.length + ' akun';
-      tbody.innerHTML = '';
-      if (!rows.length) { tbody.innerHTML = '<tr><td colspan="7" class="p-6 text-center text-text-muted">Tidak ada akun yang cocok dengan filter.</td></tr>'; return; }
-      rows.forEach(u => {
+        if (res.success && res.users) {
+          const tbody = document.getElementById('tbody-admin-users');
+          if (!tbody) return;
+          tbody.innerHTML = '';
+          adminUsersCache = res.users;
+
+          res.users.forEach(u => {
             const tr = document.createElement('tr');
             tr.className = "hover:bg-surface-row-alt transition";
-            const stColor = u.status === 'Approved' ? 'bg-status-approved-bg text-status-approved-text' : (u.status === 'Rejected' ? 'bg-red-100 text-red-700' : 'bg-status-pending-bg text-status-pending-text');
-            const stLabel = { Approved: 'Disetujui', Pending: 'Menunggu', Rejected: 'Ditolak' }[u.status] || esc(u.status);
+            const stColor = u.status === 'Approved' ? 'bg-status-approved-bg text-status-approved-text' : 'bg-status-pending-bg text-status-pending-text';
             const isSelf = !!(currentUser && unesc(u.username).toLowerCase() === String(currentUser.username || '').toLowerCase());
+
             tr.innerHTML = `
-              <td data-label="Username" class="p-3 pl-4 font-bold text-navy-deep whitespace-nowrap">${esc(u.username)}</td>
-              <td data-label="Nama" class="p-3 font-semibold text-text-primary min-w-[150px]">${esc(u.nama)}</td>
-              <td data-label="NIP" class="p-3 text-text-secondary whitespace-nowrap">${esc(u.nip || '-')}</td>
-              <td data-label="Unit" class="p-3 min-w-[110px]">${esc(u.ruangan)}</td>
-              <td data-label="Peran" class="p-3">
-                <select ${isSelf ? 'disabled title="Gunakan menu Profil Saya"' : ''} onchange="updateUserRole('${esc(u.username)}', this.value)" class="border border-border-form rounded px-2 py-1 text-xs bg-white focus:outline-none w-full min-w-[160px]">
+              <td class="p-3 font-bold text-navy-deep">${esc(u.username)}</td>
+              <td class="p-3 font-semibold text-text-primary">${esc(u.nama)}</td>
+              <td class="p-3 text-text-secondary whitespace-nowrap">${esc(u.nip || '-')}</td>
+              <td class="p-3">${esc(u.ruangan)}</td>
+              <td class="p-3">
+                <select ${isSelf ? 'disabled title="Gunakan menu Profil Saya"' : ''} onchange="updateUserRole('${esc(u.username)}', this.value)" class="border border-border-form rounded px-2 py-1 text-xs bg-white focus:outline-none">
                   <option value="Staf" ${u.role === 'Staf' ? 'selected' : ''}>Staf Pelapor</option>
-                  <option value="Karu" ${u.role === 'Karu' ? 'selected' : ''}>Kepala Ruangan</option>
-                  <option value="Komite" ${u.role === 'Komite' ? 'selected' : ''}>Komite Mutu</option>
-                  <option value="KetuaKomite" ${u.role === 'KetuaKomite' ? 'selected' : ''}>Ketua Komite</option>
+                  <option value="Karu" ${u.role === 'Karu' ? 'selected' : ''}>Kepala Ruangan (Karu)</option>
+                  <option value="Komite" ${u.role === 'Komite' ? 'selected' : ''}>Komite Mutu (KMKPRS)</option>
+                  <option value="KetuaKomite" ${u.role === 'KetuaKomite' ? 'selected' : ''}>Ketua Komite Mutu</option>
                   <option value="Manajemen" ${u.role === 'Manajemen' ? 'selected' : ''}>Manajemen RS</option>
                   <option value="Direktur" ${u.role === 'Direktur' ? 'selected' : ''}>Direktur RS</option>
-                  <option value="TU" ${u.role === 'TU' ? 'selected' : ''}>Hukum / Tata Usaha</option>
+                  <option value="TU" ${u.role === 'TU' ? 'selected' : ''}>Bagian Hukum / Tata Usaha</option>
                   <option value="Admin" ${u.role === 'Admin' ? 'selected' : ''}>Administrator</option>
                 </select>
               </td>
-              <td data-label="Status" class="p-3 whitespace-nowrap">
-                <span class="inline-block whitespace-nowrap px-2.5 py-0.5 rounded-full text-[10px] font-bold ${stColor}">${stLabel}</span>
+              <td class="p-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${stColor}">${esc(u.status)}</span>
               </td>
-              <td data-label="Aksi" class="p-3 md:min-w-[250px]">
-                <div class="flex flex-wrap md:flex-nowrap gap-1.5 justify-end">${!isSelf && u.status !== 'Approved' ? `<button onclick="updateUserStatus('${esc(u.username)}', 'Approved')" class="bg-knc-green text-white px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap hover:opacity-90">Setujui</button>` : ''}
-                ${!isSelf && u.status !== 'Rejected' ? `<button onclick="updateUserStatus('${esc(u.username)}', 'Rejected')" class="bg-error text-white px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap hover:opacity-90">Tolak</button>` : ''}
-                ${isSelf ? '<span class="text-[10px] text-text-muted italic">Akun Anda</span>' : `<button type="button" data-un="${esc(u.username)}" onclick="editUser(this.dataset.un)" class="bg-navy-action text-white px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap hover:opacity-90 inline-flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">edit</span>Edit</button><button type="button" data-un="${esc(u.username)}" onclick="deleteUser(this.dataset.un)" class="bg-white text-error border border-error px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap hover:bg-error-container/40 inline-flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">delete</span>Hapus</button>`}
-              </div></td>
+              <td class="p-3 text-center space-x-1 whitespace-nowrap">
+                ${!isSelf && u.status !== 'Approved' ? `<button onclick="updateUserStatus('${esc(u.username)}', 'Approved')" class="bg-knc-green text-white px-2.5 py-1 rounded text-xs font-semibold hover:opacity-90">Setujui</button>` : ''}
+                ${!isSelf && u.status !== 'Rejected' ? `<button onclick="updateUserStatus('${esc(u.username)}', 'Rejected')" class="bg-error text-white px-2.5 py-1 rounded text-xs font-semibold hover:opacity-90">Tolak</button>` : ''}
+                ${isSelf ? '<span class="text-[10px] text-text-muted italic">Akun Anda</span>' : `<button type="button" data-un="${esc(u.username)}" onclick="editUser(this.dataset.un)" class="bg-navy-action text-white px-2.5 py-1 rounded text-xs font-semibold hover:opacity-90 inline-flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">edit</span>Edit</button><button type="button" data-un="${esc(u.username)}" onclick="deleteUser(this.dataset.un)" class="bg-white text-error border border-error px-2.5 py-1 rounded text-xs font-semibold hover:bg-error-container/40 inline-flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">delete</span>Hapus</button>`}
+              </td>
             `;
             tbody.appendChild(tr);
-      });
+          });
+        }
+      }).apiGetUsers();
     }
 
     // --- Admin: edit & hapus akun terdaftar ---
@@ -6502,24 +6456,20 @@
         return;
       }
 
-      const tp = document.getElementById('af-qtype'); if (tp) { const cur = tp.value, ts = Array.from(new Set(dynamicQuestions.map(x => x.type))); tp.innerHTML = '<option value="">Semua tipe</option>' + ts.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join(''); tp.value = ts.indexOf(cur) >= 0 ? cur : ''; }
-      const fq = adminVal('af-qq').trim().toLowerCase(), ft = adminVal('af-qtype'), fr = adminVal('af-qreq'), filt = !!(fq || ft || fr);
-      const total = dynamicQuestions.length; let shown = 0;
+      const total = dynamicQuestions.length;
       dynamicQuestions.forEach((q, idx) => {
-        if ((ft && q.type !== ft) || (fr !== '' && String(q.required ? 1 : 0) !== fr) || (fq && (unesc(q.label) + ' ' + unesc(q.options || '')).toLowerCase().indexOf(fq) < 0)) return;
-        shown++;
         const div = document.createElement('div');
         div.className = "flex items-center justify-between gap-3 bg-surface-app p-2.5 rounded-lg border border-border-subtle text-xs";
         div.innerHTML = `
-          <div class="min-w-0 flex-1 break-words">
+          <div class="min-w-0">
             <span class="font-bold text-text-primary block">${idx + 1}. ${esc(q.label)} ${q.required ? '<span class="text-error">*</span>' : '<span class="text-text-muted font-normal">(opsional)</span>'}</span>
             <span class="text-[10px] text-text-muted">Tipe: <strong>${esc(q.type)}</strong> ${q.options ? '| Opsi: ' + esc(q.options) : ''}</span>
           </div>
-          <div class="flex flex-wrap items-center gap-1 shrink-0">
-            <button onclick="moveQuestion(${idx}, -1)" ${idx === 0 || filt ? 'disabled' : ''} class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="moveQuestion(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
               <span class="material-symbols-outlined text-[16px]">arrow_upward</span>
             </button>
-            <button onclick="moveQuestion(${idx}, 1)" ${idx === total - 1 || filt ? 'disabled' : ''} class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
+            <button onclick="moveQuestion(${idx}, 1)" ${idx === total - 1 ? 'disabled' : ''} class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
               <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
             </button>
             <button onclick="openModalEditQuestion(${idx})" class="px-2 py-1 rounded bg-primary/10 text-primary font-semibold hover:bg-primary/20">
@@ -6532,8 +6482,6 @@
         `;
         container.appendChild(div);
       });
-      const c2 = document.getElementById('af-qcount'); if (c2) c2.textContent = shown + ' dari ' + total + ' pertanyaan' + (filt ? ' (urutan dikunci saat filter aktif)' : '');
-      if (!shown) container.innerHTML = '<p class="text-xs text-text-muted p-4 text-center">Tidak ada pertanyaan yang cocok dengan filter.</p>';
     }
 
     function moveQuestion(i, dir) {
@@ -7245,9 +7193,9 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
      *  hitung.denum.mode: 'baris' (jumlah baris terisi) | 'manual'
      * ===================================================================== */
     const DEFAULT_TEMPLATES = [
-      { id: 'INM03', kode: 'INM.03', kategori: 'INM', judul: 'Form Kepatuhan Identifikasi Pasien', target: 100, baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, tglKolom: 'tglobs',
+      { id: 'INM03', kode: 'INM.03', kategori: 'INM', judul: 'Form Kepatuhan Identifikasi Pasien', target: 100, baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, tglKolom: 'tglobs', targetOp: 'ge',
         kolom: [
-          { k: 'tglobs', l: 'Tanggal', t: 'date' },
+          { k: 'tglobs', l: 'Tanggal', t: 'date', salin: true },
           { k: 'petugas', l: 'Nama Petugas', t: 'text' },
           { k: 'nama', l: 'Menanyakan nama pasien', t: 'yt' },
           { k: 'tgl', l: 'Menanyakan tanggal lahir', t: 'yt' },
@@ -7258,13 +7206,11 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'k_diag', l: 'Prosedur diagnostik', t: 'cek', g: 'K A P A N' },
           { k: 'k_lain', l: 'Kondisi tertentu', t: 'cek', g: 'K A P A N' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pemberi pelayanan yang melakukan identifikasi pasien secara benar dalam periode observasi (Num)', mode: 'yt', kolom: ['nama', 'tgl', 'gelang'] },
-          denum: { label: 'Jumlah pemberi pelayanan yang diobservasi dalam periode observasi (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pemberi pelayanan yang melakukan identifikasi pasien secara benar dalam periode observasi (Num)', mode: 'yt', kolom: ['nama', 'tgl', 'gelang'] }, denum: { label: 'Jumlah pemberi pelayanan yang diobservasi dalam periode observasi (Denum)', mode: 'baris' } } },
 
-      { id: 'INM04', kode: 'INM.04', kategori: 'INM', judul: 'Form Laporan Waktu Tanggap Operasi Seksio Sesarea Emergensi', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'INM04', kode: 'INM.04', kategori: 'INM', judul: 'Form Laporan Waktu Tanggap Operasi Seksio Sesarea Emergensi', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, target: 80, targetOp: 'ge',
         kolom: [
-          { k: 'tgl', l: 'Tanggal', t: 'date' },
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
           { k: 'rm', l: 'No. RM', t: 'text' },
           { k: 'identitas', l: 'Identitas Pasien (Nama, Umur)', t: 'text' },
           { k: 'alasan', l: 'Alasan dilakukan SC', t: 'text' },
@@ -7273,13 +7219,11 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'selisih', l: 'Waktu tenggang (menit)', t: 'selisih', cfg: { dari: 'jam_dx', ke: 'jam_sc', satuan: 'menit', batas: 30, cmp: '<=' } },
           { k: 'dpjp', l: 'DPJP', t: 'text' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pasien yang diputuskan tindakan seksio sesarea emergensi Kategori I yang mendapatkan tindakan ≤ 30 menit (Num)', mode: 'selisih', kolom: ['selisih'] },
-          denum: { label: 'Jumlah pasien yang diputuskan seksio sesarea emergensi Kategori I (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pasien yang diputuskan tindakan seksio sesarea emergensi Kategori I yang mendapatkan tindakan ≤ 30 menit (Num)', mode: 'selisih', kolom: ['selisih'] }, denum: { label: 'Jumlah pasien yang diputuskan seksio sesarea emergensi Kategori I (Denum)', mode: 'baris' } } },
 
-      { id: 'INM05', kode: 'INM.05', kategori: 'INM', judul: 'Form Laporan Waktu Tunggu Rawat Jalan', baris_default: 15, kertas: 'A4', orientasi: 'portrait', aktif: true, tglKolom: 'tglobs',
+      { id: 'INM05', kode: 'INM.05', kategori: 'INM', judul: 'Form Laporan Waktu Tunggu Rawat Jalan', baris_default: 15, kertas: 'A4', orientasi: 'portrait', aktif: true, tglKolom: 'tglobs', target: 80, targetOp: 'ge',
         kolom: [
-          { k: 'tglobs', l: 'Tanggal', t: 'date' },
+          { k: 'tglobs', l: 'Tanggal', t: 'date', salin: true },
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
           { k: 'datang', l: 'Jam Datang (mendaftar secara offline)', t: 'time' },
@@ -7287,11 +7231,9 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'wt', l: 'Waktu Tunggu (menit)', t: 'selisih', cfg: { dari: 'datang', ke: 'dilayani', satuan: 'menit', batas: 60, cmp: '<=' } },
           { k: 'ok', l: 'Waktu Tunggu ≤ 60 menit', t: 'yt', auto: true, cfg: { dari: 'datang', ke: 'dilayani', satuan: 'menit', batas: 60, cmp: '<=' } }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pasien rawat jalan dengan waktu tunggu ≤ 60 menit (Num)', mode: 'yt', kolom: ['ok'] },
-          denum: { label: 'Jumlah pasien rawat jalan yang diamati (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pasien rawat jalan dengan waktu tunggu ≤ 60 menit (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah pasien rawat jalan yang diamati (Denum)', mode: 'baris' } } },
 
-      { id: 'INM06', kode: 'INM.06', kategori: 'INM', judul: 'Form Laporan Penundaan Operasi Elektif', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'INM06', kode: 'INM.06', kategori: 'INM', judul: 'Form Laporan Penundaan Operasi Elektif', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, target: 5, targetOp: 'le',
         kolom: [
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'lahir', l: 'Tanggal lahir / umur', t: 'text' },
@@ -7303,26 +7245,23 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'selisih', l: 'Selisih waktu (jam)', t: 'selisih', cfg: { dari: 'rencana', ke: 'jadwal', satuan: 'jam', batas: 1, cmp: '>' } },
           { k: 'alasan', l: 'Alasan penundaan', t: 'text' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pasien yang jadwal operasinya tertunda lebih dari 1 jam (Num)', mode: 'selisih', kolom: ['selisih'] },
-          denum: { label: 'Jumlah pasien operasi elektif (Denum)', mode: 'manual' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pasien yang jadwal operasinya tertunda lebih dari 1 jam (Num)', mode: 'selisih', kolom: ['selisih'] }, denum: { label: 'Jumlah pasien operasi elektif (Denum)', mode: 'manual' } } },
 
-      { id: 'INM07', kode: 'INM.07', kategori: 'INM', judul: 'Form Kepatuhan Waktu Visite Dokter Spesialis', target: 80, baris_default: 20, kertas: 'A4', orientasi: 'portrait', aktif: true,
+      { id: 'INM07', kode: 'INM.07', kategori: 'INM', judul: 'Form Kepatuhan Waktu Visite Dokter Spesialis', target: 80, baris_default: 20, kertas: 'A4', orientasi: 'portrait', aktif: true, targetOp: 'ge',
         kolom: [
-          { k: 'tgl', l: 'Tanggal', t: 'date' },
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
           { k: 'dokter', l: 'Nama Dokter', t: 'text' },
           { k: 'jam_visite', l: 'Jam Visite Dokter', t: 'time' },
           { k: 'jam_selesai', l: 'Jam Selesai Visite', t: 'time' },
+          { k: 'tepat', l: 'Visite pukul 06.00–14.00', t: 'yt', auto: true, cfg: { rentang: { kolom: 'jam_visite', dari: '06:00', sampai: '14:00' } } },
           { k: 'alasan', l: 'Alasan Terlambat Visite', t: 'text' },
           { k: 'jml', l: 'Jumlah Pasien', t: 'number' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pasien yang di-visite dokter pada pukul 06.00 – 14.00 (Num)', mode: 'manual' },
-          denum: { label: 'Jumlah pasien yang diobservasi (Denum)', mode: 'manual' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pasien yang di-visite dokter pada pukul 06.00 – 14.00 (Num)', mode: 'sum', kolom: ['jml'], syarat: 'tepat' }, denum: { label: 'Jumlah pasien yang diobservasi (Denum)', mode: 'sum', kolom: ['jml'] } } },
 
-      { id: 'INM08', kode: 'INM.08', kategori: 'INM', judul: 'Form Laporan Hasil Kritis Laboratorium', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'INM08', kode: 'INM.08', kategori: 'INM', judul: 'Form Laporan Hasil Kritis Laboratorium', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, target: 100, targetOp: 'ge',
         kolom: [
-          { k: 'tgl', l: 'Tanggal', t: 'date' },
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
           { k: 'nama', l: 'Nama pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
           { k: 'ruang', l: 'Ruangan tempat pasien dirawat', t: 'text' },
@@ -7334,38 +7273,20 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'dr_pk', l: 'Nama dokter Sp.PK', t: 'text' },
           { k: 'dpjp', l: 'Nama DPJP', t: 'text' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah hasil kritis laboratorium yang dilaporkan ≤ 30 menit (Num)', mode: 'selisih', kolom: ['selisih'] },
-          denum: { label: 'Jumlah hasil kritis laboratorium yang diobservasi (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah hasil kritis laboratorium yang dilaporkan ≤ 30 menit (Num)', mode: 'selisih', kolom: ['selisih'] }, denum: { label: 'Jumlah hasil kritis laboratorium yang diobservasi (Denum)', mode: 'baris' } } },
 
-      { id: 'INM11', kode: 'INM.11', kategori: 'INM', judul: 'Form Laporan Kepatuhan Upaya Pencegahan Risiko Pasien Jatuh', target: 100, baris_default: 12, kertas: 'A4', orientasi: 'portrait', aktif: true,
+      { id: 'INM11', kode: 'INM.11', kategori: 'INM', judul: 'Form Laporan Kepatuhan Upaya Pencegahan Risiko Pasien Jatuh', target: 100, baris_default: 12, kertas: 'A4', orientasi: 'portrait', aktif: true, lampiran: { judul: 'Lembar Intervensi Pencegahan Standar Risiko Pasien Jatuh', items: ['Mengorientasikan pasien dan atau keluarga dengan lingkungan kamarnya dan staf yang bertugas', 'Mengatur tempat tidur pada posisi paling rendah dengan roda terkunci dan pagar pengaman tempat tidur tetap terpasang dan aman', 'Menempatkan bel, telepon, barang-barang pribadi dan alat bantu yang diperlukan seperti walker, tongkat berada dalam jangkauan pasien dan mudah dilihat', 'Menilai kemampuan pasien untuk ke toilet / kamar mandi, bantu jika perlu', 'Menyingkirkan benda-benda yang membahayakan', 'Memastikan jalur ke toilet / kamar mandi bebas hambatan, tidak licin, dan terang', 'Memastikan pencahayaan cukup untuk memfasilitasi ambulasi yang aman', 'Segera laporkan untuk perbaikan jika fasilitas dan lingkungan tidak aman', 'Menjelaskan tentang kemungkinan risiko jatuh dan pencegahannya; cara memanggil tenaga perawatan menggunakan bel; cara menggunakan pagar pengaman tempat tidur; cara menggunakan alat ambulasi; menggunakan alas kaki yang tidak licin; penggunaan pakaian dengan ukuran sesuai', 'Menjawab panggilan pasien / keluarga dengan segera', 'Melakukan asesmen ulang risiko jatuh jika ada perubahan kondisi pasien', 'Memastikan pasien yang dibawa dengan brankar / tempat tidur, posisi bed side rail dalam keadaan terpasang'] }, targetOp: 'ge',
         kolom: [
-          { k: 'tgl', l: 'Tanggal', t: 'date' },
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
           { k: 'awal', l: 'Asesmen awal', t: 'yt' },
           { k: 'ulang', l: 'Asesmen ulang', t: 'yt' },
           { k: 'interv', l: 'Intervensi', t: 'yt' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pasien rawat inap berisiko tinggi jatuh yang mendapatkan ketiga upaya pencegahan risiko jatuh (Num)', mode: 'yt', kolom: ['awal', 'ulang', 'interv'] },
-          denum: { label: 'Jumlah pasien rawat inap berisiko tinggi jatuh yang diobservasi (Denum)', mode: 'baris' } },
-        lampiran: { judul: 'Lembar Intervensi Pencegahan Standar Risiko Pasien Jatuh', items: [
-          'Mengorientasikan pasien dan atau keluarga dengan lingkungan kamarnya dan staf yang bertugas',
-          'Mengatur tempat tidur pada posisi paling rendah dengan roda terkunci dan pagar pengaman tempat tidur tetap terpasang dan aman',
-          'Menempatkan bel, telepon, barang-barang pribadi dan alat bantu yang diperlukan seperti walker, tongkat berada dalam jangkauan pasien dan mudah dilihat',
-          'Menilai kemampuan pasien untuk ke toilet / kamar mandi, bantu jika perlu',
-          'Menyingkirkan benda-benda yang membahayakan',
-          'Memastikan jalur ke toilet / kamar mandi bebas hambatan, tidak licin, dan terang',
-          'Memastikan pencahayaan cukup untuk memfasilitasi ambulasi yang aman',
-          'Segera laporkan untuk perbaikan jika fasilitas dan lingkungan tidak aman',
-          'Menjelaskan tentang kemungkinan risiko jatuh dan pencegahannya; cara memanggil tenaga perawatan menggunakan bel; cara menggunakan pagar pengaman tempat tidur; cara menggunakan alat ambulasi; menggunakan alas kaki yang tidak licin; penggunaan pakaian dengan ukuran sesuai',
-          'Menjawab panggilan pasien / keluarga dengan segera',
-          'Melakukan asesmen ulang risiko jatuh jika ada perubahan kondisi pasien',
-          'Memastikan pasien yang dibawa dengan brankar / tempat tidur, posisi bed side rail dalam keadaan terpasang'
-        ] } },
+        hitung: { tampil: true, num: { label: 'Jumlah pasien rawat inap berisiko tinggi jatuh yang mendapatkan ketiga upaya pencegahan risiko jatuh (Num)', mode: 'yt', kolom: ['awal', 'ulang', 'interv'] }, denum: { label: 'Jumlah pasien rawat inap berisiko tinggi jatuh yang diobservasi (Denum)', mode: 'baris' } } },
 
-      { id: 'RM01', kode: 'RM', kategori: 'Lainnya', judul: 'Form Pengembalian Status Rawat Inap ke Rekam Medik', baris_default: 20, kertas: 'A4', orientasi: 'portrait', aktif: true,
+      { id: 'RM01', kode: 'RM', kategori: 'Lainnya', judul: 'Form Pengembalian Status Rawat Inap ke Rekam Medik', baris_default: 20, kertas: 'A4', orientasi: 'portrait', aktif: true, target: 90, targetOp: 'ge',
         kolom: [
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
@@ -7374,13 +7295,11 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'tepat', l: 'Ketepatan Waktu (2x24 jam)', t: 'yt', auto: true, ytl: ['Tepat Waktu', 'Tidak Tepat Waktu'], cfg: { dari: 'pulang', ke: 'kembali', satuan: 'hari', batas: 2, cmp: '<=' } },
           { k: 'ket', l: 'Keterangan', t: 'text' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah status yang dikembalikan tepat waktu (Num)', mode: 'yt', kolom: ['tepat'] },
-          denum: { label: 'Jumlah status yang diobservasi (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah status yang dikembalikan tepat waktu (Num)', mode: 'yt', kolom: ['tepat'] }, denum: { label: 'Jumlah status yang diobservasi (Denum)', mode: 'baris' } } },
 
-      { id: 'IMP-HA', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kepatuhan Pemberian Obat High Alert, Cairan Pekat', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, tglKolom: 'tglobs',
+      { id: 'IMP-HA', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kepatuhan Pemberian Obat High Alert, Cairan Pekat', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, tglKolom: 'tglobs', target: 100, targetOp: 'ge',
         kolom: [
-          { k: 'tglobs', l: 'Tanggal', t: 'date' },
+          { k: 'tglobs', l: 'Tanggal', t: 'date', salin: true },
           { k: 'petugas', l: 'Nama Petugas', t: 'text' },
           { k: 'obat', l: 'Nama Obat', t: 'text' },
           { k: 'siap', l: 'Persiapan obat', t: 'yt' },
@@ -7390,52 +7309,51 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'tetes', l: 'Pastikan tetesan/kecepatan obat tepat', t: 'yt' },
           { k: 'label', l: 'Beri nama obat pada ujung distal selang', t: 'yt' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pemberian obat high alert yang patuh pada seluruh langkah (Num)', mode: 'yt', kolom: ['siap', 'sesuai', 'dbl', 'enam', 'tetes', 'label'] },
-          denum: { label: 'Jumlah pemberian obat high alert yang diobservasi (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pemberian obat high alert yang patuh pada seluruh langkah (Num)', mode: 'yt', kolom: ['siap', 'sesuai', 'dbl', 'enam', 'tetes', 'label'] }, denum: { label: 'Jumlah pemberian obat high alert yang diobservasi (Denum)', mode: 'baris' } } },
 
-      { id: 'IMP-ERT', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tanggap Emergency Response Time', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'IMP-ERT', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tanggap Emergency Response Time', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, target: 100, targetOp: 'ge',
         kolom: [
           { k: 'waktu', l: 'Tanggal / Jam', t: 'datetime' },
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
-          { k: 'kritis', l: 'Kondisi Kritis', t: 'text' },
+          { k: 'kritis', l: 'Kondisi Kritis', t: 'text', opsi: ['Henti napas / apnoe', 'Henti jantung', 'Penurunan kesadaran', 'Syok', 'Kejang', 'Sesak napas berat'] },
           { k: 'rt_perawat', l: 'Response Time Perawat (menit)', t: 'number' },
           { k: 'rt_triase', l: 'Response Time Dokter Triase (menit)', t: 'number' },
           { k: 'rt_dpjp', l: 'Response Time DPJP (menit)', t: 'number' },
+          { k: 'ok', l: 'Semua respons ≤ 5 menit', t: 'yt', auto: true, cfg: { angka: ['rt_perawat', 'rt_triase', 'rt_dpjp'], batas: 5, cmp: '<=' } },
           { k: 'ket', l: 'Keterangan', t: 'text' }
         ],
-        hitung: { tampil: false } },
+        hitung: { tampil: true, num: { label: 'Jumlah kondisi pasien kritis yang direspon sesuai dengan batas waktu yang ditetapkan (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah kondisi pasien kritis (Denum)', mode: 'baris' } } },
 
-      { id: 'IMP-ADM', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu Pelayanan Admisi', baris_default: 10, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'IMP-ADM', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu Pelayanan SEP (Admisi)', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, target: 100, targetOp: 'ge',
         kolom: [
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'lahir', l: 'Tanggal lahir / umur', t: 'text' },
           { k: 'antar', l: 'Tgl & jam pengantar permintaan rawat inap diantar', t: 'datetime' },
           { k: 'ruang', l: 'Tgl & jam mendapatkan ruangan', t: 'datetime' },
-          { k: 'tenggang1', l: 'Waktu tenggang (menit)', t: 'selisih', cfg: { dari: 'antar', ke: 'ruang', satuan: 'menit', batas: 0, cmp: '>=' } },
+          { k: 'tenggang1', l: 'Waktu tenggang ruangan (menit)', t: 'selisih', cfg: { dari: 'antar', ke: 'ruang', satuan: 'menit', batas: 20, cmp: '<=' } },
           { k: 'sep_minta', l: 'Tgl & jam pengantar permintaan penerbitan SEP', t: 'datetime' },
           { k: 'sep_terbit', l: 'Tgl & jam penerbitan SEP', t: 'datetime' },
-          { k: 'tenggang2', l: 'Waktu tenggang (menit)', t: 'selisih', cfg: { dari: 'sep_minta', ke: 'sep_terbit', satuan: 'menit', batas: 0, cmp: '>=' } },
+          { k: 'tenggang2', l: 'Waktu tenggang SEP (menit)', t: 'selisih', cfg: { dari: 'sep_minta', ke: 'sep_terbit', satuan: 'menit', batas: 30, cmp: '<=' } },
+          { k: 'ok_ruang', l: 'Ruangan didapat ≤ 20 menit', t: 'yt', auto: true, cfg: { dari: 'antar', ke: 'ruang', satuan: 'menit', batas: 20, cmp: '<=' } },
+          { k: 'ok_sep', l: 'SEP terbit ≤ 30 menit', t: 'yt', auto: true, cfg: { dari: 'sep_minta', ke: 'sep_terbit', satuan: 'menit', batas: 30, cmp: '<=' } },
           { k: 'masalah', l: 'Masalah', t: 'text' }
         ],
-        hitung: { tampil: false } },
+        hitung: { tampil: true, num: { label: 'Jumlah pengajuan SEP yang dilayani sesuai dengan target waktu ≤ 30 menit (Num)', mode: 'yt', kolom: ['ok_sep'] }, denum: { label: 'Jumlah seluruh pengajuan penerbitan SEP pasien BPJS (Denum)', mode: 'baris' } } },
 
-      { id: 'IMP-BTL', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Laporan Pembatalan Operasi Elektif', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'IMP-BTL', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Laporan Pembatalan Operasi Elektif', baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, target: 3, targetOp: 'le',
         kolom: [
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
           { k: 'dx', l: 'Diagnosa', t: 'text' },
           { k: 'dokter', l: 'Nama Dokter', t: 'text' },
           { k: 'rencana', l: 'Rencana Awal (tgl & jam)', t: 'datetime' },
-          { k: 'batal', l: 'Tanggal Pembatalan', t: 'date' },
+          { k: 'batal', l: 'Tanggal Pembatalan', t: 'date', salin: true },
           { k: 'alasan', l: 'Alasan pembatalan', t: 'text' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pasien operasi elektif yang dibatalkan (Num)', mode: 'manual' },
-          denum: { label: 'Jumlah pasien operasi elektif (Denum)', mode: 'manual' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pasien operasi elektif yang dibatalkan (Num)', mode: 'manual' }, denum: { label: 'Jumlah pasien operasi elektif (Denum)', mode: 'manual' } } },
 
-      { id: 'IMP-ASI', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form ASI Eksklusif', baris_default: 15, kertas: 'A4', orientasi: 'portrait', aktif: true,
+      { id: 'IMP-ASI', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form ASI Eksklusif', baris_default: 15, kertas: 'A4', orientasi: 'portrait', aktif: true, target: 100, targetOp: 'ge',
         kolom: [
           { k: 'lahir', l: 'Tgl lahir anak', t: 'date' },
           { k: 'ibu', l: 'Nama ibu yang partus di RS', t: 'text' },
@@ -7444,11 +7362,9 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'alasan', l: 'Alasan tidak diberikan ASI', t: 'text' },
           { k: 'dpjp', l: 'DPJP', t: 'text' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah bayi yang mendapat ASI eksklusif (Num)', mode: 'yt', kolom: ['asi'] },
-          denum: { label: 'Jumlah bayi lahir yang diobservasi (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah bayi yang mendapat ASI eksklusif (Num)', mode: 'yt', kolom: ['asi'] }, denum: { label: 'Jumlah bayi lahir yang diobservasi (Denum)', mode: 'baris' } } },
 
-      { id: 'IMP-CPTB', kode: 'IMP-RS 2', kategori: 'IMP RS', judul: 'Form Kepatuhan Terhadap Clinical Pathway TB Paru', target: 80, baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'IMP-CPTB', kode: 'IMP-RS 2', kategori: 'IMP RS', judul: 'Form Kepatuhan Terhadap Clinical Pathway TB Paru', target: 80, baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, targetOp: 'ge',
         kolom: [
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
@@ -7459,11 +7375,9 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'los', l: 'Lama Hari Rawat Sesuai CP', t: 'yt' },
           { k: 'ppa', l: 'Kepatuhan Seluruh PPA Terintegrasi', t: 'yt' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah pelayanan oleh PPA yang patuh clinical pathway TB Paru (Num)', mode: 'yt', kolom: ['oat', 'penunjang', 'los', 'ppa'] },
-          denum: { label: 'Jumlah pelayanan pasien TB Paru yang diobservasi (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah pelayanan oleh PPA yang patuh clinical pathway TB Paru (Num)', mode: 'yt', kolom: ['oat', 'penunjang', 'los', 'ppa'] }, denum: { label: 'Jumlah pelayanan pasien TB Paru yang diobservasi (Denum)', mode: 'baris' } } },
 
-      { id: 'IMP-BTA', kode: 'IMP-RS 3', kategori: 'IMP RS', judul: 'Form Waktu Tunggu Hasil Pemeriksaan BTA SPS', target: 90, baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true,
+      { id: 'IMP-BTA', kode: 'IMP-RS 3', kategori: 'IMP RS', judul: 'Form Waktu Tunggu Hasil Pemeriksaan BTA SPS', target: 90, baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, targetOp: 'ge',
         kolom: [
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
@@ -7473,13 +7387,11 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'tepat', l: 'Selesai ≤ 24 Jam (1 Hari)', t: 'yt', auto: true, cfg: { dari: 'terima', ke: 'selesai', satuan: 'jam', batas: 24, cmp: '<=' } },
           { k: 'hasil', l: 'Hasil Pemeriksaan (Negatif/Positif)', t: 'text' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah hasil pemeriksaan BTA SPS selesai ≤ 24 jam (Num)', mode: 'yt', kolom: ['tepat'] },
-          denum: { label: 'Jumlah pemeriksaan BTA SPS yang diobservasi (Denum)', mode: 'baris' } } },
+        hitung: { tampil: true, num: { label: 'Jumlah hasil pemeriksaan BTA SPS selesai ≤ 24 jam (Num)', mode: 'yt', kolom: ['tepat'] }, denum: { label: 'Jumlah pemeriksaan BTA SPS yang diobservasi (Denum)', mode: 'baris' } } },
 
-      { id: 'IMP-ASKEP', kode: 'IMP-RS 4', kategori: 'IMP RS', judul: 'Form Kelengkapan Dokumentasi Asuhan Keperawatan Pasien TB Paru', target: 80, baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, tglKolom: 'tglobs',
+      { id: 'IMP-ASKEP', kode: 'IMP-RS 4', kategori: 'IMP RS', judul: 'Form Kelengkapan Dokumentasi Asuhan Keperawatan Pasien TB Paru', target: 100, baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, tglKolom: 'tglobs', targetOp: 'ge',
         kolom: [
-          { k: 'tglobs', l: 'Tanggal', t: 'date' },
+          { k: 'tglobs', l: 'Tanggal', t: 'date', salin: true },
           { k: 'nama', l: 'Nama Pasien', t: 'text' },
           { k: 'rm', l: 'No. RM', t: 'text' },
           { k: 'kajian', l: 'Asesmen/Pengkajian 24 Jam', t: 'yt' },
@@ -7489,9 +7401,372 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           { k: 'eval', l: 'Evaluasi Asuhan (SOAP)', t: 'yt' },
           { k: 'lengkap', l: 'Dokumentasi Terisi Lengkap', t: 'yt' }
         ],
-        hitung: { tampil: true,
-          num: { label: 'Jumlah dokumentasi askep TB Paru yang terisi lengkap (Num)', mode: 'yt', kolom: ['kajian', 'dx', 'interv', 'impl', 'eval', 'lengkap'] },
-          denum: { label: 'Jumlah pasien TB Paru yang diobservasi (Denum)', mode: 'baris' } } }
+        hitung: { tampil: true, num: { label: 'Jumlah dokumentasi askep TB Paru yang terisi lengkap (Num)', mode: 'yt', kolom: ['kajian', 'dx', 'interv', 'impl', 'eval', 'lengkap'] }, denum: { label: 'Jumlah pasien TB Paru yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 12, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-RESPON', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Respon Time Pelaporan Kerusakan', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'jenis', l: 'Jenis Kerusakan', t: 'text' },
+          { k: 'bagian', l: 'Bagian Terkait', t: 'text', opsi: ['IPSRS', 'Elektromedik', 'IT / SIMRS', 'Sanitasi', 'Logistik'] },
+          { k: 'lapor', l: 'Tanggal & Jam Pelaporan', t: 'datetime' },
+          { k: 'tanggap', l: 'Tanggal & Jam Tanggap dari Bagian Terkait', t: 'datetime' },
+          { k: 'selisih', l: 'Waktu Tenggang (menit)', t: 'selisih', cfg: { dari: 'lapor', ke: 'tanggap', satuan: 'menit', batas: 10, cmp: '<=' } },
+          { k: 'ok', l: 'Direspon ≤ 10 menit', t: 'yt', auto: true, cfg: { dari: 'lapor', ke: 'tanggap', satuan: 'menit', batas: 10, cmp: '<=' } }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah laporan kerusakan alat yang ditanggapi kurang atau sama dengan 10 menit dalam 1 bulan (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh laporan kerusakan alat dalam satu bulan (Denum)', mode: 'baris' } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-IGDRESP', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tanggap Pelayanan Gawat Darurat di IGD', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. Rekam Medik', t: 'text' },
+          { k: 'dx', l: 'Diagnosa Medis', t: 'text' },
+          { k: 'datang', l: 'Jam Datang', t: 'time' },
+          { k: 'dilayani', l: 'Jam Mendapatkan Pelayanan', t: 'time' },
+          { k: 'selisih', l: 'Waktu Tanggap (menit)', t: 'selisih', cfg: { dari: 'datang', ke: 'dilayani', satuan: 'menit', batas: 5, cmp: '<=' } },
+          { k: 'ok', l: 'Waktu tanggap ≤ 5 menit', t: 'yt', auto: true, cfg: { dari: 'datang', ke: 'dilayani', satuan: 'menit', batas: 5, cmp: '<=' } },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pasien gawat, darurat, dan gawat-darurat yang mendapatkan pelayanan dalam waktu ≤ 5 menit (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh pasien gawat, darurat, dan gawat-darurat yang diamati (Denum)', mode: 'baris' } } },
+
+      { baris_default: 10, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-RETENSI', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kejadian Retensi Pasien dengan Triase Kuning dan Merah di IGD', target: 0, targetOp: 'le',
+        kolom: [
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'lahir', l: 'Tanggal Lahir / Umur', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'triase', l: 'Jenis Triase', t: 'sel', opsi: ['Kuning', 'Merah'] },
+          { k: 'datang', l: 'Tanggal & Jam Datang', t: 'datetime' },
+          { k: 'keluar', l: 'Tanggal & Jam Keluar IGD', t: 'datetime' },
+          { k: 'status', l: 'Keluar dengan', t: 'sel', opsi: ['Pulang', 'Transfer / rawat inap', 'Dirujuk', 'Meninggal'] },
+          { k: 'lama', l: 'Lama di IGD (jam)', t: 'selisih', cfg: { dari: 'datang', ke: 'keluar', satuan: 'jam', batas: 8, cmp: '<=' } },
+          { k: 'ret', l: 'Retensi (> 8 jam)', t: 'yt', auto: true, cfg: { dari: 'datang', ke: 'keluar', satuan: 'jam', batas: 8, cmp: '>' } },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pasien dengan triase kuning dan merah yang tertahan (retensi) lebih dari 8 jam di IGD (Num)', mode: 'yt', kolom: ['ret'] }, denum: { label: 'Jumlah seluruh pasien dengan triase kuning dan merah yang diamati di IGD (Denum)', mode: 'baris' } } },
+
+      { baris_default: 10, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-CITOLAB', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu Hasil Pemeriksaan Penunjang Laboratorium Cito di IGD', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'lahir', l: 'Tanggal Lahir / Umur', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'dx', l: 'Diagnosa Medis', t: 'text' },
+          { k: 'periksa', l: 'Jenis Pemeriksaan', t: 'text', opsi: ['Darah rutin', 'Gula darah', 'Elektrolit', 'Ureum / Kreatinin', 'SGOT / SGPT', 'Troponin', 'Analisa gas darah'] },
+          { k: 'jam_periksa', l: 'Jam Pemeriksaan', t: 'time' },
+          { k: 'jam_hasil', l: 'Jam Hasil Pemeriksaan Cito', t: 'time' },
+          { k: 'selisih', l: 'Waktu Tunggu (menit)', t: 'selisih', cfg: { dari: 'jam_periksa', ke: 'jam_hasil', satuan: 'menit', batas: 90, cmp: '<=' } },
+          { k: 'ok', l: 'Hasil ≤ 90 menit (1–1,5 jam)', t: 'yt', auto: true, cfg: { dari: 'jam_periksa', ke: 'jam_hasil', satuan: 'menit', batas: 90, cmp: '<=' } },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah hasil pemeriksaan penunjang lab cito yang sesuai dengan ketetapan (1 - 1,5 jam) (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah pemeriksaan lab cito yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 20, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-TRANSFER', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kelengkapan Pengisian Lembar Transfer', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'asal', l: 'Asal Unit', t: 'text', opsi: ['IGD', 'Poli Interna', 'Poli Anak', 'ICU', 'IBS', 'Ranap lain'] },
+          { k: 'lengkap', l: 'Lembar Transfer', t: 'yt', ytl: ['Lengkap', 'Tidak Lengkap'] },
+          { k: 'ket', l: 'Keterangan (bagian yang belum terisi)', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah lembar transfer pasien yang terisi lengkap (Num)', mode: 'yt', kolom: ['lengkap'] }, denum: { label: 'Jumlah pasien transfer yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-IVERBAL', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Pencatatan Instruksi Verbal Via Telepon yang Ditandatangani dalam 24 Jam', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'rm', l: 'No. Rekam Medik', t: 'text' },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'petugas', l: 'Nama Petugas yang Melakukan TBAK', t: 'text' },
+          { k: 'dok', l: 'Didokumentasi (Tulis–Baca ulang–Konfirmasi)', t: 'yt' },
+          { k: 'verif', l: 'Diverifikasi & Ditandatangani DPJP', t: 'yt' },
+          { k: 'dalam24', l: 'Verifikasi ≤ 24 jam', t: 'yt' },
+          { k: 'dokter', l: 'Nama Dokter yang Memberi Instruksi', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah verifikasi instruksi verbal via telepon dengan readback yang ditandatangani DPJP dalam 24 jam (Num)', mode: 'yt', kolom: ['dok', 'verif', 'dalam24'] }, denum: { label: 'Jumlah seluruh instruksi DPJP via telepon yang didokumentasikan dalam satu bulan (Denum)', mode: 'baris' } } },
+
+      { baris_default: 25, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-ASESMED', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kelengkapan Asesmen Awal Medis dalam 24 Jam', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'dx', l: 'Diagnosa', t: 'text' },
+          { k: 'dpjp', l: 'DPJP', t: 'text' },
+          { k: 'lengkap', l: 'Asesmen Awal Medis dalam 24 Jam', t: 'yt', ytl: ['Lengkap', 'Tidak Lengkap'] }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah kelengkapan asesmen awal medis yang terisi lengkap dalam 24 jam (Num)', mode: 'yt', kolom: ['lengkap'] }, denum: { label: 'Jumlah pasien baru rawat inap yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 25, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-ASESKEP', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kelengkapan Asesmen Awal Keperawatan dalam 24 Jam', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'perawat', l: 'Nama Perawat', t: 'text' },
+          { k: 'lengkap', l: 'Asesmen Awal Keperawatan dalam 24 Jam', t: 'yt', ytl: ['Lengkap', 'Tidak Lengkap'] }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah kelengkapan asesmen awal keperawatan yang terisi lengkap dalam 24 jam (Num)', mode: 'yt', kolom: ['lengkap'] }, denum: { label: 'Jumlah pasien baru rawat inap yang dilakukan observasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 25, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-IDENTRM', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kelengkapan Identitas Pasien di Status Rekam Medik', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'berkas', l: 'No. RM / Berkas', t: 'text' },
+          { k: 'nama', l: 'Nama Pasien tertulis', t: 'yt' },
+          { k: 'lahir', l: 'Tanggal Lahir tertulis', t: 'yt' },
+          { k: 'rm', l: 'Nomor RM tertulis', t: 'yt' },
+          { k: 'alasan', l: 'Alasan Tidak Lengkap', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah berkas rekam medis dengan identitas lengkap di status RM (Num)', mode: 'yt', kolom: ['nama', 'lahir', 'rm'] }, denum: { label: 'Jumlah berkas rekam medis yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 8, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-MATIIBU', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kejadian Kematian Ibu karena Persalinan Diakibatkan Perdarahan', target: 1, targetOp: 'le',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'mr', l: 'No. MR', t: 'text' },
+          { k: 'dx', l: 'Diagnosa Medis', t: 'text' },
+          { k: 'jam', l: 'Jam Kematian', t: 'time' },
+          { k: 'sebab', l: 'Penyebab Kematian', t: 'sel', opsi: ['Perdarahan', 'Pre-eklampsia / Eklampsia', 'Sepsis', 'Lainnya'] },
+          { k: 'perdarahan', l: 'Karena perdarahan', t: 'yt', auto: true, cfg: { cocok: { kolom: 'sebab', nilai: 'Perdarahan' } } },
+          { k: 'dpjp', l: 'DPJP', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah kematian pasien persalinan karena perdarahan (Num)', mode: 'yt', kolom: ['perdarahan'] }, denum: { label: 'Jumlah seluruh pasien persalinan dengan perdarahan (Denum – isi manual)', mode: 'manual' } } },
+
+      { baris_default: 25, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-IMD', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kepatuhan Pelaksanaan Inisiasi Menyusu Dini (IMD) pada Bayi Baru Lahir', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien (Ibu)', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'jam_lahir', l: 'Jam Lahir Bayi', t: 'time' },
+          { k: 'jam_imd', l: 'Jam Mulai IMD', t: 'time' },
+          { k: 'jenis', l: 'Jenis Persalinan', t: 'text', opsi: ['PB', 'SC', 'Vakum', 'Lainnya'] },
+          { k: 'stabil', l: 'Bayi Stabil', t: 'yt' },
+          { k: 'imd', l: 'IMD ≥ 1 jam dilakukan', t: 'yt' },
+          { k: 'alasan', l: 'Jika Tidak IMD (Alasan)', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah bayi lahir hidup yang dilakukan IMD sesuai standar minimal 1 jam (Num)', mode: 'yt', kolom: ['stabil', 'imd'] }, denum: { label: 'Jumlah seluruh bayi lahir hidup dan stabil (Denum)', mode: 'yt', kolom: ['stabil'] } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-SITE', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kepatuhan Pelaksanaan Prosedur Site Marking pada Pasien yang Akan Dilakukan Operasi', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'rm', l: 'No. Rekam Medik', t: 'text' },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'dx_pre', l: 'Diagnosa Pre Op', t: 'text' },
+          { k: 'tanda', l: 'Pemberian Tanda Site Marking', t: 'yt', ytl: ['Dilakukan', 'Tidak Dilakukan'] },
+          { k: 'sisi', l: 'Tanda Site Marking', t: 'sel', opsi: ['Kanan (Dextra)', 'Kiri (Sinistra)', 'Multi level / digit'] },
+          { k: 'dx_post', l: 'Diagnosa Post Op', t: 'text' },
+          { k: 'dot', l: 'DOT (Daftar Operasi Terencana)', t: 'text' },
+          { k: 'dpjp', l: 'DPJP', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pasien yang dilakukan prosedur site marking dengan tepat dan benar sebelum operasi (Num)', mode: 'yt', kolom: ['tanda'] }, denum: { label: 'Jumlah seluruh pasien yang akan dilakukan tindakan operasi dalam bulan yang sama (Denum)', mode: 'baris' } } },
+
+      { baris_default: 20, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-BHP', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Pemenuhan Kebutuhan BHP di Ruang Hemodialisa', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal Permintaan', t: 'date', salin: true },
+          { k: 'bhp', l: 'Nama BHP', t: 'text', opsi: ['Dializer', 'Blood line', 'AV fistula needle', 'Cairan dialisat (bicarbonat)', 'Heparin', 'NaCl 0,9%', 'Sarung tangan', 'Set CDL'] },
+          { k: 'ok', l: 'Terpenuhi', t: 'yt' },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah permintaan bahan habis pakai (BHP) HD yang terpenuhi tepat waktu (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh permintaan BHP untuk pelayanan hemodialisa (Denum)', mode: 'baris' } } },
+
+      { baris_default: 25, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-AVSHUNT', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Pasien HD Menggunakan AV Shunt', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'lahir', l: 'Tanggal Lahir', t: 'text' },
+          { k: 'akses', l: 'Jenis Akses Vaskular', t: 'sel', opsi: ['AV Shunt', 'CDL'] },
+          { k: 'avs', l: 'Menggunakan AV Shunt', t: 'yt', auto: true, cfg: { cocok: { kolom: 'akses', nilai: 'AV Shunt' } } }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pasien HD reguler dengan akses vaskular AV Shunt (arteriovenous shunt) (Num)', mode: 'yt', kolom: ['avs'] }, denum: { label: 'Jumlah seluruh pasien HD reguler yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 30, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-JAMDINAS', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kepatuhan Jam Dinas Perawat', target: 80, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'perawat', l: 'Nama Perawat', t: 'text' },
+          { k: 'shift', l: 'Shift', t: 'sel', opsi: ['Pagi', 'Sore', 'Malam'] },
+          { k: 'jadwal', l: 'Jam Mulai Dinas (Jadwal)', t: 'time' },
+          { k: 'datang', l: 'Jam Datang', t: 'time' },
+          { k: 'telat', l: 'Selisih (menit, − = lebih awal)', t: 'selisih', cfg: { dari: 'jadwal', ke: 'datang', satuan: 'menit', batas: 0, cmp: '<=', neg: true } },
+          { k: 'ok', l: 'Hadir tepat waktu', t: 'yt', auto: true, cfg: { dari: 'jadwal', ke: 'datang', satuan: 'menit', batas: 0, cmp: '<=', neg: true } },
+          { k: 'pulang', l: 'Jam Pulang', t: 'time' },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah perawat yang hadir berdinas tepat waktu sesuai jadwal shift (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh perawat yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 10, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-HANDOVER', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Lembar Observasi Timbang Terima (Kepatuhan Pelaksanaan Hand Over)', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'shift', l: 'Pergantian Shift', t: 'sel', opsi: ['Pagi → Sore', 'Sore → Malam', 'Malam → Pagi'] },
+          { k: 'h1', l: 'Timbang terima tepat saat pergantian shift', t: 'yt', g: 'Tindakan yang Diobservasi' },
+          { k: 'h2', l: 'Dipimpin oleh kepala ruangan', t: 'yt', g: 'Tindakan yang Diobservasi' },
+          { k: 'h3', l: 'Karu meminta laporan dari PJ shift sebelumnya', t: 'yt', g: 'Tindakan yang Diobservasi' },
+          { k: 'h4', l: 'Karu mengklarifikasi / mempersilakan anggota mengklarifikasi laporan', t: 'yt', g: 'Tindakan yang Diobservasi' },
+          { k: 'h5', l: 'Diikuti semua perawat yang telah dan akan dinas', t: 'yt', g: 'Tindakan yang Diobservasi' },
+          { k: 'h6', l: 'Karu memimpin ronde ke bed pasien', t: 'yt', g: 'Tindakan yang Diobservasi' },
+          { k: 'h7', l: 'Karu merangkum informasi operan & memberi saran tindak lanjut', t: 'yt', g: 'Tindakan yang Diobservasi' },
+          { k: 'h8', l: 'Berdoa dan menutup acara', t: 'yt', g: 'Tindakan yang Diobservasi' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pelaksanaan hand over perawat yang dilakukan sesuai lembar penilaian standar (Num)', mode: 'yt', kolom: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'] }, denum: { label: 'Jumlah pelaksanaan hand over perawat yang diobservasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 30, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-LABELHA', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kepatuhan Pemberian Label Obat High Alert oleh Farmasi', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'obat', l: 'Nama Obat High Alert', t: 'text', opsi: ['Heparin', 'Insulin', 'KCl 7,46%', 'NaCl 3%', 'Magnesium sulfat 20%', 'Morfin', 'Petidin', 'Midazolam', 'Epinefrin', 'Dopamin'] },
+          { k: 'label', l: 'Label High Alert', t: 'yt', ytl: ['Berlabel', 'Tidak Berlabel'] },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah obat high alert yang diberi label sesuai standar oleh farmasi dalam satu bulan (Num)', mode: 'yt', kolom: ['label'] }, denum: { label: 'Jumlah seluruh obat high alert yang dipantau dalam bulan yang sama (Denum)', mode: 'baris' } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-DARAH', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Pemenuhan Kebutuhan Darah', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal Permintaan Produk Darah', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'asal', l: 'Asal Ruangan', t: 'text', opsi: ['IGD', 'ICU', 'PICU', 'IBS', 'Ponek', 'Ranap Interna', 'Ranap Bedah', 'Ranap Anak', 'Nifas'] },
+          { k: 'jenis', l: 'Jenis Produk Darah', t: 'sel', opsi: ['WB', 'PRC', 'TC', 'FFP', 'Cryo', 'WE', 'Lainnya'] },
+          { k: 'jml_minta', l: 'Jumlah Permintaan (kantong)', t: 'number' },
+          { k: 'jml_ambil', l: 'Jumlah yang Telah Diambil (kantong)', t: 'number' },
+          { k: 'ok', l: 'Permintaan terpenuhi', t: 'yt', auto: true, cfg: { banding: { a: 'jml_ambil', b: 'jml_minta', cmp: '>=' } } },
+          { k: 'reaksi', l: 'Reaksi Transfusi', t: 'yt' },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah permintaan kebutuhan darah yang dapat dipenuhi dalam periode observasi (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh permintaan darah yang diajukan dalam periode observasi (Denum)', mode: 'baris' } } },
+
+      { baris_default: 5, kertas: 'F4', orientasi: 'landscape', aktif: true, id: 'IMP-REAKSI', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Laporan Reaksi Transfusi', target: 0.01, targetOp: 'le',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal & Jam Reaksi Transfusi', t: 'datetime' },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'lahir', l: 'Tanggal Lahir / Umur', t: 'text' },
+          { k: 'jk', l: 'Jenis Kelamin', t: 'sel', opsi: ['Laki-laki', 'Perempuan'] },
+          { k: 'dx', l: 'Diagnosis', t: 'text' },
+          { k: 'rm', l: 'No. Rekam Medis', t: 'text' },
+          { k: 'ruang', l: 'Ruangan', t: 'text', opsi: ['IGD', 'IMC', 'VIP Alfa', 'VIP Omega', 'Bedah', 'VK', 'Nifas', 'Rusa II / III', 'ICU', 'PICU', 'NICU', 'Bayi'] },
+          { k: 'riwayat', l: 'Riwayat Transfusi Sebelumnya', t: 'sel', opsi: ['Ada', 'Tidak'] },
+          { k: 'komponen', l: 'Jenis Komponen Darah', t: 'sel', opsi: ['WB', 'PRC', 'TC', 'FFP', 'WE', 'Lainnya'] },
+          { k: 'kantong', l: 'Nomor Kantong Darah', t: 'text' },
+          { k: 'gejala', l: 'Gejala dan Tanda Reaksi Transfusi', t: 'text' },
+          { k: 'petugas', l: 'Nama & Paraf Petugas BDRS', t: 'text' },
+          { k: 'dpjp', l: 'Nama & Paraf DPJP', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah kejadian reaksi transfusi darah dalam periode observasi (Num)', mode: 'baris' }, denum: { label: 'Jumlah seluruh pasien yang mendapat transfusi darah pada periode observasi (Denum – isi manual)', mode: 'manual' } } },
+
+      { baris_default: 10, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-ALAT', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Pelaporan Kejadian Kehilangan Alat (CSSD)', target: 0, targetOp: 'le',
+        kolom: [
+          { k: 'ruang', l: 'Nama Ruangan Pengirim', t: 'text' },
+          { k: 'alat', l: 'Jenis Alat', t: 'text' },
+          { k: 'antar', l: 'Tanggal Pengantaran Alat', t: 'date', salin: true },
+          { k: 'hilang', l: 'Tanggal Kehilangan Alat', t: 'date' },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah instrumen/alat bedah yang hilang (Num)', mode: 'baris' }, denum: { label: 'Jumlah seluruh instrumen/alat yang diserahkan dan diproses di CSSD (Denum – isi manual)', mode: 'manual' } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-RAD-THX', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu dan Pelayanan Ekspertisi Radiologi – Thorax Foto', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'datang', l: 'Jam Pasien Datang ke Radiologi', t: 'time' },
+          { k: 'periksa', l: 'Tanggal & Jam Dilakukan Pemeriksaan', t: 'datetime' },
+          { k: 'hasil', l: 'Tanggal & Jam Mendapatkan Hasil', t: 'datetime' },
+          { k: 'selisih', l: 'Rentang Waktu (jam)', t: 'selisih', cfg: { dari: 'periksa', ke: 'hasil', satuan: 'jam', batas: 24, cmp: '<=' } },
+          { k: 'ok', l: 'Hasil ≤ 24 jam', t: 'yt', auto: true, cfg: { dari: 'periksa', ke: 'hasil', satuan: 'jam', batas: 24, cmp: '<=' } },
+          { k: 'eks', l: 'Dilakukan Ekspertisi', t: 'yt' },
+          { k: 'dokter', l: 'Dokter Sp.Rad', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pelayanan thorax foto yang selesai dan diekspertisi ≤ 24 jam (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh pelayanan thorax foto yang dilakukan (Denum)', mode: 'baris' } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-RAD-BNO', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu dan Pelayanan Ekspertisi Radiologi – Foto BNO', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'datang', l: 'Jam Pasien Datang ke Radiologi', t: 'time' },
+          { k: 'periksa', l: 'Tanggal & Jam Dilakukan Pemeriksaan', t: 'datetime' },
+          { k: 'hasil', l: 'Tanggal & Jam Mendapatkan Hasil', t: 'datetime' },
+          { k: 'selisih', l: 'Rentang Waktu (jam)', t: 'selisih', cfg: { dari: 'periksa', ke: 'hasil', satuan: 'jam', batas: 24, cmp: '<=' } },
+          { k: 'ok', l: 'Hasil ≤ 24 jam', t: 'yt', auto: true, cfg: { dari: 'periksa', ke: 'hasil', satuan: 'jam', batas: 24, cmp: '<=' } },
+          { k: 'eks', l: 'Dilakukan Ekspertisi', t: 'yt' },
+          { k: 'dokter', l: 'Dokter Sp.Rad', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pelayanan foto BNO yang selesai dan diekspertisi ≤ 24 jam (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh pemeriksaan foto BNO yang dilakukan (Denum)', mode: 'baris' } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-RAD-CT', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu dan Pelayanan Ekspertisi Radiologi – CT-Scan', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'datang', l: 'Jam Pasien Datang ke Radiologi', t: 'time' },
+          { k: 'periksa', l: 'Tanggal & Jam Dilakukan Pemeriksaan', t: 'datetime' },
+          { k: 'hasil', l: 'Tanggal & Jam Mendapatkan Hasil', t: 'datetime' },
+          { k: 'selisih', l: 'Rentang Waktu (hari)', t: 'selisih', cfg: { dari: 'periksa', ke: 'hasil', satuan: 'hari', batas: 5, cmp: '<=' } },
+          { k: 'ok', l: 'Hasil ≤ 5 hari', t: 'yt', auto: true, cfg: { dari: 'periksa', ke: 'hasil', satuan: 'hari', batas: 5, cmp: '<=' } },
+          { k: 'eks', l: 'Dilakukan Ekspertisi', t: 'yt' },
+          { k: 'dokter', l: 'Dokter Sp.Rad', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pelayanan CT-Scan yang selesai dan diekspertisi sesuai target waktu (≤ 3-5 hari) (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh pelayanan CT-Scan yang disurvei (Denum)', mode: 'baris' } } },
+
+      { baris_default: 12, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-JENAZAH', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Respon Time Petugas Pemulasaran Jenazah', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'tiba', l: 'Waktu Jenazah Tiba (Tanggal/Jam)', t: 'datetime' },
+          { k: 'tanggap', l: 'Waktu Tanggap Pelayanan Petugas (Tanggal/Jam)', t: 'datetime' },
+          { k: 'selisih', l: 'Waktu Tanggap (menit)', t: 'selisih', cfg: { dari: 'tiba', ke: 'tanggap', satuan: 'menit', batas: 120, cmp: '<=' } },
+          { k: 'ok', l: 'Dilayani ≤ 2 jam', t: 'yt', auto: true, cfg: { dari: 'tiba', ke: 'tanggap', satuan: 'menit', batas: 120, cmp: '<=' } },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pelayanan pemulasaran jenasah yang selesai sesuai target waktu (≤ 2 jam) (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh pelayanan pemulasaran jenasah yang disurvei (Denum)', mode: 'baris' } } },
+
+      { baris_default: 20, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-VISUM', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu Pelayanan Surat Visum', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'minta', l: 'Tanggal & Jam Permintaan Visum', t: 'datetime' },
+          { k: 'terbit', l: 'Tanggal & Jam Terbit Surat Visum', t: 'datetime' },
+          { k: 'selisih', l: 'Waktu Tunggu (jam)', t: 'selisih', cfg: { dari: 'minta', ke: 'terbit', satuan: 'jam', batas: 24, cmp: '<=' } },
+          { k: 'ok', l: 'Terbit ≤ 24 jam', t: 'yt', auto: true, cfg: { dari: 'minta', ke: 'terbit', satuan: 'jam', batas: 24, cmp: '<=' } },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pelayanan pembuatan surat visum yang selesai sesuai target (≤ 24 jam) (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh permintaan surat visum yang disurvei (Denum)', mode: 'baris' } } },
+
+      { baris_default: 25, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-STATRI', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kelengkapan Pengisian Status Rawat Inap', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'asal', l: 'Asal Unit', t: 'text', opsi: ['IGD', 'Ponek', 'ICU', 'PICU', 'IBS', 'Ranap Interna', 'Ranap Bedah', 'Ranap Anak', 'Kasuari', 'Nifas'] },
+          { k: 'lengkap', l: 'Pengisian Status', t: 'yt', ytl: ['Lengkap', 'Tidak Lengkap'] },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah status rawat inap yang diisi lengkap oleh dokter dan perawat dalam waktu ≤ 24 jam pasca pulang (Num)', mode: 'yt', kolom: ['lengkap'] }, denum: { label: 'Jumlah seluruh status rawat inap yang disurvei (Denum)', mode: 'baris' } } },
+
+      { baris_default: 25, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-STATRJ', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Kelengkapan Pengisian Status Rawat Jalan', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'asal', l: 'Asal Unit', t: 'text', opsi: ['Poli Umum', 'Poli Anak', 'Poli Bedah', 'Poli Interna', 'Poli Kandungan', 'Poli Saraf', 'Poli Gigi', 'Poli Mata', 'Poli THT'] },
+          { k: 'lengkap', l: 'Pengisian Status', t: 'yt', ytl: ['Lengkap', 'Tidak Lengkap'] },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah status rawat jalan yang diisi lengkap dalam waktu ≤ 24 jam (Num)', mode: 'yt', kolom: ['lengkap'] }, denum: { label: 'Jumlah seluruh status rawat jalan yang disurvei (Denum)', mode: 'baris' } } },
+
+      { baris_default: 40, kertas: 'A4', orientasi: 'portrait', aktif: true, id: 'IMP-DOKRM', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Formulir Harian Waktu Penyediaan Dokumen Rekam Medis Pelayanan Rawat Jalan', target: 90, targetOp: 'ge',
+        kolom: [
+          { k: 'tgl', l: 'Tanggal', t: 'date', salin: true },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'daftar', l: 'Jam Pasien Daftar', t: 'time' },
+          { k: 'ketemu', l: 'Jam Ditemukan Status RM', t: 'time' },
+          { k: 'selisih', l: 'Waktu Penyediaan (menit)', t: 'selisih', cfg: { dari: 'daftar', ke: 'ketemu', satuan: 'menit', batas: 10, cmp: '<=' } },
+          { k: 'ok', l: 'Waktu ≤ 10 menit', t: 'yt', auto: true, cfg: { dari: 'daftar', ke: 'ketemu', satuan: 'menit', batas: 10, cmp: '<=' } },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah penyediaan dokumen rekam medis rawat jalan yang selesai ≤ 10 menit (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Total sampel penyediaan rekam medis yang diamati (Denum)', mode: 'baris' } } },
+
+      { baris_default: 15, kertas: 'A4', orientasi: 'landscape', aktif: true, id: 'IMP-RUANG', kode: 'IMP Unit', kategori: 'IMP Unit', judul: 'Form Waktu Tunggu Mendapatkan Ruangan Rawat Inap', target: 100, targetOp: 'ge',
+        kolom: [
+          { k: 'nama', l: 'Nama Pasien', t: 'text' },
+          { k: 'rm', l: 'No. RM', t: 'text' },
+          { k: 'indikasi', l: 'Tgl/Jam Indikasi Rawat Inap', t: 'datetime' },
+          { k: 'pesan', l: 'Tgl/Jam Pesan Ruang Rawat', t: 'datetime' },
+          { k: 'masuk', l: 'Tgl/Jam Masuk Ruangan', t: 'datetime' },
+          { k: 'total', l: 'Total Waktu Tunggu (jam)', t: 'selisih', cfg: { dari: 'indikasi', ke: 'masuk', satuan: 'jam', batas: 0, cmp: '>=' } },
+          { k: 'selisih', l: 'Pesan Ruang → Masuk (menit)', t: 'selisih', cfg: { dari: 'pesan', ke: 'masuk', satuan: 'menit', batas: 20, cmp: '<=' } },
+          { k: 'ok', l: 'Ruangan didapat ≤ 20 menit', t: 'yt', auto: true, cfg: { dari: 'pesan', ke: 'masuk', satuan: 'menit', batas: 20, cmp: '<=' } },
+          { k: 'ket', l: 'Keterangan', t: 'text' }
+        ],
+        hitung: { tampil: true, num: { label: 'Jumlah pengajuan permintaan rawat inap yang dilayani sesuai target waktu (≤ 20 menit) (Num)', mode: 'yt', kolom: ['ok'] }, denum: { label: 'Jumlah seluruh pengajuan permintaan rawat inap (Denum)', mode: 'baris' } } }
     ];
 
     /* =====================================================================
@@ -7811,7 +8086,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
         }
       },
       {
-        k: "imprs4", n: "Kelengkapan Dokumentasi Proses Asuhan Keperawatan Pasien TB Paru (IMP-RS 4)", kat: "IMP RS", t: 80, a: "ge", s: "≥ 80%",
+        k: "imprs4", n: "Kelengkapan Dokumentasi Proses Asuhan Keperawatan Pasien TB Paru (IMP-RS 4)", kat: "IMP RS", t: 100, a: "ge", s: "100%",
         N: "Jumlah kelengkapan dokumentasi proses asuhan keperawatan pasien TB Paru yang terisi lengkap",
         D: "Jumlah pasien TB Paru yang dilakukan observasi",
         f: "IMP-ASKEP",
@@ -7851,25 +8126,25 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "respon", n: "Respon Time Pelaporan Kerusakan (IMP-Unit)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (≤ 5-10 menit)",
         N: "Jumlah laporan kerusakan alat yang ditanggapi kurang atau sama dengan 10 menit dalam 1 bulan",
-        D: "Jumlah seluruh laporan kerusakan alat dalam satu bulan", f: "",
+        D: "Jumlah seluruh laporan kerusakan alat dalam satu bulan", f: "IMP-RESPON",
         profil: { dasar: "KMK No 1128 Tahun 2022 tentang Standar Akreditasi RS.", dimensi: "Efektifitas, efisiensi, terintegrasi", tujuan: "Tergambarnya kecepatan respon penanganan laporan kerusakan sarana/alat di unit.", definisi: "Waktu sejak laporan kerusakan diterima sampai petugas teknisi/bagian terkait merespon ≤ 10 menit (target 5-10 menit).", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh laporan kerusakan alat/sarana", eksklusi: "Tidak ada", metode: "Dokumentasi", sumber: "Buku laporan kerusakan alat", instrumen: "Form Respon Time Pelaporan Kerusakan", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulanan, Tahunan", pj: "Kepala Ruangan & IPSRS" }
       },
       {
-        k: "igdresp", n: "Waktu Tanggap Pelayanan Gawat Darurat (IMP-Unit IGD)", kat: "IMP Unit", t: 100, a: "ge", s: "100% (< 5 menit)",
-        N: "Jumlah pasien gawat, darurat, dan gawat-darurat yang mendapatkan pelayanan dalam waktu < 5 menit",
-        D: "Jumlah seluruh pasien gawat, darurat, dan gawat-darurat yang diamati", f: "",
+        k: "igdresp", n: "Waktu Tanggap Pelayanan Gawat Darurat (IMP-Unit IGD)", kat: "IMP Unit", t: 100, a: "ge", s: "100% (≤ 5 menit)",
+        N: "Jumlah pasien gawat, darurat, dan gawat-darurat yang mendapatkan pelayanan dalam waktu ≤ 5 menit",
+        D: "Jumlah seluruh pasien gawat, darurat, dan gawat-darurat yang diamati", f: "IMP-IGDRESP",
         profil: { dasar: "Standar Pelayanan Minimal IGD, KMK Akreditasi RS.", dimensi: "Efisiensi, efektivitas, keselamatan, aksesibilitas", tujuan: "Mencegah kematian dan kecacatan pasien gawat darurat melalui penanganan cepat oleh dokter triage/jaga.", definisi: "Waktu tanggap sejak kedatangan pasien di IGD sampai dilakukan triase dan pemeriksaan oleh dokter < 5 menit.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua pasien gawat, darurat, dan gawat-darurat", eksklusi: "Situasi bencana massal (disaster)", metode: "Concurrent", sumber: "Sensus harian & lembar triage IGD", instrumen: "Formulir Waktu Tanggap Pelayanan Gawat Darurat", sampel: "Total sampel / Slovin", periode: "Harian", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Gawat Darurat (IGD)" }
       },
       {
-        k: "retensi", n: "Kejadian Retensi Pasien dengan Triase Kuning dan Merah (IMP-Unit IGD)", kat: "IMP Unit", t: 100, a: "ge", s: "100% (≤ 8 jam)",
-        N: "Jumlah pasien dengan triase kuning dan merah yang diobservasi ≤ 8 jam (tidak tertahan di IGD)",
-        D: "Jumlah seluruh pasien dengan triase kuning dan merah yang diamati di IGD", f: "",
+        k: "retensi", n: "Kejadian Retensi Pasien dengan Triase Kuning dan Merah (IMP-Unit IGD)", kat: "IMP Unit", t: 0, a: "le", s: "0 kejadian (retensi > 8 jam)",
+        N: "Jumlah pasien dengan triase kuning dan merah yang tertahan (retensi) lebih dari 8 jam di IGD",
+        D: "Jumlah seluruh pasien dengan triase kuning dan merah yang diamati di IGD", f: "IMP-RETENSI",
         profil: { dasar: "Standar Pelayanan Akreditasi Rumah Sakit IGD.", dimensi: "Efisien, efektif, kesinambungan asuhan", tujuan: "Mencegah penumpukan pasien (crowding) di IGD dan memastikan kesinambungan perawatan definitif di rawat inap atau ICU.", definisi: "Rentang waktu pasien sejak masuk IGD sampai dipindahkan ke ruang rawat definitif, ICU, dirujuk, atau dipulangkan ≤ 8 jam.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua pasien triage kuning dan merah di IGD", eksklusi: "Tidak ada", metode: "Concurrent", sumber: "Formulir kejadian retensi pasien di IGD", instrumen: "Form Retensi Pasien IGD", sampel: "Total sampel / Slovin", periode: "Harian", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Gawat Darurat" }
       },
       {
-        k: "citolab", n: "Waktu Tunggu Hasil Pemeriksaan Penunjang Laboratorium Cito (IMP-Unit IGD)", kat: "IMP Unit", t: 100, a: "ge", s: "100% (1 – 1,5 jam)",
+        k: "citolab", n: "Waktu Tunggu Hasil Pemeriksaan Penunjang Laboratorium Cito (IMP-Unit IGD)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (1 – 1,5 jam)",
         N: "Jumlah hasil pemeriksaan penunjang lab cito yang sesuai dengan ketetapan (1 - 1,5 jam)",
-        D: "Jumlah pemeriksaan lab cito yang diobservasi", f: "",
+        D: "Jumlah pemeriksaan lab cito yang diobservasi", f: "IMP-CITOLAB",
         profil: { dasar: "Standar Pelayanan Laboratorium Cito IGD.", dimensi: "Tepat waktu, keselamatan", tujuan: "Tergambarnya kecepatan pelayanan penunjang lab cito untuk pengambilan keputusan klinis darurat.", definisi: "Waktu sejak sampel lab cito diterima di laboratorium sampai hasil diserahkan ke IGD yaitu 1 sampai 1,5 jam.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua hasil pemeriksaan lab cito IGD", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Buku register pemeriksaan lab cito", instrumen: "Form Waktu Tunggu Hasil Lab Cito", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Laboratorium & IGD" }
       },
       {
@@ -7881,31 +8156,31 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "transfer", n: "Kelengkapan Pengisian Lembar Transfer (IMP-Unit Ranap Boha)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah lembar transfer pasien yang terisi lengkap",
-        D: "Jumlah pasien transfer yang diobservasi", f: "",
+        D: "Jumlah pasien transfer yang diobservasi", f: "IMP-TRANSFER",
         profil: { dasar: "KMK No 1128 Tahun 2022, Keselamatan Pasien (SKP 2 Komunikasi Efektif).", dimensi: "Berfokus pada pasien, keselamatan", tujuan: "Menjamin kesinambungan informasi kondisi klinis pasien saat serah terima antarruangan melalui komunikasi SBAR.", definisi: "Kelengkapan lembar transfer pasien mencakup identitas, diagnosis, riwayat klinis, tanda vital saat transfer, terapi yang diberikan, instruksi dokter, serta tanda tangan pengirim dan penerima.", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh pasien baru dari IGD yang ditransfer ke ranap dan transfer antar-ranap", eksklusi: "Pasien meninggal yang dipindahkan ke kamar jenazah", metode: "Retrospektif", sumber: "Rekam medis pasien", instrumen: "Formulir Kelengkapan Pengisian Lembar Transfer", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulanan", pj: "Kepala Ruangan" }
       },
       {
         k: "iverbal", n: "Instruksi Verbal Via Telepon yang di Read Back dan Diverifikasi dalam 24 Jam (IMP-Unit)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah verifikasi instruksi verbal via telepon dengan readback yang ditandatangani DPJP dalam 24 jam",
-        D: "Jumlah seluruh instruksi DPJP via telepon yang didokumentasikan dalam satu bulan", f: "",
+        D: "Jumlah seluruh instruksi DPJP via telepon yang didokumentasikan dalam satu bulan", f: "IMP-IVERBAL",
         profil: { dasar: "KMK No 1128 Tahun 2022 Standar Akreditasi RS, SKP 2.", dimensi: "Mutu dan Keselamatan Pasien", tujuan: "Menghindari terjadinya kesalahan instruksi obat/tindakan medis via telepon.", definisi: "Penerapan teknik TBAK (Tulis, Baca kembali / Read back, Konfirmasi) saat menerima instruksi via telepon dan diverifikasi/ditandatangani DPJP maksimal 1x24 jam.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua instruksi verbal/telepon dokter jaga/DPJP di luar jam kerja", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Data rekam medis (lembar CPPT)", instrumen: "Formulir Verifikasi Instruksi Verbal", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan" }
       },
       {
         k: "asesmed", n: "Kelengkapan Asesmen Awal Medis dalam 24 Jam (IMP-Unit)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah kelengkapan asesmen awal medis yang terisi lengkap dalam 24 jam",
-        D: "Jumlah pasien baru rawat inap yang diobservasi", f: "",
+        D: "Jumlah pasien baru rawat inap yang diobservasi", f: "IMP-ASESMED",
         profil: { dasar: "KMK No 1128 Tahun 2022 tentang Standar Akreditasi RS.", dimensi: "Berfokus pada pasien, mutu dan keselamatan", tujuan: "Menjamin setiap pasien baru rawat inap mendapatkan evaluasi medis komprehensif dalam waktu 24 jam.", definisi: "Pengisian asesmen awal medis oleh DPJP secara lengkap (identitas, anamnesis, pemeriksaan fisik, diagnosis, terapi/rencana tatalaksana) dalam waktu ≤ 24 jam sejak pasien masuk.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua pasien baru yang dirawat inap", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Data rekam medis pasien", instrumen: "Formulir Kelengkapan Asesmen Awal Medis", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan & Bidang Pelayanan Medik" }
       },
       {
         k: "aseskep", n: "Kelengkapan Asesmen Awal Keperawatan dalam 24 Jam (IMP-Unit)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah kelengkapan asesmen awal keperawatan yang terisi lengkap dalam 24 jam",
-        D: "Jumlah pasien baru rawat inap yang dilakukan observasi", f: "",
+        D: "Jumlah pasien baru rawat inap yang dilakukan observasi", f: "IMP-ASESKEP",
         profil: { dasar: "UU Kesehatan No 17 Tahun 2023, KMK No 1128 Tahun 2022.", dimensi: "Berfokus pada pasien, mutu dan keselamatan", tujuan: "Tergambarnya pemahaman dan disiplin staf keperawatan dalam mengumpulkan data awal pasien secara menyeluruh.", definisi: "Pengisian asesmen awal keperawatan (bio-psiko-sosio-spiritual, pengkajian jatuh, nyeri, dekubitus, dan nutrisi) yang selesai dalam waktu ≤ 24 jam sejak pasien diterima.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua pasien baru yang dirawat inap", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Rekam medis pasien", instrumen: "Formulir Kelengkapan Asesmen Keperawatan", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan & Bidang Keperawatan" }
       },
       {
         k: "identrm", n: "Kelengkapan Identitas Pasien di Status Rekam Medik (IMP-Unit Ranap Cenderawasih)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah berkas rekam medis dengan identitas lengkap di status RM",
-        D: "Jumlah berkas rekam medis yang diobservasi", f: "",
+        D: "Jumlah berkas rekam medis yang diobservasi", f: "IMP-IDENTRM",
         profil: { dasar: "KMK No 1128 Tahun 2022, Permenkes Keselamatan Pasien.", dimensi: "Berfokus pada pasien, mutu dan keselamatan", tujuan: "Menjamin kelengkapan identitas pasien pada setiap lembar berkas rekam medis.", definisi: "Setiap lembar formulir dalam berkas rekam medis wajib tercantum identitas lengkap pasien (Nama, Tanggal Lahir, Nomor RM).", jenis: "Proses", satuan: "Persentase", inklusi: "Semua pasien yang dirawat inap", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Berkas rekam medis pasien", instrumen: "Formulir Kelengkapan Identitas RM", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan" }
       },
       {
@@ -7923,7 +8198,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "site", n: "Kepatuhan Prosedur Site Marking pada Pasien Operasi (IMP-Unit Ranap Mambruk)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah pasien yang dilakukan prosedur site marking dengan tepat dan benar sebelum operasi",
-        D: "Jumlah seluruh pasien yang akan dilakukan tindakan operasi dalam bulan yang sama", f: "",
+        D: "Jumlah seluruh pasien yang akan dilakukan tindakan operasi dalam bulan yang sama", f: "IMP-SITE",
         profil: { dasar: "Permenkes Keselamatan Pasien (SKP 4 - Kepastian Tepat Lokasi, Tepat Prosedur, Tepat Pasien Operasi).", dimensi: "Keselamatan", tujuan: "Mencegah kesalahan sisi, prosedur, dan lokasi pada tindakan operasi.", definisi: "Pemberian tanda identifikasi lokasi operasi oleh operator berupa tanda centang dalam lingkaran dan tanda D (dekstra) atau S (sinistra) yang tidak mudah terhapus sebelum pasien dipindahkan ke kamar operasi.", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh pasien yang akan dilakukan operasi dengan sisi kanan/kiri, multi level, atau digit", eksklusi: "Pasien tindakan operasi dengan ruas tunggal, nodul tunggal, atau gigi.", metode: "Observasi", sumber: "Data primer pemantauan pasien pra-bedah", instrumen: "Formulir Kepatuhan Site Marking", sampel: "Total sampel", periode: "Bulanan", analisis: "Bulanan, Triwulanan", pj: "Kepala Ruangan & Bidang Pelayanan Medik" }
       },
       {
@@ -7941,25 +8216,25 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "matiibu", n: "Kejadian Kematian Ibu karena Persalinan Diakibatkan Perdarahan (IMP-Unit)", kat: "IMP Unit", t: 1, a: "le", s: "≤ 1%",
         N: "Jumlah kematian pasien persalinan karena perdarahan",
-        D: "Jumlah seluruh pasien persalinan dengan perdarahan", f: "",
+        D: "Jumlah seluruh pasien persalinan dengan perdarahan", f: "IMP-MATIIBU",
         profil: { dasar: "UU Kesehatan No 17 Tahun 2023, KMK Akreditasi RS, Program Nasional Penurunan AKI.", dimensi: "Keselamatan, mutu klinis", tujuan: "Menurunkan angka kematian ibu akibat perdarahan obstetri di ruang rawat kebidanan dan Ponek.", definisi: "Kematian ibu melahirkan yang disebabkan perdarahan antepartum atau postpartum selama masa rawat.", jenis: "Outcome", satuan: "Persentase", inklusi: "Semua pasien persalinan dengan komplikasi perdarahan", eksklusi: "Tidak ada", metode: "Observasi & Audit Maternal", sumber: "Data sekunder rekam medik kebidanan", instrumen: "Form Audit Maternal Perinatal", sampel: "Total pasien", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan Kebidanan & Ponek" }
       },
       {
         k: "imd", n: "Kepatuhan Pelaksanaan Inisiasi Menyusu Dini / IMD pada Bayi Baru Lahir (IMP-Unit Kasuari)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90%",
         N: "Jumlah bayi lahir hidup yang dilakukan IMD sesuai standar minimal 1 jam",
-        D: "Jumlah seluruh bayi lahir hidup dan stabil", f: "",
+        D: "Jumlah seluruh bayi lahir hidup dan stabil", f: "IMP-IMD",
         profil: { dasar: "UU No 36 Tahun 2009 tentang Kesehatan, PP No 33 Tahun 2012 tentang Pemberian ASI Eksklusif.", dimensi: "Efektivitas, ketepatan waktu, berfokus pasien", tujuan: "Memastikan seluruh bayi baru lahir mendapatkan IMD minimal 1 jam pertama pasca persalinan.", definisi: "Proses kontak kulit ibu dan bayi segera setelah lahir minimal 1 jam untuk merangsang refleks menyusu alami.", jenis: "Proses", satuan: "Persentase", inklusi: "Bayi lahir hidup dan stabil", eksklusi: "Bayi asfiksia/tidak stabil yang memerlukan resusitasi, ibu kondisi gawat darurat.", metode: "Observasi", sumber: "Hasil observasi kamar bersalin", instrumen: "Formulir Kepatuhan Pelaksanaan IMD", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan Kasuari" }
       },
       {
         k: "bhp", n: "Pemenuhan Kebutuhan BHP Hemodialisa (IMP-Unit HD)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah permintaan bahan habis pakai (BHP) HD yang terpenuhi tepat waktu",
-        D: "Jumlah seluruh permintaan BHP untuk pelayanan hemodialisa", f: "",
+        D: "Jumlah seluruh permintaan BHP untuk pelayanan hemodialisa", f: "IMP-BHP",
         profil: { dasar: "KMK Standar Pelayanan Hemodialisa di Rumah Sakit.", dimensi: "Efektivitas, keselamatan, mutu", tujuan: "Menjamin ketersediaan dialiser, blood line, fistula, dan cairan dialisat agar pelayanan HD tidak terganggu.", definisi: "Tingkat pemenuhan kebutuhan bahan habis pakai khusus hemodialisa dari gudang farmasi/logistik ke unit HD.", jenis: "Input / Proses", satuan: "Persentase", inklusi: "Semua BHP utama pelayanan HD", eksklusi: "Tidak ada", metode: "Dokumentasi", sumber: "Data logistik & farmasi HD", instrumen: "Buku Permintaan dan Penerimaan BHP HD", sampel: "Total permintaan", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan Hemodialisa" }
       },
       {
         k: "avshunt", n: "Pasien Hemodialisa Menggunakan AV Shunt (IMP-Unit HD)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90%",
         N: "Jumlah pasien HD reguler dengan akses vaskular AV Shunt (arteriovenous shunt)",
-        D: "Jumlah seluruh pasien HD reguler yang diobservasi", f: "",
+        D: "Jumlah seluruh pasien HD reguler yang diobservasi", f: "IMP-AVSHUNT",
         profil: { dasar: "Standar Akreditasi RS, Konsensus Pernefri tentang Akses Vaskular HD.", dimensi: "Efektivitas, keselamatan", tujuan: "Mengoptimalkan akses vaskular permanen guna meminimalkan risiko infeksi akibat pemakaian kateter lumen ganda (CDL).", definisi: "Persentase pasien hemodialisis rutin yang menggunakan akses vaskular permanen AV shunt / cimino.", jenis: "Proses / Outcome", satuan: "Persentase", inklusi: "Semua pasien yang menjalani hemodialisa rutin", eksklusi: "Pasien HD akut baru", metode: "Observasi", sumber: "Data register rekam medis HD", instrumen: "Formulir Pemantauan Akses Vaskular Pasien HD", sampel: "Total pasien HD rutin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan Hemodialisa" }
       },
       {
@@ -7969,7 +8244,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
         profil: { dasar: "Pernefri & Standar Pelayanan Hemodialisis Rumah Sakit.", dimensi: "Kompetensi, keselamatan", tujuan: "Menjamin keamanan pasien selama proses hemodialisis oleh tenaga perawat yang tersertifikasi mahir.", definisi: "Kualifikasi tenaga perawat pelaksana HD yang telah menyelesaikan pelatihan dialisis bersertifikat resmi.", jenis: "Input", satuan: "Persentase", inklusi: "Seluruh perawat di ruang HD", eksklusi: "Tidak ada", metode: "Dokumentasi", sumber: "Data kepegawaian unit HD", instrumen: "Daftar Sertifikasi Tenaga HD", sampel: "Total staf HD", periode: "Bulanan", analisis: "Tahunan", pj: "Kepala Ruangan Hemodialisa" }
       },
       {
-        k: "ro", n: "Pelaksanaan Maintenance Mesin Reverse Osmosis / RO (IMP-Unit HD)", kat: "IMP Unit", t: 100, a: "ge", s: "Minimal 2X / Tahun (100%)",
+        k: "ro", n: "Pelaksanaan Maintenance Mesin Reverse Osmosis / RO (IMP-Unit HD)", kat: "IMP Unit", t: 100, a: "ge", s: "Dilakukan",
         N: "Jumlah pemeliharaan mesin RO yang terlaksana sesuai jadwal dan uji baku mutu air",
         D: "Target pemeliharaan mesin RO yang ditetapkan dalam setahun (minimal 2X setahun)", f: "",
         profil: { dasar: "Standar Baku Mutu Air Dialisis Kemenkes & KMK Akreditasi RS.", dimensi: "Keselamatan, mutu", tujuan: "Menjaga kualitas air dialisis bebas kontaminan pirogen dan endotoksin.", definisi: "Pemeliharaan berkala mesin water treatment Reverse Osmosis (RO) meliputi penggantian filter, desinfeksi kimia/panas, dan uji laboratorium bakteriologis air RO minimal 2 kali setahun.", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh rangkaian sistem mesin RO unit HD", eksklusi: "Tidak ada", metode: "Dokumentasi", sumber: "Buku log perawatan mesin RO & hasil uji lab air", instrumen: "Formulir Pemeliharaan Mesin RO", sampel: "Total kegiatan", periode: "Semesteran", analisis: "Semesteran & Tahunan", pj: "Kepala Ruangan Hemodialisa & Teknisi Elektromedik" }
@@ -7977,7 +8252,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "jamdinas", n: "Kepatuhan Jam Dinas Perawat (IMP-Unit IBS & ICU)", kat: "IMP Unit", t: 80, a: "ge", s: "≥ 80%",
         N: "Jumlah perawat yang hadir berdinas tepat waktu sesuai jadwal shift",
-        D: "Jumlah seluruh perawat yang diobservasi", f: "",
+        D: "Jumlah seluruh perawat yang diobservasi", f: "IMP-JAMDINAS",
         profil: { dasar: "Standar Manajemen SDM Rumah Sakit, Disiplin Aparatur Sipil Negara.", dimensi: "Efisiensi, disiplin staf", tujuan: "Meningkatkan kedisiplinan perawat jaga untuk memastikan kesiapan pelayanan dan ketepatan operan shift.", definisi: "Kehadiran perawat sesuai dengan jam dinas shift (pagi, sore, malam) tanpa keterlambatan.", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh perawat fungsional di unit kerja", eksklusi: "Perawat yang sedang cuti resmi / dinas luar", metode: "Dokumentasi", sumber: "Presensi elektronik / buku absensi shift", instrumen: "Formulir Kepatuhan Jam Dinas", sampel: "Total perawat", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan IBS & ICU" }
       },
       {
@@ -7989,7 +8264,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "handover", n: "Kepatuhan Pelaksanaan Hand Over Perawat (IMP-Unit ICU)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah pelaksanaan hand over perawat yang dilakukan sesuai lembar penilaian standar SBAR",
-        D: "Jumlah pelaksanaan hand over perawat yang diobservasi", f: "",
+        D: "Jumlah pelaksanaan hand over perawat yang diobservasi", f: "IMP-HANDOVER",
         profil: { dasar: "Permenkes Keselamatan Pasien (SKP 2 - Komunikasi Efektif Antar-Pemberi Layanan).", dimensi: "Tepat waktu, efisiensi, aksesibilitas, keselamatan", tujuan: "Tergambarnya penerapan serah terima tugas perawat antar-shift (handover bedside) secara terstruktur.", definisi: "Proses timbang terima antar-perawat jaga di samping tempat tidur pasien meliputi Situation, Background, Assessment, dan Recommendation (SBAR).", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh proses handover pergantian shift", eksklusi: "Tidak ada", metode: "Observasi langsung", sumber: "Lembar checklist observasi serah terima", instrumen: "Formulir Penilaian Hand Over Perawat", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulanan", pj: "Kepala Ruangan ICU" }
       },
       {
@@ -8007,7 +8282,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "ruang", n: "Waktu Tunggu Mendapatkan Ruangan Rawat Inap (IMP-Unit Admisi & Ponek)", kat: "IMP Unit", t: 100, a: "ge", s: "100% (≤ 20 menit)",
         N: "Jumlah pengajuan permintaan rawat inap yang dilayani sesuai target waktu (≤ 20 menit)",
-        D: "Jumlah seluruh pengajuan permintaan rawat inap", f: "IMP-ADM",
+        D: "Jumlah seluruh pengajuan permintaan rawat inap", f: "IMP-RUANG",
         profil: { dasar: "Standar Pelayanan Admisi Pasien Masuk Rawat Inap.", dimensi: "Tergambarnya kepuasan pasien terhadap kecepatan penempatan ruang", tujuan: "Memastikan penempatan bed dan ruangan rawat inap efisien dan cepat.", definisi: "Waktu sejak pengantar permintaan rawat inap diserahkan ke loket admisi sampai pasien dipastikan memperoleh nomor kamar dan bed ≤ 20 menit.", jenis: "Proses", satuan: "Persentase", inklusi: "Pasien yang akan dirawat inap", eksklusi: "Pasien rawat jalan", metode: "Retrospektif", sumber: "Data SIMRS & buku ekspedisi admisi", instrumen: "Formulir Waktu Tunggu Admisi Ruangan", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan Admisi" }
       },
       {
@@ -8031,43 +8306,43 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "labelha", n: "Kepatuhan Pemberian Label Obat High Alert oleh Farmasi (IMP-Unit Farmasi)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah obat high alert yang diberi label sesuai standar oleh farmasi dalam satu bulan",
-        D: "Jumlah seluruh obat high alert yang dipantau dalam bulan yang sama", f: "",
+        D: "Jumlah seluruh obat high alert yang dipantau dalam bulan yang sama", f: "IMP-LABELHA",
         profil: { dasar: "Permenkes Keselamatan Pasien (SKP 3 - Peningkatan Keamanan Obat High Alert).", dimensi: "Keselamatan", tujuan: "Menjamin seluruh obat berisiko tinggi dan elektrolit pekat telah diberi stiker peringatan warna merah mencolok sebelum didistribusikan.", definisi: "Kepatuhan staf farmasi memberikan label stiker HIGH ALERT (merah dengan tulisan putih) serta label LASA/NORUM pada setiap kemasan obat berisiko tinggi.", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh obat high alert (heparin, insulin, narkotika, elektrolit pekat KCl 7.46%, NaCl 3%, dll.)", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Buku kendali penyerahan obat high alert", instrumen: "Formulir Kepatuhan Label High Alert Farmasi", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Farmasi" }
       },
       {
         k: "darah", n: "Pemenuhan Kebutuhan Darah bagi Setiap Pelayanan Transfusi (IMP-Unit BDRS)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah permintaan kebutuhan darah yang dapat dipenuhi dalam periode observasi",
-        D: "Jumlah seluruh permintaan darah yang diajukan dalam periode observasi", f: "",
+        D: "Jumlah seluruh permintaan darah yang diajukan dalam periode observasi", f: "IMP-DARAH",
         profil: { dasar: "Standar Pelayanan Bank Darah Rumah Sakit (BDRS) Kemenkes.", dimensi: "Keselamatan, ketersediaan", tujuan: "Tergambarnya kemampuan BDRS memenuhi kebutuhan darah transfusi bagi pasien yang membutuhkan.", definisi: "Kemampuan BDRS menyediakan kantong darah aman sesuai golongan darah dan komponen (WB, PRC, FFP, TC) yang diminta klinisi.", jenis: "Proses", satuan: "Persentase", inklusi: "Seluruh permintaan darah bagi pasien transfusi", eksklusi: "Permintaan yang dibatalkan oleh DPJP", metode: "Retrospektif", sumber: "Buku register permintaan dan distribusi darah BDRS", instrumen: "Formulir Pemenuhan Kebutuhan Darah", sampel: "Total permintaan darah", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala BDRS" }
       },
       {
         k: "reaksi", n: "Kejadian Reaksi Transfusi Darah (IMP-Unit BDRS)", kat: "IMP Unit", t: 0.01, a: "le", s: "≤ 0,01%",
         N: "Jumlah kejadian reaksi transfusi darah dalam periode observasi",
-        D: "Jumlah seluruh pasien yang mendapat transfusi darah pada periode observasi", f: "",
+        D: "Jumlah seluruh pasien yang mendapat transfusi darah pada periode observasi", f: "IMP-REAKSI",
         profil: { dasar: "Standar Pelayanan Minimal RS, Standar Keselamatan Pasien BDRS.", dimensi: "Keselamatan", tujuan: "Memantau keamanan transfusi darah dan mencegah kejadian tidak diharapkan akibat reaksi imunologis/infeksi.", definisi: "Reaksi yang timbul saat atau setelah transfusi darah (menggigil, demam, alergi, urtikaria, hemolisis, syok anafilaksis).", jenis: "Outcome", satuan: "Persentase", inklusi: "Semua pasien yang menerima transfusi darah", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Laporan monitoring reaksi transfusi di rekam medis", instrumen: "Formulir Kejadian Reaksi Transfusi", sampel: "Total pasien transfusi", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala BDRS & Komite Keselamatan Pasien" }
       },
       {
         k: "alat", n: "Kejadian Kehilangan Alat di CSSD (IMP-Unit CSSD)", kat: "IMP Unit", t: 0, a: "le", s: "0%",
         N: "Jumlah instrumen/alat bedah yang hilang",
-        D: "Jumlah seluruh instrumen/alat yang diserahkan dan diproses di CSSD", f: "",
+        D: "Jumlah seluruh instrumen/alat yang diserahkan dan diproses di CSSD", f: "IMP-ALAT",
         profil: { dasar: "Standar Manajemen Pelayanan Sterilisasi Sentral (CSSD).", dimensi: "Keselamatan, akuntabilitas", tujuan: "Mencegah kehilangan set instrumen bedah dan menjamin keutuhan set steril untuk tindakan operasi.", definisi: "Tidak adanya instrumen atau peralatan medis yang hilang selama proses pencucian, pengemasan, sterilisasi, hingga penyimpanan di CSSD.", jenis: "Outcome", satuan: "Persentase", inklusi: "Seluruh set instrumen yang diserahkan ke CSSD", eksklusi: "Tidak ada", metode: "Dokumentasi", sumber: "Buku serah terima dan inventaris CSSD", instrumen: "Buku Register Instrumen CSSD", sampel: "Total instrumen", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi CSSD" }
       },
       {
         k: "thorax", n: "Waktu Tunggu Hasil Pelayanan Thorax Foto (IMP-Unit Radiologi)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (≤ 24 jam)",
         N: "Jumlah pelayanan thorax foto yang selesai dan diekspertisi ≤ 24 jam",
-        D: "Jumlah seluruh pelayanan thorax foto yang dilakukan", f: "",
+        D: "Jumlah seluruh pelayanan thorax foto yang dilakukan", f: "IMP-RAD-THX",
         profil: { dasar: "Standar Pelayanan Minimal Radiologi Rumah Sakit.", dimensi: "Efektivitas, kesinambungan, efisiensi", tujuan: "Menjamin kecepatan hasil pemeriksaan rontgen dada (termasuk untuk skrining dan evaluasi TB Paru).", definisi: "Waktu sejak pasien difoto thorax sampai hasil foto dicetak dan diekspertisi oleh dokter spesialis radiologi ≤ 24 jam.", jenis: "Proses", satuan: "Persentase", inklusi: "Pemeriksaan thorax foto elektif", eksklusi: "Thorax foto cito (standar < 3 jam)", metode: "Retrospektif", sumber: "Data SIMRS Radiologi / buku register", instrumen: "Formulir Waktu Tunggu Foto Thorax", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Radiologi" }
       },
       {
         k: "bno", n: "Waktu Tunggu Hasil Pelayanan Foto BNO (IMP-Unit Radiologi)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (≤ 24 jam)",
         N: "Jumlah pelayanan foto BNO yang selesai dan diekspertisi ≤ 24 jam",
-        D: "Jumlah seluruh pemeriksaan foto BNO yang dilakukan", f: "",
+        D: "Jumlah seluruh pemeriksaan foto BNO yang dilakukan", f: "IMP-RAD-BNO",
         profil: { dasar: "Standar Pelayanan Radiologi RS.", dimensi: "Efektivitas, kesinambungan pelayanan", tujuan: "Tergambarnya ketepatan waktu hasil pemeriksaan radiologi foto polos abdomen (BNO).", definisi: "Waktu tunggu pemeriksaan BNO hingga hasil ekspertisi diserahkan ≤ 24 jam.", jenis: "Proses", satuan: "Persentase", inklusi: "Pemeriksaan foto BNO elektif", eksklusi: "Pemeriksaan cito", metode: "Retrospektif", sumber: "Buku register radiologi", instrumen: "Formulir Waktu Tunggu Foto BNO", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Radiologi" }
       },
       {
         k: "ct", n: "Waktu Tunggu Hasil Pelayanan CT-Scan (IMP-Unit Radiologi)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (≤ 3-5 hari)",
         N: "Jumlah pelayanan CT-Scan yang selesai dan diekspertisi sesuai target waktu (≤ 3-5 hari)",
-        D: "Jumlah seluruh pelayanan CT-Scan yang disurvei", f: "",
+        D: "Jumlah seluruh pelayanan CT-Scan yang disurvei", f: "IMP-RAD-CT",
         profil: { dasar: "Standar Pelayanan Radiologi Lanjutan RS.", dimensi: "Efektivitas, efisiensi", tujuan: "Tergambarnya kecepatan ekspertisi pemeriksaan radiologi canggih CT-Scan.", definisi: "Waktu mulai tindakan scanning CT-Scan selesai sampai ekspertisi dokter spesialis radiologi tuntas dan diserahkan ≤ 3-5 hari.", jenis: "Proses", satuan: "Persentase", inklusi: "Pemeriksaan CT-Scan elektif", eksklusi: "CT-Scan cito gawat darurat", metode: "Retrospektif", sumber: "Buku register CT-Scan", instrumen: "Formulir Waktu Tunggu CT-Scan", sampel: "Total pemeriksaan", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Radiologi" }
       },
       {
@@ -8077,33 +8352,33 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
         profil: { dasar: "Standar Pelayanan Minimal Gizi Rumah Sakit.", dimensi: "Efektivitas, akses, kenyamanan", tujuan: "Menjamin pasien menerima asupan nutrisi sesuai jadwal makan yang ditentukan RS (Pagi: 06.00-07.30, Siang: 11.30-13.00, Malam: 17.30-19.00).", definisi: "Ketepatan waktu pendistribusian makanan kepada pasien rawat inap sesuai jadwal.", jenis: "Proses", satuan: "Persentase", inklusi: "Pemberian makanan kepada pasien rawat inap", eksklusi: "Pasien puasa atas indikasi medis", metode: "Retrospektif", sumber: "Buku catatan distribusi gizi", instrumen: "Formulir Ketepatan Waktu Distribusi Makanan", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Gizi" }
       },
       {
-        k: "sisa", n: "Sisa Makanan yang Tidak Termakan oleh Pasien (IMP-Unit Gizi)", kat: "IMP Unit", t: 30, a: "le", s: "≤ 30% sisa",
+        k: "sisa", n: "Sisa Makanan yang Tidak Termakan oleh Pasien (IMP-Unit Gizi)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90%",
         N: "Jumlah kumulatif porsi sisa makanan dari pasien yang disurvey dalam satu bulan (porsi sisa > 20%)",
         D: "Jumlah seluruh pasien yang disurvey dalam satu bulan", f: "",
         profil: { dasar: "Standar Pelayanan Minimal Gizi RS.", dimensi: "Efektivitas dan efisiensi pelayanan gizi", tujuan: "Tergambarnya daya terima pasien terhadap menu makanan yang disajikan guna mendukung pemulihan gizi pasien.", definisi: "Porsi makanan yang tersisa di piring pasien setelah jam makan berakhir (ditargetkan sisa makanan sesedikit mungkin, maksimal ≤ 20-30%).", jenis: "Proses / Outcome", satuan: "Persentase", inklusi: "Pasien rawat inap yang mendapat makanan biasa atau lunak", eksklusi: "Pasien puasa atau diet cair khusus", metode: "Retrospektif (metode visual Comstock)", sumber: "Data sensus sisa makanan instalasi gizi", instrumen: "Formulir Pemantauan Sisa Makanan", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Gizi" }
       },
       {
-        k: "jenasah", n: "Waktu Tunggu Pelayanan Pemulasaran Jenasah (IMP-Unit Kamar Jenasah)", kat: "IMP Unit", t: 100, a: "ge", s: "100% (≤ 2 jam)",
+        k: "jenasah", n: "Waktu Tunggu Pelayanan Pemulasaran Jenasah (IMP-Unit Kamar Jenasah)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (≤ 2 jam)",
         N: "Jumlah pelayanan pemulasaran jenasah yang selesai sesuai target waktu (≤ 60-120 menit)",
-        D: "Jumlah seluruh pelayanan pemulasaran jenasah yang disurvei", f: "",
+        D: "Jumlah seluruh pelayanan pemulasaran jenasah yang disurvei", f: "IMP-JENAZAH",
         profil: { dasar: "Standar Pelayanan Kamar Jenazah Rumah Sakit.", dimensi: "Kenyamanan, empati, tepat waktu", tujuan: "Memastikan pelayanan pemulasaran jenazah (pemandian, pengafanan/pembungkusan) berjalan khidmat dan cepat.", definisi: "Waktu pelayanan pemulasaran jenazah sejak jenazah diterima petugas kamar jenazah sampai selesai dipulasarakan ≤ 2 jam (≤ 60 menit respon awal).", jenis: "Proses", satuan: "Persentase", inklusi: "Semua jenazah yang dipulasarakan di RS", eksklusi: "Jenazah kasus forensik/visum yang memerlukan penyelidikan polisi", metode: "Retrospektif", sumber: "Buku register kamar jenazah", instrumen: "Formulir Waktu Pelayanan Pemulasaran Jenazah", sampel: "Total jenazah", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan Kamar Jenazah" }
       },
       {
-        k: "visum", n: "Waktu Tunggu Pelayanan Pembuatan Surat Visum (IMP-Unit Kamar Jenasah)", kat: "IMP Unit", t: 100, a: "ge", s: "100% (≤ 24 jam)",
+        k: "visum", n: "Waktu Tunggu Pelayanan Pembuatan Surat Visum (IMP-Unit Kamar Jenasah)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (≤ 24 jam)",
         N: "Jumlah pelayanan pembuatan surat visum yang selesai sesuai target (≤ 24 jam)",
-        D: "Jumlah seluruh permintaan surat visum yang disurvei", f: "",
+        D: "Jumlah seluruh permintaan surat visum yang disurvei", f: "IMP-VISUM",
         profil: { dasar: "Standar Pelayanan Mediko-Legal Rumah Sakit.", dimensi: "Kenyamanan, ketepatan hukum", tujuan: "Menjamin surat keterangan visum et repertum diselesaikan tepat waktu guna keperluan hukum dan keluarga.", definisi: "Waktu sejak surat permintaan visum dari kepolisian/keluarga diterima lengkap sampai visum ditandatangani dokter dan diterbitkan ≤ 24 jam.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua pengajuan pembuatan surat visum", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Buku register medikolegal kamar jenazah", instrumen: "Formulir Waktu Tunggu Pembuatan Visum", sampel: "Total pengajuan", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Ruangan Kamar Jenazah & Dokter Pemeriksa" }
       },
       {
         k: "statri", n: "Kelengkapan Pengisian Status Rawat Inap (IMP-Unit Rekam Medik)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah status rawat inap yang diisi lengkap oleh dokter dan perawat dalam waktu ≤ 24 jam pasca pulang",
-        D: "Jumlah seluruh status rawat inap yang disurvei", f: "",
+        D: "Jumlah seluruh status rawat inap yang disurvei", f: "IMP-STATRI",
         profil: { dasar: "Standar Manajemen Rekam Medis & Standar Akreditasi Kemenkes.", dimensi: "Kesinambungan pelayanan dan keselamatan", tujuan: "Menjamin kelengkapan dokumen rekam medis rawat inap untuk akuntabilitas hukum dan kontinuitas perawatan.", definisi: "Berkas rekam medis rawat inap terisi lengkap (identitas, resume pulang, lembar informed consent, laporan operasi/tindakan, ringkasan masuk-keluar) dalam waktu ≤ 24 jam setelah pasien pulang.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua berkas pasien rawat inap yang dipulangkan", eksklusi: "Tidak ada", metode: "Retrospektif (Review KLPCM)", sumber: "Data audit rekam medis", instrumen: "Lembar Audit KLPCM Rawat Inap", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Rekam Medik" }
       },
       {
         k: "statrj", n: "Kelengkapan Pengisian Status Rawat Jalan (IMP-Unit Rekam Medik)", kat: "IMP Unit", t: 100, a: "ge", s: "100%",
         N: "Jumlah status rawat jalan yang diisi lengkap dalam waktu ≤ 24 jam",
-        D: "Jumlah seluruh status rawat jalan yang disurvei", f: "",
+        D: "Jumlah seluruh status rawat jalan yang disurvei", f: "IMP-STATRJ",
         profil: { dasar: "Standar Manajemen Rekam Medis Rumah Sakit.", dimensi: "Kesinambungan asuhan", tujuan: "Memastikan rekam medis poliklinik terisi lengkap setiap hari.", definisi: "Pengisian berkas rekam medik poliklinik rawat jalan lengkap meliputi keluhan, diagnosis ICD-10, tindakan, terapi, serta tanda tangan dokter.", jenis: "Proses", satuan: "Persentase", inklusi: "Semua berkas pasien rawat jalan", eksklusi: "Tidak ada", metode: "Retrospektif", sumber: "Audit berkas rekam medis rawat jalan", instrumen: "Formulir Kelengkapan Rekam Medis Rawat Jalan", sampel: "Total sampel / Slovin", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Rekam Medik" }
       },
       {
@@ -8115,7 +8390,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       {
         k: "dokrm", n: "Waktu Penyediaan Dokumen Rekam Medik Pelayanan Rawat Jalan (IMP-Unit Rekam Medik)", kat: "IMP Unit", t: 90, a: "ge", s: "≥ 90% (≤ 10 menit)",
         N: "Jumlah kumulatif waktu penyediaan rekam medis rawat jalan yang selesai ≤ 10 menit",
-        D: "Total sampel penyediaan rekam medis yang diamati (N minimal 100)", f: "",
+        D: "Total sampel penyediaan rekam medis yang diamati (N minimal 100)", f: "IMP-DOKRM",
         profil: { dasar: "Standar Pelayanan Minimal RS (≤ 10 menit).", dimensi: "Berorientasi kepada pasien, tepat waktu", tujuan: "Mempercepat distribusi berkas rekam medis dari filing ke poli agar pasien tidak menunggu lama.", definisi: "Waktu mulai pasien mendaftar di loket sampai berkas rekam medis pasien ditemukan di filing dan tiba di meja perawat poliklinik ≤ 10 menit.", jenis: "Proses", satuan: "Persentase", inklusi: "Pasien lama rawat jalan", eksklusi: "Pasien baru (dibuatkan berkas baru)", metode: "Retrospektif", sumber: "Data log tracing SIMRS / buku ekspedisi filing", instrumen: "Formulir Waktu Penyediaan Rekam Medis", sampel: "Minimal 100 sampel per bulan", periode: "Bulanan", analisis: "Bulanan, Triwulan", pj: "Kepala Instalasi Rekam Medik" }
       },
       {
@@ -8136,7 +8411,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
     const INDIKATOR_RUANGAN = {
       "IGD": ["inm11", "respon", "inm3", "igdresp", "retensi", "citolab", "inm2"],
       "Ranap Rusa II": ["inm11", "respon", "inm3", "inm7"],
-      "Ranap Kus-Kus": ["inm11", "respon", "inm3", "inm7", "ert", "imprs1", "imprs2", "imprs3", "imprs4", "imprs5"],
+      "Ranap Kus-Kus": ["inm11", "respon", "inm3", "inm7", "ert", "labelha", "imprs1", "imprs2", "imprs3", "imprs4", "imprs5"],
       "Ranap Boha": ["inm11", "respon", "inm3", "inm7", "transfer", "imprs1", "iverbal"],
       "Ranap Maleo": ["inm11", "respon", "inm3", "inm7", "asesmed"],
       "Ranap Cenderawasih": ["inm11", "respon", "inm3", "inm7", "asesmed", "identrm"],
@@ -8163,7 +8438,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       "Rekam Medik": ["statri", "statrj", "kembali", "inm5", "dokrm"],
       "Surveilans": ["lapwaktu", "lapkap"],
       // Alias nama alternatif bila database pengguna sudah memiliki nama lama:
-      "R. Kus-Kus": ["inm11", "respon", "inm3", "inm7", "ert", "imprs1", "imprs2", "imprs3", "imprs4", "imprs5"],
+      "R. Kus-Kus": ["inm11", "respon", "inm3", "inm7", "ert", "labelha", "imprs1", "imprs2", "imprs3", "imprs4", "imprs5"],
       "R. Kasuari": ["inm11", "respon", "inm3", "inm7", "matiibu", "imd"],
       "R. HD": ["respon", "inm3", "bhp", "avshunt", "hdcert", "aseskep", "ro"],
       "R. Laboratorium": ["inm8", "inm3", "lab"],
@@ -8428,7 +8703,15 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       [/identifikasi pasien/i, 'INM03'], [/seksio|sc emergency/i, 'INM04'], [/waktu tunggu rawat jalan/i, 'INM05'],
       [/penundaan operasi/i, 'INM06'], [/visite/i, 'INM07'], [/hasil kritis/i, 'INM08'], [/risiko pasien jatuh/i, 'INM11'],
       [/pengembalian status rawat inap/i, 'RM01'], [/high alert dan cairan pekat/i, 'IMP-HA'], [/kondisi pasien kritis/i, 'IMP-ERT'],
-      [/pelayanan sep|ruangan rawat inap/i, 'IMP-ADM'], [/pembatalan operasi/i, 'IMP-BTL'], [/asi eksklusif/i, 'IMP-ASI'],
+      [/\bsep\b/i, 'IMP-ADM'], [/mendapatkan ruang|ruangan rawat inap/i, 'IMP-RUANG'],
+      [/respon time pelaporan kerusakan/i, 'IMP-RESPON'], [/waktu tanggap pelayanan gawat darurat/i, 'IMP-IGDRESP'], [/retensi/i, 'IMP-RETENSI'],
+      [/laboratorium cito|lab cito|penunjang lab/i, 'IMP-CITOLAB'], [/lembar transfer/i, 'IMP-TRANSFER'], [/instruksi verbal/i, 'IMP-IVERBAL'],
+      [/ass?esmen awal medis/i, 'IMP-ASESMED'], [/ass?esmen awal keperawatan/i, 'IMP-ASESKEP'], [/identitas pasien di status/i, 'IMP-IDENTRM'],
+      [/kematian ibu/i, 'IMP-MATIIBU'], [/inisiasi menyusu|\bimd\b/i, 'IMP-IMD'], [/site marking/i, 'IMP-SITE'], [/bhp/i, 'IMP-BHP'], [/av shunt/i, 'IMP-AVSHUNT'],
+      [/jam dinas/i, 'IMP-JAMDINAS'], [/hand ?over/i, 'IMP-HANDOVER'], [/label obat high alert/i, 'IMP-LABELHA'], [/pemenuhan kebutuhan darah/i, 'IMP-DARAH'],
+      [/reaksi transfusi/i, 'IMP-REAKSI'], [/kehilangan alat/i, 'IMP-ALAT'], [/thorax/i, 'IMP-RAD-THX'], [/foto bno|\bbno\b/i, 'IMP-RAD-BNO'], [/ct-?scan/i, 'IMP-RAD-CT'],
+      [/pemulasaran/i, 'IMP-JENAZAH'], [/visum/i, 'IMP-VISUM'], [/pengisian status rawat inap/i, 'IMP-STATRI'], [/pengisian status rawat jalan/i, 'IMP-STATRJ'],
+      [/penyediaan dokumen rekam medik/i, 'IMP-DOKRM'], [/pembatalan operasi/i, 'IMP-BTL'], [/asi eksklusif/i, 'IMP-ASI'],
       [/clinical pathway/i, 'IMP-CPTB'], [/bta sps|bta/i, 'IMP-BTA'], [/asuhan keperawatan/i, 'IMP-ASKEP']
     ];
     function templateForInd(i) {
@@ -8836,7 +9119,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       const a = toMin(row[cfg.dari], ca.t), b = toMin(row[cfg.ke], cb.t);
       if (a === null || b === null) return null;
       let d = b - a;
-      if (ca.t === 'time' && d < 0) d += 1440;
+      if (ca.t === 'time' && (cfg.neg ? d < -720 : d < 0)) d += 1440; // cfg.neg: selisih negatif (lebih awal) dibolehkan
       const div = cfg.satuan === 'jam' ? 60 : cfg.satuan === 'hari' ? 1440 : 1;
       return Math.round(d / div * 10) / 10;
     }
@@ -8844,15 +9127,27 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       batas = Number(batas);
       switch (cmp) { case '<': return v < batas; case '>': return v > batas; case '>=': return v >= batas; default: return v <= batas; }
     }
+    // Ya/Tidak otomatis: selisih waktu | cocok (kolom pilihan = nilai) | angka (semua kolom angka memenuhi syarat) | banding (kolom A dibanding kolom B) | rentang (jam dalam rentang)
+    function autoYT(row, c, cm) {
+      const g = c.cfg || {}, kosong = x => x === undefined || x === null || x === '';
+      if (g.cocok) { const v = row[g.cocok.kolom]; return kosong(v) ? '' : (String(v) === String(g.cocok.nilai) ? 'Ya' : 'Tidak'); }
+      if (g.angka) { const vs = g.angka.map(k => row[k]).filter(x => !kosong(x)).map(Number).filter(x => !isNaN(x)); return vs.length ? (vs.every(x => cmpOK(x, g.batas, g.cmp)) ? 'Ya' : 'Tidak') : ''; }
+      if (g.banding) { const a = row[g.banding.a], b = row[g.banding.b]; if (kosong(a) || kosong(b)) return ''; return cmpOK(Number(a), Number(b), g.banding.cmp) ? 'Ya' : 'Tidak'; }
+      if (g.rentang) {
+        const m = toMin(row[g.rentang.kolom], 'time'); if (m === null) return '';
+        const p = s => { const x = String(s).split(':').map(Number); return x[0] * 60 + (x[1] || 0); };
+        return m >= p(g.rentang.dari) && m <= p(g.rentang.sampai) ? 'Ya' : 'Tidak';
+      }
+      const v = calcSelisih(row, g, cm);
+      return v === null ? '' : (cmpOK(v, g.batas, g.cmp) ? 'Ya' : 'Tidak');
+    }
     function effVal(row, c, cm) {
       if (c.t === 'selisih') return calcSelisih(row, c.cfg, cm);
-      if (c.t === 'yt' && c.auto) {
-        const v = calcSelisih(row, c.cfg, cm);
-        return v === null ? '' : (cmpOK(v, c.cfg.batas, c.cfg.cmp) ? 'Ya' : 'Tidak');
-      }
+      if (c.t === 'yt' && c.auto) return autoYT(row, c, cm);
       return row[c.k];
     }
-    function rowFilled(r) { return Object.keys(r).some(k => k !== 'tglobs' && r[k] !== '' && r[k] !== false && r[k] != null); }
+    // Sel yang terisi otomatis (salinan tanggal dari baris atas, ditandai r._auto) tidak dianggap sebagai isian pengguna
+    function rowFilled(r) { const au = r._auto || {}; return Object.keys(r).some(k => k !== 'tglobs' && k[0] !== '_' && !au[k] && r[k] !== '' && r[k] !== false && r[k] != null); }
 
     function computeSummary(tpl, rows, meta) {
       const h = tpl.hitung;
@@ -8860,13 +9155,18 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       const cm = colMapOf(tpl), filled = rows.filter(rowFilled);
       const n = h.num || { mode: 'manual' }, d = h.denum || { mode: 'manual' };
       let num, denum;
+      const okRow = (r, ks) => (ks || []).length > 0 && ks.every(k => cm[k] && effVal(r, cm[k], cm) === 'Ya');
+      const sumCol = (k, syarat) => filled.reduce((s, r) => s + ((!syarat || okRow(r, [syarat])) ? (Number(r[k]) || 0) : 0), 0);
       if (meta.override || n.mode === 'manual') num = Number(meta.manualNum) || 0;
       else if (n.mode === 'yt') num = filled.filter(r => (n.kolom || []).length && n.kolom.every(k => cm[k] && effVal(r, cm[k], cm) === 'Ya')).length;
       else if (n.mode === 'selisih') {
         const c = cm[(n.kolom || [])[0]], cfg = c && c.cfg;
         num = filled.filter(r => { const v = calcSelisih(r, cfg, cm); return v !== null && cmpOK(v, cfg.batas, cfg.cmp); }).length;
-      } else num = filled.length;
+      } else if (n.mode === 'sum') num = sumCol((n.kolom || [])[0], n.syarat);
+      else num = filled.length;
       if (meta.override || d.mode === 'manual') denum = Number(meta.manualDenum) || 0;
+      else if (d.mode === 'yt') denum = filled.filter(r => okRow(r, d.kolom)).length;
+      else if (d.mode === 'sum') denum = sumCol((d.kolom || [])[0], d.syarat);
       else denum = filled.length;
       return { num, denum, cap: tplIsNum(tpl) ? num : (denum > 0 ? num / denum * 100 : 0), manualNum: meta.override || n.mode === 'manual', manualDenum: meta.override || d.mode === 'manual' };
     }
@@ -8978,12 +9278,20 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
 
     function renderTable() {
       const a = FORM.active, tpl = a.tpl;
-      $('feTableWrap').innerHTML = `<table class="ft">${buildThead(tpl.kolom, { del: true })}<tbody>${a.rows.map((r, i) => rowHTML(tpl, r, i, a.canEdit)).join('')}</tbody></table>`;
+      const dl = tpl.kolom.filter(c => c.t === 'text' && (c.opsi || []).length).map(c => `<datalist id="dl_${emEsc(c.k)}">${c.opsi.map(o => `<option value="${emEsc(o)}"></option>`).join('')}</datalist>`).join('');
+      $('feTableWrap').innerHTML = `<table class="ft">${buildThead(tpl.kolom, { del: true })}<tbody>${a.rows.map((r, i) => rowHTML(tpl, r, i, a.canEdit)).join('')}</tbody></table>${dl}`;
       recompute();
     }
 
     function rowHTML(tpl, row, i, canEdit) {
       const dis = canEdit ? '' : 'disabled';
+      const ytManual = tpl.kolom.filter(c => c.t === 'yt' && !c.auto);
+      const allYa = canEdit && ytManual.length >= 2 ? `<button type="button" data-allya="${i}" class="text-emerald-600 hover:text-emerald-800 px-1 font-bold" title="Tandai semua kolom Ya pada baris ini">✓✓</button>` : '';
+      const bln = (FORM.active && FORM.active.bulan) || '';
+      const batasTgl = c => { // kolom tanggal pengamatan dibatasi pada bulan laporan (mencegah salah tahun/bulan)
+        if (!/^\d{4}-\d{2}$/.test(bln) || c.t !== 'date' || !(c.k === 'tgl' || c.k === 'tglobs' || c.k === tpl.tglKolom)) return '';
+        const [y, m] = bln.split('-').map(Number); return `min="${bln}-01" max="${bln}-${String(new Date(y, m, 0).getDate()).padStart(2, '0')}"`;
+      };
       let h = `<td class="no">${i + 1}</td>`;
       tpl.kolom.forEach(c => {
         const v = row[c.k] == null ? '' : row[c.k];
@@ -9000,17 +9308,29 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           h += `<td><select ${at} ${dis}><option value=""></option>${(c.opsi || []).map(o => `<option ${o === v ? 'selected' : ''}>${emEsc(o)}</option>`).join('')}</select></td>`;
         } else {
           const type = ['number', 'date', 'time', 'datetime'].includes(c.t) ? (c.t === 'datetime' ? 'datetime-local' : c.t) : 'text';
-          h += `<td><input type="${type}" ${type === 'number' ? 'min="0" step="any"' : ''} ${at} value="${emEsc(v)}" ${dis}></td>`;
+          const extra = type === 'number' ? 'min="0" step="any" inputmode="decimal"' : type === 'date' ? batasTgl(c) : (type === 'text' && (c.opsi || []).length ? `list="dl_${emEsc(c.k)}" autocomplete="off"` : '');
+          h += `<td><input type="${type}" ${extra} ${at} value="${emEsc(v)}" ${dis}></td>`;
         }
       });
-      h += canEdit ? `<td class="text-center"><button type="button" data-del="${i}" class="text-rose-500 hover:text-rose-700 px-1" title="Hapus baris"><i class="fa-solid fa-xmark"></i></button></td>` : '<td></td>';
+      h += canEdit ? `<td class="text-center whitespace-nowrap">${allYa}<button type="button" data-del="${i}" class="text-rose-500 hover:text-rose-700 px-1" title="Hapus baris"><i class="fa-solid fa-xmark"></i></button></td>` : '<td></td>';
       return `<tr>${h}</tr>`;
     }
 
     function addRow() {
       const a = FORM.active; if (!a || !a.canEdit) return;
       if (a.rows.length >= 200) return toast('Maksimal 200 baris per laporan', 'info');
-      a.rows.push({}); renderTable();
+      const last = a.rows[a.rows.length - 1] || {}, nr = {};
+      a.tpl.kolom.forEach(c => { if (c.salin && last[c.k]) { nr[c.k] = last[c.k]; (nr._auto = nr._auto || {})[c.k] = true; } }); // salin tanggal dari baris atas
+      a.rows.push(nr); renderTable();
+    }
+    // Kolom bertanda "salin": nilai yang diisi pada satu baris otomatis dipakai baris kosong di bawahnya
+    function propagateSalin(a, r, k, v) {
+      for (let j = r + 1; j < a.rows.length; j++) {
+        const row = a.rows[j];
+        if (row[k] && !(row._auto && row._auto[k])) break;
+        row[k] = v; (row._auto = row._auto || {})[k] = true;
+        const inp = document.querySelector(`#feTableWrap [data-r="${j}"][data-k="${k}"]`); if (inp) inp.value = v;
+      }
     }
 
     // Isian sel (delegasi event)
@@ -9021,6 +9341,9 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       if (!a || el.dataset.r === undefined || el.hasAttribute('data-yt')) return;
       const r = +el.dataset.r, k = el.dataset.k;
       a.rows[r][k] = el.type === 'checkbox' ? el.checked : el.value;
+      if (a.rows[r]._auto) delete a.rows[r]._auto[k];
+      const cc = colMapOf(a.tpl)[k];
+      if (cc && cc.salin && el.type !== 'checkbox' && el.value !== '' && e.type === 'change') propagateSalin(a, r, k, el.value);
       recompute();
     }
     $('feTableWrap').addEventListener('click', e => {
@@ -9034,11 +9357,29 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
         });
         return recompute();
       }
+      const ay = e.target.closest('[data-allya]');
+      if (ay) {
+        const r = +ay.dataset.allya;
+        a.tpl.kolom.filter(c => c.t === 'yt' && !c.auto).forEach(c => {
+          a.rows[r][c.k] = 'Ya';
+          document.querySelectorAll(`[data-yt][data-r="${r}"][data-k="${c.k}"]`).forEach(b => { const on = b.dataset.v === 'Ya'; b.classList.toggle('on', on); b.textContent = on ? '✓' : ''; });
+        });
+        return recompute();
+      }
       const del = e.target.closest('[data-del]');
       if (del) {
         if (a.rows.length <= 1) return;
         a.rows.splice(+del.dataset.del, 1); renderTable();
       }
+    });
+
+    // Enter = pindah ke kolom yang sama pada baris berikutnya (isian cepat dari atas ke bawah)
+    $('feTableWrap').addEventListener('keydown', e => {
+      const el = e.target;
+      if (e.key !== 'Enter' || el.dataset.r === undefined || el.tagName === 'BUTTON') return;
+      e.preventDefault();
+      const nx = document.querySelector(`#feTableWrap [data-r="${+el.dataset.r + 1}"][data-k="${el.dataset.k}"]`);
+      if (nx) { nx.focus(); if (nx.select) try { nx.select(); } catch (x) { /* tipe input tanpa select() */ } }
     });
 
     function recompute() {
@@ -9106,7 +9447,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
         if (!ok.isConfirmed) return;
       }
       const payload = { id_laporan: a.id, id_form: a.tpl.id, nama_form: `${a.tpl.kode} ${a.tpl.judul}`.trim(), bulan_tahun: a.bulan, unit: a.unit,
-        rows: filled, meta: a.meta, num: s ? s.num : 0, denum: s ? s.denum : filled.length, angka: tplIsNum(a.tpl), aksi };
+        rows: filled.map(r => { const o = Object.assign({}, r); delete o._auto; return o; }), meta: a.meta, num: s ? s.num : 0, denum: s ? s.denum : filled.length, angka: tplIsNum(a.tpl), aksi };
       try {
         Swal.fire({ title: 'Menyimpan...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
         const res = await api('saveFormReport', tok(), payload);
@@ -9670,6 +10011,14 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
     }
 
     function cfgEditor(c, idx) {
+      const sp = c.cfg && (c.cfg.cocok || c.cfg.angka || c.cfg.banding || c.cfg.rentang);
+      if (sp) {
+        const g = c.cfg, tx = g.cocok ? `Ya bila kolom "${(TE.kolom.find(x => x.k === g.cocok.kolom) || {}).l || g.cocok.kolom}" = "${g.cocok.nilai}"`
+          : g.angka ? `Ya bila semua kolom angka terisi memenuhi ${g.cmp} ${g.batas}`
+          : g.banding ? `Ya bila kolom "${(TE.kolom.find(x => x.k === g.banding.a) || {}).l || g.banding.a}" ${g.banding.cmp} kolom "${(TE.kolom.find(x => x.k === g.banding.b) || {}).l || g.banding.b}"`
+          : `Ya bila jam visite antara ${g.rentang.dari} dan ${g.rentang.sampai}`;
+        return `<p class="text-[11px] text-slate-500 mt-2"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Dinilai otomatis dengan aturan khusus: ${emEsc(tx)}.</p>`;
+      }
       const waktuCols = TE.kolom.filter((x, j) => j !== idx && ['time', 'datetime', 'date'].includes(x.t));
       const cfg = c.cfg = c.cfg || { dari: '', ke: '', satuan: 'menit', batas: 60, cmp: '<=' };
       const opt = sel => `<option value=""></option>` + waktuCols.map(x => `<option value="${emEsc(x.k)}" ${x.k === sel ? 'selected' : ''}>${emEsc(x.l)}</option>`).join('');
@@ -9698,6 +10047,8 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
           ${c.t === 'yt' ? `<div class="mt-2 text-[11px] flex flex-wrap items-center gap-3">
               <label class="flex items-center gap-1"><input type="checkbox" data-f="auto" ${c.auto ? 'checked' : ''}> Hitung otomatis dari selisih waktu</label>
               <label>Label (pisah koma): <input data-f="ytl" value="${emEsc((c.ytl || []).join(', '))}" placeholder="Ya, Tidak" class="border rounded p-1 w-44"></label></div>${c.auto ? cfgEditor(c, i) : ''}` : ''}
+          ${c.t === 'text' ? `<label class="block mt-2 text-[10px] font-bold text-slate-500 uppercase">Saran pilihan (opsional, pisahkan dengan koma; tetap boleh mengetik bebas)<input data-f="opsi" value="${emEsc((c.opsi || []).join(', '))}" class="w-full border rounded p-1 text-xs font-normal normal-case"></label>` : ''}
+          ${['date', 'time', 'text', 'sel'].includes(c.t) ? `<label class="flex items-center gap-1 mt-2 text-[11px]"><input type="checkbox" data-f="salin" ${c.salin ? 'checked' : ''}> Salin otomatis ke baris kosong di bawahnya</label>` : ''}
           ${c.t === 'selisih' ? cfgEditor(c, i) : ''}
         </div>`).join('');
     }
@@ -9705,19 +10056,25 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
     function hitungEditorHTML() {
       ensureHitung(TE);
       const h = TE.hitung, ytCols = TE.kolom.filter(c => c.t === 'yt'), selCols = TE.kolom.filter(c => c.t === 'selisih' || (c.t === 'yt' && c.auto));
+      const numCols = TE.kolom.filter(c => c.t === 'number');
+      const sumEditor = (w, m) => `<div class="flex flex-wrap items-center gap-3 text-[11px] mt-1"><label>Jumlahkan kolom <select data-sk="${w}" class="border rounded p-1 text-xs">${numCols.map(c => `<option value="${emEsc(c.k)}" ${(m.kolom || [])[0] === c.k ? 'selected' : ''}>${emEsc(c.l)}</option>`).join('') || '<option value="">(belum ada kolom Angka)</option>'}</select></label>
+        <label>hanya baris dengan Ya pada <select data-ss="${w}" class="border rounded p-1 text-xs"><option value="">(semua baris)</option>${ytCols.map(c => `<option value="${emEsc(c.k)}" ${m.syarat === c.k ? 'selected' : ''}>${emEsc(c.l)}</option>`).join('')}</select></label></div>`;
+      const denExtra = h.denum.mode === 'yt'
+        ? `<div class="flex flex-wrap gap-3 text-[11px] mt-1">${ytCols.map(c => `<label class="flex items-center gap-1"><input type="checkbox" data-dk="${emEsc(c.k)}" ${(h.denum.kolom || []).includes(c.k) ? 'checked' : ''}> ${emEsc(c.l)}</label>`).join('') || '<span class="text-slate-400">Belum ada kolom Ya/Tidak.</span>'}</div>`
+        : h.denum.mode === 'sum' ? sumEditor('d', h.denum) : '';
       const numExtra = h.num.mode === 'yt'
         ? `<div class="flex flex-wrap gap-3 text-[11px] mt-1">${ytCols.map(c => `<label class="flex items-center gap-1"><input type="checkbox" data-hk="${emEsc(c.k)}" ${(h.num.kolom || []).includes(c.k) ? 'checked' : ''}> ${emEsc(c.l)}</label>`).join('') || '<span class="text-slate-400">Belum ada kolom Ya/Tidak.</span>'}</div>`
         : h.num.mode === 'selisih'
-          ? `<select data-hs class="border rounded p-1 text-xs mt-1">${selCols.map(c => `<option value="${emEsc(c.k)}" ${(h.num.kolom || [])[0] === c.k ? 'selected' : ''}>${emEsc(c.l)}</option>`).join('') || '<option value="">(belum ada kolom selisih)</option>'}</select>` : '';
+          ? `<select data-hs class="border rounded p-1 text-xs mt-1">${selCols.map(c => `<option value="${emEsc(c.k)}" ${(h.num.kolom || [])[0] === c.k ? 'selected' : ''}>${emEsc(c.l)}</option>`).join('') || '<option value="">(belum ada kolom selisih)</option>'}</select>` : h.num.mode === 'sum' ? sumEditor('n', h.num) : '';
       return `<div class="space-y-2">
         <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="teHitungTampil" ${h.tampil !== false ? 'checked' : ''}> Tampilkan perhitungan Num / Denum / Capaian</label>
         <div id="teHitungBody" class="${h.tampil !== false ? '' : 'hidden'} space-y-3 pl-1">
           <div><label class="text-[10px] font-bold text-slate-500 uppercase">Teks Numerator</label><input id="teNumLabel" value="${emEsc(h.num.label)}" class="w-full border rounded p-1 text-xs">
             <div class="flex items-center gap-2 mt-1 text-[11px]"><span>Cara hitung:</span>
-              <select id="teNumMode" class="border rounded p-1 text-xs"><option value="yt" ${h.num.mode === 'yt' ? 'selected' : ''}>Baris dengan semua kolom Ya/Tidak terpilih = Ya</option><option value="selisih" ${h.num.mode === 'selisih' ? 'selected' : ''}>Baris yang memenuhi syarat selisih waktu</option><option value="manual" ${h.num.mode === 'manual' ? 'selected' : ''}>Diisi manual</option></select></div>${numExtra}</div>
+              <select id="teNumMode" class="border rounded p-1 text-xs"><option value="yt" ${h.num.mode === 'yt' ? 'selected' : ''}>Baris dengan semua kolom Ya/Tidak terpilih = Ya</option><option value="selisih" ${h.num.mode === 'selisih' ? 'selected' : ''}>Baris yang memenuhi syarat selisih waktu</option><option value="baris" ${h.num.mode === 'baris' ? 'selected' : ''}>Jumlah baris yang terisi</option><option value="sum" ${h.num.mode === 'sum' ? 'selected' : ''}>Jumlah angka pada satu kolom</option><option value="manual" ${h.num.mode === 'manual' ? 'selected' : ''}>Diisi manual</option></select></div>${numExtra}</div>
           <div><label class="text-[10px] font-bold text-slate-500 uppercase">Teks Denominator</label><input id="teDenumLabel" value="${emEsc(h.denum.label)}" class="w-full border rounded p-1 text-xs">
             <div class="flex items-center gap-2 mt-1 text-[11px]"><span>Cara hitung:</span>
-              <select id="teDenumMode" class="border rounded p-1 text-xs"><option value="baris" ${h.denum.mode === 'baris' ? 'selected' : ''}>Jumlah baris yang terisi</option><option value="manual" ${h.denum.mode === 'manual' ? 'selected' : ''}>Diisi manual</option></select></div></div>
+              <select id="teDenumMode" class="border rounded p-1 text-xs"><option value="baris" ${h.denum.mode === 'baris' ? 'selected' : ''}>Jumlah baris yang terisi</option><option value="yt" ${h.denum.mode === 'yt' ? 'selected' : ''}>Baris dengan kolom Ya/Tidak terpilih = Ya</option><option value="sum" ${h.denum.mode === 'sum' ? 'selected' : ''}>Jumlah angka pada satu kolom</option><option value="manual" ${h.denum.mode === 'manual' ? 'selected' : ''}>Diisi manual</option></select></div>${denExtra}</div>
         </div></div>`;
     }
 
@@ -9806,6 +10163,11 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       const cks = [...document.querySelectorAll('[data-hk]')];
       if (h.num.mode === 'yt' && cks.length) h.num.kolom = cks.filter(c => c.checked).map(c => c.dataset.hk);
       const hs = document.querySelector('[data-hs]'); if (h.num.mode === 'selisih' && hs) h.num.kolom = [hs.value];
+      const sk = document.querySelector('[data-sk="n"]'), ss = document.querySelector('[data-ss="n"]');
+      if (h.num.mode === 'sum' && sk) { h.num.kolom = [sk.value]; h.num.syarat = ss ? ss.value : ''; }
+      const dks = [...document.querySelectorAll('[data-dk]')]; if (h.denum.mode === 'yt' && dks.length) h.denum.kolom = dks.filter(c => c.checked).map(c => c.dataset.dk);
+      const dsk = document.querySelector('[data-sk="d"]'), dss = document.querySelector('[data-ss="d"]');
+      if (h.denum.mode === 'sum' && dsk) { h.denum.kolom = [dsk.value]; h.denum.syarat = dss ? dss.value : ''; }
     }
 
     function bindHitungEvents() {
@@ -9840,7 +10202,7 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       if (!t.judul) return 'Judul form wajib diisi.';
       for (const c of t.kolom) {
         if (!String(c.l || '').trim()) return 'Ada kolom yang judulnya masih kosong.';
-        if ((c.t === 'selisih' || (c.t === 'yt' && c.auto)) && !(c.cfg && c.cfg.dari && c.cfg.ke)) return `Kolom "${c.l}" butuh pilihan "Dari" dan "Sampai" (kolom jam/tanggal).`;
+        if ((c.t === 'selisih' || (c.t === 'yt' && c.auto)) && !(c.cfg && ((c.cfg.dari && c.cfg.ke) || c.cfg.cocok || c.cfg.angka || c.cfg.banding || c.cfg.rentang))) return `Kolom "${c.l}" butuh pilihan "Dari" dan "Sampai" (kolom jam/tanggal).`;
       }
       if (t.hitung && t.hitung.tampil !== false) {
         if (t.hitung.num.mode === 'yt' && !(t.hitung.num.kolom || []).length) return 'Pilih minimal satu kolom Ya/Tidak untuk rumus numerator.';
