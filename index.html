@@ -1,4 +1,4 @@
-<!-- ========================================================================= -->
+﻿<!-- ========================================================================= -->
 <!-- e-Pelaporan IKP RSUD Merauke v2.4                                        -->
 <!-- Sistem Pelaporan & Investigasi Insiden Keselamatan Pasien Terpadu       -->
 <!-- Berdasarkan Standar SNARS PMKP 9 & Permenkes RI No. 11 / 2017             -->
@@ -11134,6 +11134,14 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
 
       doPrint(html, 'A4', 'portrait');
     }
+</script>
+<script>
+  // Service Worker (PWA offline cache)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
 </script>
 </body>
 </html>
