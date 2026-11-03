@@ -4,4 +4,4 @@
 // Contoh: "https://script.google.com/macros/s/AKfycb.../exec"
 // Selama masih kosong, aplikasi berjalan di MODE DEMO (data contoh).
 // ============================================================
-window.KMKP_API_URL = "https://script.google.com/macros/s/AKfycbxQeZu7Lm48ILf2TSp14DBzC7BEZZFPHv3tbe7EaKHXcXfIdZfXpMXjK9IcPmjv_ZG6/exec";
+window.KMKP_API_URL = "https://script.google.com/macros/s/AKfycbxKFyWdDutku46PBN11aaFUg7n5tLKgoW62c0W_sexWHvtkhHVZQufsCn7SpiQKiFTI/exec";
