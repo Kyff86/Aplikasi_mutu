@@ -33,6 +33,7 @@
       return;
     }
     function call(fn, args) {
+      var t0 = Date.now();
       return fetch(URL_API, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -42,7 +43,8 @@
         return j.result;
       }).catch(function (e) {
         // TypeError = jaringan/CORS gagal; SyntaxError = server membalas HTML (halaman error/login Google), bukan JSON
-        if (e && e.name === 'TypeError') throw new Error('Tidak dapat terhubung ke server database (Failed to fetch). Periksa koneksi internet, lalu coba lagi. Bila berulang: pastikan Web App Apps Script sudah di-deploy ulang (versi baru) dengan akses \"Anyone\" dan URL di config.js masih sama.');
+        var info = ' [fungsi: ' + fn + ', ' + (Date.now() - t0) + ' ms, online: ' + navigator.onLine + ']';
+        if (e && e.name === 'TypeError') { console.error('Failed to fetch' + info, e); throw new Error('Tidak dapat terhubung ke server database (Failed to fetch).' + info + ' Periksa koneksi internet, lalu coba lagi. Bila berulang: pastikan Web App Apps Script sudah di-deploy ulang (versi baru) dengan akses \"Anyone\" dan URL di config.js masih sama.'); }
         if (e && e.name === 'SyntaxError') throw new Error('Server tidak mengembalikan data yang valid. Kemungkinan Web App belum di-deploy ulang atau terjadi error di Apps Script (cek menu Eksekusi).');
         throw e;
       });
