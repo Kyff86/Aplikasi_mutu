@@ -1,4 +1,4 @@
-﻿<!-- ========================================================================= -->
+<!-- ========================================================================= -->
 <!-- e-Pelaporan IKP RSUD Merauke v2.4                                        -->
 <!-- Sistem Pelaporan & Investigasi Insiden Keselamatan Pasien Terpadu       -->
 <!-- Berdasarkan Standar SNARS PMKP 9 & Permenkes RI No. 11 / 2017             -->
@@ -40,6 +40,11 @@
       }).then(function (r) { return r.json(); }).then(function (j) {
         if (!j.ok) throw new Error(j.error || 'Gagal menghubungi server.');
         return j.result;
+      }).catch(function (e) {
+        // TypeError = jaringan/CORS gagal; SyntaxError = server membalas HTML (halaman error/login Google), bukan JSON
+        if (e && e.name === 'TypeError') throw new Error('Tidak dapat terhubung ke server database (Failed to fetch). Periksa koneksi internet, lalu coba lagi. Bila berulang: pastikan Web App Apps Script sudah di-deploy ulang (versi baru) dengan akses \"Anyone\" dan URL di config.js masih sama.');
+        if (e && e.name === 'SyntaxError') throw new Error('Server tidak mengembalikan data yang valid. Kemungkinan Web App belum di-deploy ulang atau terjadi error di Apps Script (cek menu Eksekusi).');
+        throw e;
       });
     }
     function make(ok, fail) {
@@ -8987,7 +8992,18 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
         await api('saveIndikator', tok(), r.value); // server mencocokkan ruangan lewat nama_unit
         await loadIndikator(); renderIndUnitList(); renderIndPane();
         toast(baru ? 'Indikator ditambahkan' : 'Indikator diperbarui');
-      } catch (e) { errBox(e); }
+      } catch (e) {
+        // Jawaban server tidak sampai: data bisa saja sudah tersimpan. Cek ulang dulu sebelum melaporkan gagal.
+        if (/Failed to fetch|terhubung ke server|tidak mengembalikan data/i.test(String(e && e.message))) {
+          let fresh = null; try { fresh = await api('getMasterIndikator', tok()); } catch (_) {}
+          const nm = String(r.value.nama_indikator).trim().toLowerCase();
+          if (fresh && fresh.some(x => x.nama_unit === unit && String(x.nama_indikator).trim().toLowerCase() === nm)) {
+            INDIKATOR = sortByKategori(fresh); renderIndUnitList(); renderIndPane();
+            toast('Indikator tersimpan (jawaban server terlambat)'); return;
+          }
+        }
+        errBox(e);
+      }
     }
     async function susunUlangIdInd() {
       const r = await Swal.fire({ title: 'Susun ulang ID indikator?', icon: 'question', showCancelButton: true, confirmButtonText: 'Ya, susun ulang', cancelButtonText: 'Batal', confirmButtonColor: '#0284c7',
