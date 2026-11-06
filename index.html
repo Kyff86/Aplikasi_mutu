@@ -20,10 +20,10 @@
   /* Penghubung ke database (Apps Script Web App) untuk versi GitHub Pages.
      Meniru google.script.run agar seluruh kode aplikasi tetap sama. */
   (function () {
-    var URL_API = (window.KMKP_API_URL || '').trim();
+    var URL_API = (window.KMKP_SUPABASE_URL || window.KMKP_API_URL || '').trim(); // Supabase (bila diisi) diutamakan daripada Apps Script
     var inGAS = typeof google !== 'undefined' && google.script && google.script.run;
     if (inGAS) return;
-    if (!/^https:\/\/script\.google\.com\/.+\/exec/.test(URL_API)) {
+    if (!/^https:\/\/script\.google\.com\/.+\/exec/.test(URL_API) && !/^https:\/\/[a-z0-9-]+\.supabase\.co\/functions\/v1\/.+/.test(URL_API)) {
       window.addEventListener('DOMContentLoaded', function () {
         var b = document.createElement('div');
         b.textContent = 'MODE DEMO: belum terhubung ke database. Isi URL Web App pada file config.js';
@@ -8997,11 +8997,22 @@ function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
       } catch (e) {
         // Jawaban server tidak sampai: data bisa saja sudah tersimpan. Cek ulang dulu sebelum melaporkan gagal.
         if (/Failed to fetch|terhubung ke server|tidak mengembalikan data/i.test(String(e && e.message))) {
-          let fresh = null; try { fresh = await api('getMasterIndikator', tok()); } catch (_) {}
-          const nm = String(r.value.nama_indikator).trim().toLowerCase();
-          if (fresh && fresh.some(x => x.nama_unit === unit && String(x.nama_indikator).trim().toLowerCase() === nm)) {
-            INDIKATOR = sortByKategori(fresh); renderIndUnitList(); renderIndPane();
-            toast('Indikator tersimpan (jawaban server terlambat)'); return;
+          // Server tetap menulis baris walau jawabannya tidak sampai, dan penulisannya selesai SETELAH browser menyerah.
+          // Maka cek berulang (hingga ~16 detik) sebelum menyatakan gagal.
+          const sama = t => String(t == null ? '' : t).replace(/\s+/g, ' ').trim().toLowerCase();
+          const cocok = x => sama(x.nama_unit) === sama(unit) && sama(x.nama_indikator) === sama(r.value.nama_indikator) &&
+            (baru || (String(x.target_persen) === String(r.value.target_persen === '' ? '' : Number(r.value.target_persen)) && x.formula_tipe === r.value.formula_tipe && sama(x.standar_teks) === sama(r.value.standar_teks)));
+          Swal.fire({ title: 'Memastikan data tersimpan...', text: 'Jawaban server terlambat, mohon tunggu sebentar.', allowOutsideClick: false, showConfirmButton: false, didOpen: () => Swal.showLoading() });
+          let fresh = null;
+          for (let n = 0; n < 6 && !fresh; n++) {
+            await new Promise(res => setTimeout(res, n === 0 ? 2000 : 3000));
+            let got = null; try { got = await api('getMasterIndikator', tok()); } catch (_) {}
+            if (got && got.some(cocok)) fresh = got;
+          }
+          Swal.close();
+          if (fresh) {
+            INDIKATOR = sortByKategori(fresh); IND_SEL = unit; renderIndUnitList(); renderIndPane();
+            toast('Indikator tersimpan'); return;
           }
         }
         errBox(e);
