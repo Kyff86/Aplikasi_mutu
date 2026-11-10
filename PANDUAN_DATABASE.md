@@ -25,3 +25,13 @@ Salin ulang komite.gs dan api.gs dari folder apps-script/ ke project Apps Script
 1. Run `isiSOPBawaan` SEKALI (memuat 11 SPO 2026 sebagai Draft; aman dijalankan ulang, tidak menggandakan).
 2. Deploy > Manage deployments > New version > Deploy.
 Kolom baru pada sheet SOP_Master (kategori, tgl_dibuat, tgl_berlaku, tgl_kadaluarsa, versi, pengesah, isi_json) ditambahkan otomatis.
+
+## 6. Pembaruan: Pustaka SOP & Beranda Komite
+1. Salin `api.gs`, `komite.gs`, dan `Index.html` ke project Apps Script, lalu Deploy > Manage deployments > New version > Deploy.
+2. Di editor Apps Script jalankan fungsi `finalkanSemuaSOP` SEKALI agar SOP lama (Draft / review / ditolak) menjadi final.
+3. Sheet baru `SOP_Audit` (arsip lembar audit) dan kolom `bukti_json` pada `SOP_Master` dibuat otomatis.
+
+Perubahan:
+- Menu dan alur persetujuan SOP dihapus. Semua SOP yang diunggah langsung final; menu Edit Detail dipertahankan.
+- Lembar Audit dapat disimpan ke database (sheet SOP_Audit) dan dibuka lagi dari tombol Arsip Audit di Pustaka SOP.
+- Beranda Komite menampilkan dashboard insiden, capaian indikator mutu, dan kegiatan Komite dengan filter ruangan dan periode (1/3/6 bulan, 1 tahun).

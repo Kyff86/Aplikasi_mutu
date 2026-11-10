@@ -15,133 +15,45 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
   <meta name="apple-mobile-web-app-title" content="KMKP RSUD Merauke"/>
   <title>Sistem KMKP RSUD Merauke</title>
-  <script src="config.js"></script>
-  <script>
-  /* Penghubung ke database (Apps Script Web App) untuk versi GitHub Pages.
-     Meniru google.script.run agar seluruh kode aplikasi tetap sama. */
-  (function () {
-    var URL_API = (window.KMKP_SUPABASE_URL || window.KMKP_API_URL || '').trim(); // Supabase (bila diisi) diutamakan daripada Apps Script
-    var inGAS = typeof google !== 'undefined' && google.script && google.script.run;
-    if (inGAS) return;
-    if (!/^https:\/\/script\.google\.com\/.+\/exec/.test(URL_API) && !/^https:\/\/[a-z0-9-]+\.supabase\.co\/functions\/v1\/.+/.test(URL_API)) {
-      window.addEventListener('DOMContentLoaded', function () {
-        var b = document.createElement('div');
-        b.textContent = 'MODE DEMO: belum terhubung ke database. Isi URL Web App pada file config.js';
-        b.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#b91c1c;color:#fff;font:600 12px sans-serif;text-align:center;padding:6px';
-        document.body.appendChild(b);
-      });
-      return;
-    }
-    function call(fn, args) {
-      var t0 = Date.now();
-      return fetch(URL_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ fn: fn, args: args })
-      }).then(function (r) { return r.json(); }).then(function (j) {
-        if (!j.ok) throw new Error(j.error || 'Gagal menghubungi server.');
-        return j.result;
-      }).catch(function (e) {
-        // TypeError = jaringan/CORS gagal; SyntaxError = server membalas HTML (halaman error/login Google), bukan JSON
-        var info = ' [fungsi: ' + fn + ', ' + (Date.now() - t0) + ' ms, online: ' + navigator.onLine + ']';
-        if (e && e.name === 'TypeError') { console.error('Failed to fetch' + info, e); throw new Error('Tidak dapat terhubung ke server database (Failed to fetch).' + info + ' Periksa koneksi internet, lalu coba lagi. Bila berulang: pastikan Web App Apps Script sudah di-deploy ulang (versi baru) dengan akses \"Anyone\" dan URL di config.js masih sama.'); }
-        if (e && e.name === 'SyntaxError') throw new Error('Server tidak mengembalikan data yang valid. Kemungkinan Web App belum di-deploy ulang atau terjadi error di Apps Script (cek menu Eksekusi).');
-        throw e;
-      });
-    }
-    function make(ok, fail) {
-      return new Proxy({}, {
-        get: function (_, name) {
-          if (name === 'withSuccessHandler') return function (f) { return make(f, fail); };
-          if (name === 'withFailureHandler') return function (f) { return make(ok, f); };
-          if (name === 'then') return undefined;
-          return function () {
-            var args = Array.prototype.slice.call(arguments);
-            call(String(name), args).then(function (r) { if (ok) ok(r); })
-              .catch(function (e) { if (fail) fail(e); else console.error(e); });
-          };
-        }
-      });
-    }
-    window.google = { script: { run: make(null, null) } };
-  })();
-  </script>
 
+
+  <!-- Loading state awal: CSS inline agar tampil seketika, sebelum Tailwind/library selesai dimuat -->
+  <style id="boot-css">
+    #boot-loader{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:#f1f5f9;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:opacity .3s ease,visibility .3s}
+    #boot-loader.bl-out{opacity:0;visibility:hidden;pointer-events:none}
+    #boot-loader .bl-card{width:100%;max-width:320px;padding:24px;text-align:center}
+    #boot-loader .bl-logo{display:block;width:72px;height:72px;margin:0 auto 14px;object-fit:contain}
+    #boot-loader .bl-title{font-size:17px;font-weight:800;line-height:1.25;color:#14532d;letter-spacing:-.01em}
+    #boot-loader .bl-sub{margin-top:4px;font-size:12px;line-height:1.4;color:#475569}
+    #boot-loader .bl-bar{position:relative;width:176px;height:4px;margin:22px auto 10px;overflow:hidden;border-radius:99px;background:#dcfce7}
+    #boot-loader .bl-bar i{position:absolute;top:0;bottom:0;left:-40%;width:40%;border-radius:99px;background:#16a34a;animation:bl-slide 1.1s ease-in-out infinite}
+    #boot-loader .bl-text{font-size:12px;font-weight:600;color:#166534}
+    #boot-loader .bl-slow{margin-top:14px;font-size:11px;line-height:1.5;color:#b45309}
+    #boot-loader .bl-slow button{display:block;margin:8px auto 0;padding:7px 14px;border:0;border-radius:8px;background:#14532d;color:#fff;font-family:inherit;font-size:11px;font-weight:600;cursor:pointer}
+    @keyframes bl-slide{from{left:-40%}to{left:100%}}
+    @media (prefers-reduced-motion:reduce){#boot-loader .bl-bar i{animation-duration:2.6s}#boot-loader{transition:none}}
+    @media print{#boot-loader{display:none!important}}
+  </style>
 
   <!-- Typography: Plus Jakarta Sans (Headings) & Inter (Body/Labels) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin=""/>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin=""/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"/></noscript>
   
   <!-- Icons -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1"/></noscript>
   <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/></noscript>
 
   <!-- PWA Manifest -->
   <link rel="manifest" id="pwa-manifest"/>
 
   <!-- Libraries -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
 
-  <!-- Tailwind Configuration matching Stitch Design System -->
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#14532d",
-            "primary-container": "#166534",
-            "navy-deep": "#166534",
-            "navy-interactive": "#15803d",
-            "navy-action": "#16a34a",
-            "on-primary": "#ffffff",
-            "on-primary-container": "#bbf7d0",
-            secondary: "#006a61",
-            "secondary-container": "#86f2e4",
-            "on-secondary-container": "#006f66",
-            "clinical-teal": "#0d9488",
-            "teal-dark": "#0f766e",
-            "teal-tint": "#f0fdfa",
-            "kpc-blue": "#3b82f6",
-            "knc-green": "#22c55e",
-            "ktc-yellow": "#eab308",
-            "ktd-red": "#ef4444",
-            "sentinel-purple": "#a855f7",
-            "status-approved-bg": "#dcfce7",
-            "status-approved-text": "#16a34a",
-            "status-pending-bg": "#fef3c7",
-            "status-pending-text": "#d97706",
-            "surface-app": "#f1f5f9",
-            "surface-card": "#ffffff",
-            "surface-row-alt": "#f8fafc",
-            "surface-rca-bg": "#fffbeb",
-            "surface-rca-border": "#fde68a",
-            "surface-container-low": "#f0fdf4",
-            "surface-container-high": "#dcfce7",
-            "surface-container-highest": "#bbf7d0",
-            "border-base": "#cbd5e1",
-            "border-subtle": "#e2e8f0",
-            "border-form": "#d1d5db",
-            "text-primary": "#1f2937",
-            "text-secondary": "#475569",
-            "text-muted": "#6b7280",
-            "error-container": "#ffdad6",
-            "on-error-container": "#93000a",
-            error: "#ba1a1a"
-          },
-          fontFamily: {
-            sans: ["Inter", "sans-serif"],
-            display: ["Plus Jakarta Sans", "sans-serif"]
-          }
-        }
-      }
-    };
-  </script>
 
   <style>
     /* Custom Scrollbar & Utility */
@@ -490,6 +402,170 @@
   </style>
 </head>
 <body class="bg-surface-app text-text-primary font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
+
+  <!-- Loading state awal aplikasi (dilepas otomatis oleh skrip di bawahnya) -->
+  <div id="boot-loader" role="status" aria-live="polite" aria-busy="true">
+    <div class="bl-card">
+      <img class="bl-logo" src="logo.png" alt="" decoding="async" onerror="this.style.display='none'"/>
+      <div class="bl-title">Sistem KMKP RSUD Merauke</div>
+      <div class="bl-sub">Pelaporan mutu dan insiden keselamatan pasien</div>
+      <div class="bl-bar" aria-hidden="true"><i></i></div>
+      <div class="bl-text" id="bl-text">Memuat aplikasi…</div>
+      <div class="bl-slow" id="bl-slow" hidden>Memuat lebih lama dari biasanya. Periksa koneksi internet Anda.
+        <button type="button" onclick="location.reload()">Muat ulang</button></div>
+      <noscript><div class="bl-slow">Aplikasi ini memerlukan JavaScript. Aktifkan JavaScript di peramban Anda.</div></noscript>
+    </div>
+  </div>
+  <script>
+  /* Kontrol loading state. Layar dilepas setelah: halaman & library siap (DOMContentLoaded) + font ikon siap (maks. 3 dtk)
+     + pemulihan sesi login selesai (bila ada token). Cadangan: petunjuk "memuat lama" pada 10 dtk, dilepas paksa pada 25 dtk. */
+  (function () {
+    var L = document.getElementById("boot-loader"), T = document.getElementById("bl-text"), S = document.getElementById("bl-slow");
+    if (!L) return;
+    var need = { ready: false, fonts: false, session: true }, fin = false, tok = null;
+    try { tok = sessionStorage.getItem("ikp_token"); } catch (e) {}
+    if (tok) need.session = false;
+    function say(t) { if (T) T.textContent = t; }
+    function hide() {
+      if (fin) return; fin = true;
+      L.className += " bl-out"; L.setAttribute("aria-busy", "false");
+      setTimeout(function () {
+        if (L.parentNode) L.parentNode.removeChild(L);
+        var c = document.getElementById("boot-css"); if (c && c.parentNode) c.parentNode.removeChild(c);
+      }, 400);
+    }
+    function check() {
+      if (fin) return;
+      if (need.ready && need.fonts && need.session) hide();
+      else if (need.ready && need.fonts) say("Memeriksa sesi login…");
+      else if (need.ready) say("Menyiapkan tampilan…");
+    }
+    window.__boot = { done: function (k) { need[k] = true; check(); } };
+    function afterReady() {
+      /* dua frame agar Tailwind sempat membangun CSS sebelum layar dilepas (tanpa kilasan tampilan belum bergaya) */
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        window.__boot.done("ready");
+        var f = false; function go() { if (!f) { f = true; window.__boot.done("fonts"); } }
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(go, go); else go();
+        setTimeout(go, 3000);
+      }); });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", afterReady); else afterReady();
+    setTimeout(function () { if (!fin && S) S.hidden = false; }, 10000);
+    setTimeout(hide, 25000);
+  })();
+  </script>
+
+  <script src="config.js"></script>
+  <script>
+  /* Penghubung ke database (Apps Script Web App) untuk versi GitHub Pages.
+     Meniru google.script.run agar seluruh kode aplikasi tetap sama. */
+  (function () {
+    var URL_API = (window.KMKP_SUPABASE_URL || window.KMKP_API_URL || '').trim(); // Supabase (bila diisi) diutamakan daripada Apps Script
+    var inGAS = typeof google !== 'undefined' && google.script && google.script.run;
+    if (inGAS) return;
+    if (!/^https:\/\/script\.google\.com\/.+\/exec/.test(URL_API) && !/^https:\/\/[a-z0-9-]+\.supabase\.co\/functions\/v1\/.+/.test(URL_API)) {
+      window.addEventListener('DOMContentLoaded', function () {
+        var b = document.createElement('div');
+        b.textContent = 'MODE DEMO: belum terhubung ke database. Isi URL Web App pada file config.js';
+        b.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#b91c1c;color:#fff;font:600 12px sans-serif;text-align:center;padding:6px';
+        document.body.appendChild(b);
+      });
+      return;
+    }
+    function call(fn, args) {
+      var t0 = Date.now();
+      return fetch(URL_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ fn: fn, args: args })
+      }).then(function (r) { return r.json(); }).then(function (j) {
+        if (!j.ok) throw new Error(j.error || 'Gagal menghubungi server.');
+        return j.result;
+      }).catch(function (e) {
+        // TypeError = jaringan/CORS gagal; SyntaxError = server membalas HTML (halaman error/login Google), bukan JSON
+        var info = ' [fungsi: ' + fn + ', ' + (Date.now() - t0) + ' ms, online: ' + navigator.onLine + ']';
+        if (e && e.name === 'TypeError') { console.error('Failed to fetch' + info, e); throw new Error('Tidak dapat terhubung ke server database (Failed to fetch).' + info + ' Periksa koneksi internet, lalu coba lagi. Bila berulang: pastikan Web App Apps Script sudah di-deploy ulang (versi baru) dengan akses \"Anyone\" dan URL di config.js masih sama.'); }
+        if (e && e.name === 'SyntaxError') throw new Error('Server tidak mengembalikan data yang valid. Kemungkinan Web App belum di-deploy ulang atau terjadi error di Apps Script (cek menu Eksekusi).');
+        throw e;
+      });
+    }
+    function make(ok, fail) {
+      return new Proxy({}, {
+        get: function (_, name) {
+          if (name === 'withSuccessHandler') return function (f) { return make(f, fail); };
+          if (name === 'withFailureHandler') return function (f) { return make(ok, f); };
+          if (name === 'then') return undefined;
+          return function () {
+            var args = Array.prototype.slice.call(arguments);
+            call(String(name), args).then(function (r) { if (ok) ok(r); })
+              .catch(function (e) { if (fail) fail(e); else console.error(e); });
+          };
+        }
+      });
+    }
+    window.google = { script: { run: make(null, null) } };
+  })();
+  </script>
+
+  <!-- Tailwind (CDN) + konfigurasi. Dimuat setelah loading state agar layar tampil dulu; versi dipatok agar tanpa redirect. -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Tailwind Configuration matching Stitch Design System -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#14532d",
+            "primary-container": "#166534",
+            "navy-deep": "#166534",
+            "navy-interactive": "#15803d",
+            "navy-action": "#16a34a",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#bbf7d0",
+            secondary: "#006a61",
+            "secondary-container": "#86f2e4",
+            "on-secondary-container": "#006f66",
+            "clinical-teal": "#0d9488",
+            "teal-dark": "#0f766e",
+            "teal-tint": "#f0fdfa",
+            "kpc-blue": "#3b82f6",
+            "knc-green": "#22c55e",
+            "ktc-yellow": "#eab308",
+            "ktd-red": "#ef4444",
+            "sentinel-purple": "#a855f7",
+            "status-approved-bg": "#dcfce7",
+            "status-approved-text": "#16a34a",
+            "status-pending-bg": "#fef3c7",
+            "status-pending-text": "#d97706",
+            "surface-app": "#f1f5f9",
+            "surface-card": "#ffffff",
+            "surface-row-alt": "#f8fafc",
+            "surface-rca-bg": "#fffbeb",
+            "surface-rca-border": "#fde68a",
+            "surface-container-low": "#f0fdf4",
+            "surface-container-high": "#dcfce7",
+            "surface-container-highest": "#bbf7d0",
+            "border-base": "#cbd5e1",
+            "border-subtle": "#e2e8f0",
+            "border-form": "#d1d5db",
+            "text-primary": "#1f2937",
+            "text-secondary": "#475569",
+            "text-muted": "#6b7280",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            error: "#ba1a1a"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
 
   <!-- ========================================================================= -->
   <!-- 1. TOP GLOBAL HEADER & INSTITUTIONAL TRUST BAR                            -->
@@ -3703,6 +3779,7 @@
     // --- Loading & UI Helpers ---
     function toggleLoading(show) {
       document.getElementById('loading-spinner').classList.toggle('hidden', !show);
+      if (!show && window.__boot) window.__boot.done('session'); // lepas loading state awal setelah pemulihan sesi (sukses/gagal)
     }
 
     function togglePasswordVisibility(fieldId) {
@@ -6901,8 +6978,6 @@
     }
 
     // ---------- Alur SOP ----------
-    const SOP_BADGE = { Draft: 'bg-slate-100 text-slate-700', Substansi: 'bg-amber-100 text-amber-800', Legalitas: 'bg-sky-100 text-sky-800', Final: 'bg-indigo-100 text-indigo-800', Approved: 'bg-status-approved-bg text-status-approved-text', Rejected: 'bg-error-container text-on-error-container' };
-    const SOP_LABEL = { Draft: 'Draft (Unit)', Substansi: 'Review Substansi', Legalitas: 'Review Legalitas', Final: 'Menunggu Direktur', Approved: 'Published / Aktif', Rejected: 'Ditolak' };
     function kSopLogs(id) {
       kCall('apiSopLogs', [id], res => {
         if (!res.success) return;
@@ -6916,17 +6991,6 @@
     function kMutuRender() {
       const rows = K.mutu.map(m => { const low = Number(m.persen) < Number(m.target); return `<tr class="border-t border-border-subtle align-top"><td class="p-3 whitespace-nowrap">${m.periode}</td><td class="p-3">${m.unit}</td><td class="p-3 min-w-[180px]">${m.indikator}<p class="text-[10px] text-text-muted">${m.num}/${m.den}${m.analisis ? ' • ' + m.analisis : ''}</p></td><td class="p-3 font-bold ${low ? 'text-red-600' : 'text-green-700'}">${m.persen}%</td><td class="p-3">${m.target}%</td>${kW() ? `<td class="p-3"><button onclick="kMutuDel('${m.id}')" class="text-error text-[11px] font-semibold">Hapus</button></td>` : ''}</tr>`; }).join('');
       kEl('k-mutu-body').innerHTML = rows ? `<table class="w-full text-xs text-left"><thead class="bg-surface-container-low text-[10px] uppercase text-text-secondary"><tr><th class="p-3">Periode</th><th class="p-3">Unit</th><th class="p-3">Indikator</th><th class="p-3">Capaian</th><th class="p-3">Target</th>${kW() ? '<th class="p-3"></th>' : ''}</tr></thead><tbody>${rows}</tbody></table>` : kEmpty('Belum ada data mutu.');
-    }
-    function kMutuForm() {
-      const nm = new Date(), per = nm.getFullYear() + '-' + kPad(nm.getMonth() + 1), karu = currentUser && currentUser.role === 'Karu';
-      Swal.fire({ title: 'Input Data Mutu', showCancelButton: true, confirmButtonText: 'Simpan', cancelButtonText: 'Batal',
-        html: `<div class="text-left">${karu ? '' : kField('mt-unit', 'Unit / ruangan', 'text', '')}${kField('mt-ind', 'Indikator mutu', 'text', '')}${kField('mt-per', 'Periode', 'month', per)}${kField('mt-num', 'Numerator', 'number', '', 'min="0"')}${kField('mt-den', 'Denominator', 'number', '', 'min="1"')}${kField('mt-tgt', 'Target (%)', 'number', '', 'min="0" max="100"')}<label class="block text-[11px] font-bold text-text-secondary mt-2">Analisis / tindak lanjut (wajib bila di bawah target)</label><textarea id="mt-ana" class="swal2-textarea" style="${kBox}"></textarea></div>`,
-        preConfirm: () => {
-          const d = { unit: kVal('mt-unit').trim(), indikator: kVal('mt-ind').trim(), periode: kVal('mt-per'), numerator: kVal('mt-num'), denominator: kVal('mt-den'), target: kVal('mt-tgt'), analisis: kVal('mt-ana').trim() };
-          if (!d.indikator || d.numerator === '' || d.denominator === '' || d.target === '') { Swal.showValidationMessage('Lengkapi indikator, numerator, denominator, dan target.'); return false; }
-          if (Number(d.numerator) > Number(d.denominator) || Number(d.denominator) <= 0) { Swal.showValidationMessage('Numerator tidak boleh melebihi denominator.'); return false; }
-          return d;
-        } }).then(r => { if (r.isConfirmed) kCall('apiMutuSave', [r.value], res => { if (res.success) kMutuLoad(); }); });
     }
     function kMutuDel(id) {
       Swal.fire({ title: 'Hapus data mutu?', icon: 'warning', showCancelButton: true, confirmButtonText: 'Ya, Hapus', cancelButtonText: 'Batal' })
@@ -6982,8 +7046,6 @@
 <script>
 /* ===== Pustaka SOP gabungan: filter ruangan/kategori/status, bookmark, preview, unduh, kelengkapan KARS ===== */
 K.sopPub = [];
-const KS_LABEL = { Draft: 'Draft', Substansi: 'Review Substansi', Legalitas: 'Review Legalitas', Rejected: 'Revisi', Final: 'Final (Menunggu Direktur)', Approved: 'Disetujui' };
-const KS_BADGE = { Draft: 'bg-slate-100 text-slate-700', Substansi: 'bg-amber-100 text-amber-800', Legalitas: 'bg-sky-100 text-sky-800', Final: 'bg-indigo-100 text-indigo-800', Approved: 'bg-green-100 text-green-800', Rejected: 'bg-orange-100 text-orange-800' };
 const KS_KAT = ['Keselamatan Pasien', 'Manajemen Data Mutu', 'Peningkatan Mutu', 'Manajemen Risiko', 'Tata Kelola PMKP', 'Pelayanan Klinis', 'Pelayanan Penunjang', 'Administrasi & Manajemen'];
 const kD = v => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? m[3] + '/' + m[2] + '/' + m[1] : '-'; };
 const kPh = v => !v || /…|\.{3}/.test(String(v));
@@ -7107,7 +7169,6 @@ function kSopPrint(id) {
   const did = kDriveId(s.file_url); if (did) { window.open('https://drive.google.com/file/d/' + did + '/view', '_blank'); return; }
   const w = window.open('', '_blank'); if (!w) return; w.document.write(kSopDoc(s)); w.document.close(); w.focus(); setTimeout(() => w.print(), 300);
 }
-function kSopEdit(id) { kTplOpen(id); }
 
 
 function kFilterOpen() {
@@ -7124,7 +7185,6 @@ function kFiltRender() {
 function kFilterDone(res) { if (res.success && res.filt) { K.filt = res.filt; kSopFillSel(); kSopPubRender(); kFiltRender(); } else if (res && res.message) { Swal.showValidationMessage(res.message); } }
 function kFilterAdd(j) { const v = kVal('kf-' + j).trim(); if (!v) return; kCall('apiSopFilterSave', [j, v], kFilterDone, true); }
 function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefined) kCall('apiSopFilterDelete', [j, unesc(n)], kFilterDone, true); }
-function kSopGo(st) { K.sopGo = st; switchTab('sopall'); }
 </script>
   <div id="printArea"></div>
   <script>
