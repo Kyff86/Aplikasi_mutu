@@ -19,20 +19,44 @@
 
   <!-- Loading state awal: CSS inline agar tampil seketika, sebelum Tailwind/library selesai dimuat -->
   <style id="boot-css">
-    #boot-loader{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:#f1f5f9;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:opacity .3s ease,visibility .3s}
+    #boot-loader{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:#eef2f1;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:opacity .3s ease,visibility .3s}
     #boot-loader.bl-out{opacity:0;visibility:hidden;pointer-events:none}
     #boot-loader .bl-card{width:100%;max-width:320px;padding:24px;text-align:center}
     #boot-loader .bl-logo{display:block;width:72px;height:72px;margin:0 auto 14px;object-fit:contain}
-    #boot-loader .bl-title{font-size:17px;font-weight:800;line-height:1.25;color:#14532d;letter-spacing:-.01em}
+    #boot-loader .bl-title{font-size:17px;font-weight:800;line-height:1.25;color:#0b3534;letter-spacing:-.01em}
     #boot-loader .bl-sub{margin-top:4px;font-size:12px;line-height:1.4;color:#475569}
-    #boot-loader .bl-bar{position:relative;width:176px;height:4px;margin:22px auto 10px;overflow:hidden;border-radius:99px;background:#dcfce7}
-    #boot-loader .bl-bar i{position:absolute;top:0;bottom:0;left:-40%;width:40%;border-radius:99px;background:#16a34a;animation:bl-slide 1.1s ease-in-out infinite}
-    #boot-loader .bl-text{font-size:12px;font-weight:600;color:#166534}
+    #boot-loader .bl-bar{position:relative;width:176px;height:4px;margin:22px auto 10px;overflow:hidden;border-radius:99px;background:#d9efec}
+    #boot-loader .bl-bar i{position:absolute;top:0;bottom:0;left:-40%;width:40%;border-radius:99px;background:#0f766e;animation:bl-slide 1.1s ease-in-out infinite}
+    #boot-loader .bl-text{font-size:12px;font-weight:600;color:#0f4a47}
     #boot-loader .bl-slow{margin-top:14px;font-size:11px;line-height:1.5;color:#b45309}
-    #boot-loader .bl-slow button{display:block;margin:8px auto 0;padding:7px 14px;border:0;border-radius:8px;background:#14532d;color:#fff;font-family:inherit;font-size:11px;font-weight:600;cursor:pointer}
+    #boot-loader .bl-slow button{display:block;margin:8px auto 0;padding:7px 14px;border:0;border-radius:8px;background:#0b3534;color:#fff;font-family:inherit;font-size:11px;font-weight:600;cursor:pointer}
     @keyframes bl-slide{from{left:-40%}to{left:100%}}
     @media (prefers-reduced-motion:reduce){#boot-loader .bl-bar i{animation-duration:2.6s}#boot-loader{transition:none}}
     @media print{#boot-loader{display:none!important}}
+  <style id="theme-css">
+    /* Tema "Lagoon": hanya lapisan visual, tanpa mengubah struktur/fungsi */
+    :focus-visible { outline: 2px solid #0f766e; outline-offset: 2px; }
+    ::selection { background: #99f6e4; color: #0b3534; }
+    ::-webkit-scrollbar-thumb { background: #b3c4c1; }
+    body h1, body h2 { font-family: "Bricolage Grotesque", "Plus Jakarta Sans", sans-serif; letter-spacing: -.02em; }
+    body header.fixed { background: rgba(255,255,255,.88); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px);
+      box-shadow: 0 1px 0 #dfe6e5, 0 10px 28px -18px rgba(11,53,52,.4); }
+    body .shadow-sm { box-shadow: 0 1px 2px rgba(11,53,52,.05); }
+    body .shadow, body .shadow-md { box-shadow: 0 1px 2px rgba(11,53,52,.06), 0 8px 18px -10px rgba(11,53,52,.22); }
+    body .shadow-lg, body .shadow-xl, body .shadow-2xl { box-shadow: 0 2px 4px rgba(11,53,52,.06), 0 24px 48px -24px rgba(11,53,52,.38); }
+    /* Layar masuk */
+    #view-auth .auth-hero { display: none; }
+    #view-auth.hidden { display: none !important; }
+    @media (min-width: 1024px) {
+      #view-auth { max-width: 1040px; margin: 1.5rem auto; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(360px,.9fr);
+        border-radius: 28px; overflow: hidden; background: #fff; box-shadow: 0 40px 90px -40px rgba(11,53,52,.55); }
+      #view-auth > div { border-radius: 0; box-shadow: none; border: 0; }
+      #view-auth .auth-hero { display: flex; flex-direction: column; justify-content: flex-end; min-height: 560px; padding: 44px; color: #e6f6f4;
+        background: repeating-radial-gradient(circle at 18% 112%, rgba(153,246,228,.16) 0 1px, transparent 1px 34px), linear-gradient(160deg, #0f4a47 0%, #0b3534 60%, #082726 100%); }
+      #view-auth .auth-hero h2 { max-width: 15ch; font-size: 2.6rem; line-height: 1.04; font-weight: 800; color: #fff; }
+      #view-auth .auth-hero p { max-width: 36ch; margin-top: 16px; font-size: 14px; line-height: 1.6; color: #b8e2dd; }
+      #view-auth .auth-hero ul { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(153,246,228,.22); display: grid; gap: 10px; font-size: 13px; color: #d9efec; list-style: none; }
+    }
   </style>
 
   <!-- Typography: Plus Jakarta Sans (Headings) & Inter (Body/Labels) -->
@@ -41,7 +65,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin=""/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"/></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"/></noscript>
   
   <!-- Icons -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1"/></noscript>
@@ -517,13 +541,13 @@
       theme: {
         extend: {
           colors: {
-            primary: "#14532d",
-            "primary-container": "#166534",
-            "navy-deep": "#166534",
-            "navy-interactive": "#15803d",
-            "navy-action": "#16a34a",
+            primary: "#0b3534",
+            "primary-container": "#134e4a",
+            "navy-deep": "#134e4a",
+            "navy-interactive": "#115e59",
+            "navy-action": "#0f766e",
             "on-primary": "#ffffff",
-            "on-primary-container": "#bbf7d0",
+            "on-primary-container": "#99f6e4",
             secondary: "#006a61",
             "secondary-container": "#86f2e4",
             "on-secondary-container": "#006f66",
@@ -535,22 +559,22 @@
             "ktc-yellow": "#eab308",
             "ktd-red": "#ef4444",
             "sentinel-purple": "#a855f7",
-            "status-approved-bg": "#dcfce7",
-            "status-approved-text": "#16a34a",
+            "status-approved-bg": "#d9efec",
+            "status-approved-text": "#0f766e",
             "status-pending-bg": "#fef3c7",
             "status-pending-text": "#d97706",
-            "surface-app": "#f1f5f9",
+            "surface-app": "#eef2f1",
             "surface-card": "#ffffff",
-            "surface-row-alt": "#f8fafc",
+            "surface-row-alt": "#f6f8f8",
             "surface-rca-bg": "#fffbeb",
             "surface-rca-border": "#fde68a",
-            "surface-container-low": "#f0fdf4",
-            "surface-container-high": "#dcfce7",
-            "surface-container-highest": "#bbf7d0",
-            "border-base": "#cbd5e1",
-            "border-subtle": "#e2e8f0",
-            "border-form": "#d1d5db",
-            "text-primary": "#1f2937",
+            "surface-container-low": "#f0f7f6",
+            "surface-container-high": "#d9efec",
+            "surface-container-highest": "#b8e2dd",
+            "border-base": "#c5d0ce",
+            "border-subtle": "#dfe6e5",
+            "border-form": "#cbd5d3",
+            "text-primary": "#1c2b2a",
             "text-secondary": "#475569",
             "text-muted": "#6b7280",
             "error-container": "#ffdad6",
@@ -559,7 +583,7 @@
           },
           fontFamily: {
             sans: ["Inter", "sans-serif"],
-            display: ["Plus Jakarta Sans", "sans-serif"]
+            display: ["Bricolage Grotesque", "Plus Jakarta Sans", "sans-serif"]
           }
         }
       }
@@ -690,6 +714,11 @@
       <!-- VIEW 1: AUTHENTICATION (LOGIN & REGISTRASI)                           -->
       <!-- ===================================================================== -->
       <section id="view-auth" class="max-w-md mx-auto my-8">
+        <aside class="auth-hero">
+          <h2>Mutu layanan dimulai dari laporan yang tercatat.</h2>
+          <p>Catat insiden, pantau indikator mutu, dan tindak lanjuti temuan dalam satu sistem untuk seluruh unit RSUD Merauke.</p>
+          <ul><li>Laporkan insiden keselamatan pasien</li><li>Pantau indikator mutu tiap unit</li><li>Tindak lanjuti hasil analisis dan RCA</li></ul>
+        </aside>
         <div class="bg-surface-card rounded-2xl shadow-xl border border-border-subtle overflow-hidden">
           <!-- Banner Header -->
           <div class="bg-gradient-to-r from-primary via-navy-deep to-primary-container p-6 text-white text-center">
