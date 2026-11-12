@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#14532d"/>
+  <meta name="theme-color" content="#17615F"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
@@ -426,6 +426,86 @@
       .rtable td[data-label="Aksi"]>div{justify-content:flex-end}
     }
   </style>
+  <style id="theme-v2-css">
+    /* =====================================================================
+       Tema V2 (usulan desain UI KMKP) - langkah 1 & 2 dari panduan:
+       (1) token warna/ukuran di :root, (2) kerangka menu samping + bilah atas.
+       Hanya lapisan visual. Tidak mengubah fungsi switchTab / toggleNavGroup.
+       Untuk ganti tema cukup ubah nilai variabel di :root ini.
+       ===================================================================== */
+    :root {
+      --sb-w: 264px;
+      --k-side: #17615F;          /* menu samping & aksen utama */
+      --k-side-text: #E3F3F1;
+      --k-side-sub: #CFE7E4;
+      --k-side-active: rgba(255,255,255,.14);
+      --k-side-hover: rgba(255,255,255,.08);
+      --k-gold: #F2B632;          /* garis item aktif */
+      --k-page: #EFF4F6;
+      --k-card: #FFFFFF;
+      --k-border: #DCE5E3;
+      --k-text: #12302F;
+      --k-text-2: #4B6360;
+      --k-radius-card: 16px;
+      --k-touch: 44px;
+      --k-font: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+    }
+    :focus-visible { outline-color: var(--k-side); }
+
+    /* ---------- Menu samping ---------- */
+    #nav-tabstrip { background: var(--k-side); border-right: 0; color: var(--k-side-text); font-family: var(--k-font);
+      scrollbar-color: rgba(255,255,255,.35) transparent; }
+    #nav-tabstrip :focus-visible { outline-color: var(--k-gold); }
+    #nav-tabstrip nav { gap: 2px; padding: 20px 12px 12px; }
+    #nav-tabstrip .material-symbols-outlined { color: inherit; }
+    .nav-brand { display: none; align-items: center; gap: 12px; padding: 20px 24px 0; }
+    .nav-brand-mark { width: 40px; height: 40px; border-radius: 10px; background: #0B3534; color: #99F6E4; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex: none; }
+    .nav-brand-t1 { font-weight: 800; font-size: 15px; line-height: 1.2; color: #fff; }
+    .nav-brand-t2 { font-size: 12.5px; line-height: 1.3; color: var(--k-side-sub); }
+
+    /* kepala grup */
+    #nav-tabstrip .nav-grp-btn { min-height: var(--k-touch); font-size: 13.5px; font-weight: 600; color: var(--k-side-text); }
+    #nav-tabstrip .nav-grp-btn:hover { background: var(--k-side-hover); color: #fff; }
+    #nav-tabstrip .nav-grp-btn.is-active { background: var(--k-side-hover); color: #fff; }
+
+    /* submenu */
+    #nav-tabstrip .nav-sub { margin-left: 0; padding-left: 0; border-left: 0; margin-bottom: 8px; }
+    #nav-tabstrip .nav-sub button { min-height: var(--k-touch); padding-left: 25px; border-left: 3px solid transparent; border-radius: 8px;
+      font-size: 13.5px; background: transparent; color: var(--k-side-sub); box-shadow: none; }
+    #nav-tabstrip .nav-sub button:hover { background: var(--k-side-hover); color: #fff; }
+    /* tombol Pengaturan Admin (berdiri sendiri, bukan grup) */
+    #nav-tabstrip nav > button#nav-btn-admin { min-height: var(--k-touch); font-size: 13.5px; font-weight: 600; background: transparent;
+      color: var(--k-side-text); box-shadow: none; }
+    #nav-tabstrip nav > button#nav-btn-admin:hover { background: var(--k-side-hover); color: #fff; }
+    /* item aktif: kelas bg-primary/text-white diberikan oleh switchTab() */
+    #nav-tabstrip button.bg-primary, #nav-tabstrip button.bg-primary:hover { background: var(--k-side-active); color: #fff; font-weight: 700;
+      box-shadow: none; }
+    #nav-tabstrip .nav-sub button.bg-primary { border-left-color: var(--k-gold); }
+    #nav-tabstrip nav > button#nav-btn-admin.bg-primary { box-shadow: inset 3px 0 0 var(--k-gold); }
+
+    #nav-tabstrip > .mt-auto { border-top-color: rgba(255,255,255,.14); color: var(--k-side-sub); }
+
+    /* ---------- Bilah atas ---------- */
+    header.fixed { font-family: var(--k-font); }
+    header.fixed button { min-height: var(--k-touch); }
+    header.fixed #nav-hamburger { width: var(--k-touch); height: var(--k-touch); border: 1px solid #D2DEDC; border-radius: 10px; }
+    header.fixed #profile-dropdown button { min-height: 40px; }
+    #top-banner { background: var(--k-side); }
+    body h1, body h2, body h3 { font-family: var(--k-font); }
+
+    @media (min-width: 768px) {
+      /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
+      #nav-tabstrip { top: 0; }
+      body:has(#nav-tabstrip:not(.hidden)) header.fixed { left: var(--sb-w); width: calc(100% - var(--sb-w)); }
+      body:has(#nav-tabstrip:not(.hidden)) header.fixed #top-banner > div,
+      body:has(#nav-tabstrip:not(.hidden)) header.fixed > div.h-16 { max-width: none; padding-left: 28px; padding-right: 28px; }
+      #nav-tabstrip .nav-brand { display: flex; }
+    }
+    @media (max-width: 767px) {
+      #nav-tabstrip { box-shadow: 4px 0 18px rgba(0,0,0,.25); }
+    }
+  </style>
 </head>
 <body class="bg-surface-app text-text-primary font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white">
 
@@ -482,58 +562,6 @@
   })();
   </script>
 
-  <script src="config.js"></script>
-  <script>
-  /* Penghubung ke database (Apps Script Web App) untuk versi GitHub Pages.
-     Meniru google.script.run agar seluruh kode aplikasi tetap sama. */
-  (function () {
-    var URL_API = (window.KMKP_SUPABASE_URL || window.KMKP_API_URL || '').trim(); // Supabase (bila diisi) diutamakan daripada Apps Script
-    var inGAS = typeof google !== 'undefined' && google.script && google.script.run;
-    if (inGAS) return;
-    if (!/^https:\/\/script\.google\.com\/.+\/exec/.test(URL_API) && !/^https:\/\/[a-z0-9-]+\.supabase\.co\/functions\/v1\/.+/.test(URL_API)) {
-      window.addEventListener('DOMContentLoaded', function () {
-        var b = document.createElement('div');
-        b.textContent = 'MODE DEMO: belum terhubung ke database. Isi URL Web App pada file config.js';
-        b.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#b91c1c;color:#fff;font:600 12px sans-serif;text-align:center;padding:6px';
-        document.body.appendChild(b);
-      });
-      return;
-    }
-    function call(fn, args) {
-      var t0 = Date.now();
-      return fetch(URL_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ fn: fn, args: args })
-      }).then(function (r) { return r.json(); }).then(function (j) {
-        if (!j.ok) throw new Error(j.error || 'Gagal menghubungi server.');
-        return j.result;
-      }).catch(function (e) {
-        // TypeError = jaringan/CORS gagal; SyntaxError = server membalas HTML (halaman error/login Google), bukan JSON
-        var info = ' [fungsi: ' + fn + ', ' + (Date.now() - t0) + ' ms, online: ' + navigator.onLine + ']';
-        if (e && e.name === 'TypeError') { console.error('Failed to fetch' + info, e); throw new Error('Tidak dapat terhubung ke server database (Failed to fetch).' + info + ' Periksa koneksi internet, lalu coba lagi. Bila berulang: pastikan Web App Apps Script sudah di-deploy ulang (versi baru) dengan akses \"Anyone\" dan URL di config.js masih sama.'); }
-        if (e && e.name === 'SyntaxError') throw new Error('Server tidak mengembalikan data yang valid. Kemungkinan Web App belum di-deploy ulang atau terjadi error di Apps Script (cek menu Eksekusi).');
-        throw e;
-      });
-    }
-    function make(ok, fail) {
-      return new Proxy({}, {
-        get: function (_, name) {
-          if (name === 'withSuccessHandler') return function (f) { return make(f, fail); };
-          if (name === 'withFailureHandler') return function (f) { return make(ok, f); };
-          if (name === 'then') return undefined;
-          return function () {
-            var args = Array.prototype.slice.call(arguments);
-            call(String(name), args).then(function (r) { if (ok) ok(r); })
-              .catch(function (e) { if (fail) fail(e); else console.error(e); });
-          };
-        }
-      });
-    }
-    window.google = { script: { run: make(null, null) } };
-  })();
-  </script>
-
   <!-- Tailwind (CDN) + konfigurasi. Dimuat setelah loading state agar layar tampil dulu; versi dipatok agar tanpa redirect. -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <!-- Tailwind Configuration matching Stitch Design System -->
@@ -543,7 +571,7 @@
       theme: {
         extend: {
           colors: {
-            primary: "#0b3534",
+            primary: "#17615F",
             "primary-container": "#134e4a",
             "navy-deep": "#134e4a",
             "navy-interactive": "#115e59",
@@ -565,7 +593,7 @@
             "status-approved-text": "#0f766e",
             "status-pending-bg": "#fef3c7",
             "status-pending-text": "#d97706",
-            "surface-app": "#eef2f1",
+            "surface-app": "#EFF4F6",
             "surface-card": "#ffffff",
             "surface-row-alt": "#f6f8f8",
             "surface-rca-bg": "#fffbeb",
@@ -574,10 +602,10 @@
             "surface-container-high": "#d9efec",
             "surface-container-highest": "#b8e2dd",
             "border-base": "#c5d0ce",
-            "border-subtle": "#dfe6e5",
+            "border-subtle": "#DCE5E3",
             "border-form": "#cbd5d3",
-            "text-primary": "#1c2b2a",
-            "text-secondary": "#475569",
+            "text-primary": "#12302F",
+            "text-secondary": "#4B6360",
             "text-muted": "#6b7280",
             "error-container": "#ffdad6",
             "on-error-container": "#93000a",
@@ -686,6 +714,7 @@
 
   <!-- Sidebar Navigasi Kiri: tiap bagian berupa tab yang dapat dibuka/ditutup (submenu tersembunyi sampai tab diklik) -->
   <aside id="nav-tabstrip" class="hidden bg-surface-card border-r border-border-subtle no-print" aria-label="Menu utama">
+    <div class="nav-brand"><div class="nav-brand-mark" aria-hidden="true">K</div><div><div class="nav-brand-t1">KMKP</div><div class="nav-brand-t2">RSUD Merauke</div></div></div>
     <nav class="flex flex-col gap-1 p-3 text-xs font-semibold">
       <div class="nav-group" id="nav-grp-komite" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin"><button type="button" onclick="toggleNavGroup('komite')" id="nav-grp-btn-komite" aria-expanded="false" aria-controls="nav-sub-komite" class="nav-grp-btn w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] font-bold leading-tight text-text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px] shrink-0 text-primary">health_and_safety</span><span class="flex-1">Komite Mutu dan Keselamatan Pasien</span><span class="material-symbols-outlined text-[20px] nav-chev">expand_more</span></button><div id="nav-sub-komite" class="nav-sub hidden flex-col gap-1 mt-1 ml-4 pl-2 border-l border-border-subtle"><button onclick="switchTab('home')" id="nav-btn-home" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">home</span><span>Beranda Komite</span></button><button onclick="switchTab('sopall')" id="nav-btn-sopall" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">library_books</span><span>Pustaka SOP</span></button><button onclick="switchTab('jadwal')" id="nav-btn-jadwal" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">event</span><span>Jadwal Kegiatan</span></button><button onclick="switchTab('perpus')" id="nav-btn-perpus" data-roles="Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">folder_open</span><span>Perpustakaan Dokumen</span></button></div></div>
       <div class="nav-group" id="nav-grp-insiden" data-roles="Staf,Karu,Komite,KetuaKomite,Manajemen,Direktur,TU,Admin"><button type="button" onclick="toggleNavGroup('insiden')" id="nav-grp-btn-insiden" aria-expanded="false" aria-controls="nav-sub-insiden" class="nav-grp-btn w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] font-bold leading-tight text-text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px] shrink-0 text-primary">report</span><span class="flex-1">Pelaporan Insiden</span><span class="material-symbols-outlined text-[20px] nav-chev">expand_more</span></button><div id="nav-sub-insiden" class="nav-sub hidden flex-col gap-1 mt-1 ml-4 pl-2 border-l border-border-subtle"><button onclick="switchTab('dashboard')" id="nav-btn-dashboard" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight bg-primary text-white shadow-sm"><span class="material-symbols-outlined text-[18px] shrink-0">dashboard</span><span>Dashboard Analitik</span></button><button onclick="switchTab('laporan')" id="nav-btn-laporan" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">assignment</span><span>Daftar Laporan Insiden</span></button><button onclick="switchTab('formulir')" id="nav-btn-formulir" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">edit_document</span><span>Formulir Pelaporan</span></button><button onclick="switchTab('jenis')" id="nav-btn-jenis" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">category</span><span>Jenis Insiden</span></button><button onclick="switchTab('cetak')" id="nav-btn-cetak" class="w-full px-3 py-2.5 rounded-lg transition-colors flex items-center gap-2.5 text-left text-[13px] leading-tight text-text-secondary hover:text-primary hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px] shrink-0">print</span><span>Lembar Cetak &amp; Audit</span></button></div></div>
@@ -9033,22 +9062,11 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
       } catch (e) {
         // Jawaban server tidak sampai: data bisa saja sudah tersimpan. Cek ulang dulu sebelum melaporkan gagal.
         if (/Failed to fetch|terhubung ke server|tidak mengembalikan data/i.test(String(e && e.message))) {
-          // Server tetap menulis baris walau jawabannya tidak sampai, dan penulisannya selesai SETELAH browser menyerah.
-          // Maka cek berulang (hingga ~16 detik) sebelum menyatakan gagal.
-          const sama = t => String(t == null ? '' : t).replace(/\s+/g, ' ').trim().toLowerCase();
-          const cocok = x => sama(x.nama_unit) === sama(unit) && sama(x.nama_indikator) === sama(r.value.nama_indikator) &&
-            (baru || (String(x.target_persen) === String(r.value.target_persen === '' ? '' : Number(r.value.target_persen)) && x.formula_tipe === r.value.formula_tipe && sama(x.standar_teks) === sama(r.value.standar_teks)));
-          Swal.fire({ title: 'Memastikan data tersimpan...', text: 'Jawaban server terlambat, mohon tunggu sebentar.', allowOutsideClick: false, showConfirmButton: false, didOpen: () => Swal.showLoading() });
-          let fresh = null;
-          for (let n = 0; n < 6 && !fresh; n++) {
-            await new Promise(res => setTimeout(res, n === 0 ? 2000 : 3000));
-            let got = null; try { got = await api('getMasterIndikator', tok()); } catch (_) {}
-            if (got && got.some(cocok)) fresh = got;
-          }
-          Swal.close();
-          if (fresh) {
-            INDIKATOR = sortByKategori(fresh); IND_SEL = unit; renderIndUnitList(); renderIndPane();
-            toast('Indikator tersimpan'); return;
+          let fresh = null; try { fresh = await api('getMasterIndikator', tok()); } catch (_) {}
+          const nm = String(r.value.nama_indikator).trim().toLowerCase();
+          if (fresh && fresh.some(x => x.nama_unit === unit && String(x.nama_indikator).trim().toLowerCase() === nm)) {
+            INDIKATOR = sortByKategori(fresh); renderIndUnitList(); renderIndPane();
+            toast('Indikator tersimpan (jawaban server terlambat)'); return;
           }
         }
         errBox(e);
@@ -11199,14 +11217,6 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
 
       doPrint(html, 'A4', 'portrait');
     }
-</script>
-<script>
-  // Service Worker (PWA offline cache)
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(() => {});
-    });
-  }
 </script>
 <script>
 /* ===== Pustaka SOP: unggah SOP (template), bukti distribusi & sosialisasi, konversi lembar audit =====
