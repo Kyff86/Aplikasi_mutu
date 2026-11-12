@@ -494,6 +494,41 @@
     #top-banner { background: var(--k-side); }
     body h1, body h2, body h3 { font-family: var(--k-font); }
 
+    /* ---------- Langkah 3: pola halaman daftar (Daftar Laporan Insiden, Validasi, Formulir Bulanan) ---------- */
+    #tab-content-laporan .rounded-xl, #tabContent-validation .rounded-xl, #tabContent-rekapBulanan .rounded-xl { border-radius: var(--k-radius-card); border-color: var(--k-border); }
+    #tab-content-laporan, #tabContent-validation, #tabContent-rekapBulanan { font-family: var(--k-font); }
+    #tabContent-validation .bg-slate-50 { background-color: var(--k-card); }
+    /* header tabel teal */
+    #table-laporan-main thead, #tabContent-validation thead { background: transparent; border-bottom: 0; }
+    #table-laporan-main thead th, #tabContent-validation thead th { background: var(--k-side); color: #fff; font-size: 12px; padding-top: 13px; padding-bottom: 13px; }
+    #table-laporan-main thead th:first-child, #tabContent-validation thead th:first-child { border-radius: 10px 0 0 10px; }
+    #table-laporan-main thead th:last-child, #tabContent-validation thead th:last-child { border-radius: 0 10px 10px 0; }
+    /* kontrol toolbar & filter: tinggi sentuh 44px */
+    .k-btn { min-height: var(--k-touch); border-radius: 10px; font-size: 13.5px; font-weight: 600; padding-left: 18px; padding-right: 18px; }
+    .k-field { min-height: var(--k-touch); border-radius: 10px; font-size: 13.5px; }
+    .k-btn.bg-clinical-teal, .k-btn.bg-emerald-600 { background-color: var(--k-side); }
+    .k-btn.bg-clinical-teal:hover, .k-btn.bg-emerald-600:hover { background-color: #0F4A48; }
+    #tab-content-laporan input.k-field { padding-left: 2.25rem; }
+    #tab-content-laporan .relative > .absolute { top: 14px; }
+
+    /* ---------- Langkah 4: kartu kelengkapan input (Dashboard Mutu) ---------- */
+    .kc-wrap { background: var(--k-card); border: 1px solid var(--k-border); border-radius: var(--k-radius-card); padding: 24px 28px; font-family: var(--k-font); color: var(--k-text); }
+    .kc-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    .kc-title { margin: 0; font-size: 20px; line-height: 1.3; font-weight: 700; }
+    .kc-sub { margin: 2px 0 0; font-size: 13.5px; color: var(--k-text-2); }
+    .kc-lbl { display: block; margin-bottom: 4px; font-size: 12.5px; color: var(--k-text-2); }
+    .kc-sel { min-width: 150px; padding: 0 14px; border: 1px solid #BFD0CD; background: #fff; color: var(--k-text); }
+    .kc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+    .kc-card { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--k-border); border-radius: var(--k-radius-card); padding: 22px 24px; }
+    .kc-k { margin: 0 0 6px; font-size: 18px; font-weight: 800; }
+    .kc-n { margin: 0; font-size: 14px; } .kc-n b { font-size: 26px; font-weight: 800; }
+    .kc-v { margin: 2px 0 10px; font-size: 13px; color: var(--k-text-2); }
+    .kc-d { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: none; }
+    .kc-dl { font-size: 12.5px; color: var(--k-text-2); }
+    .kc-tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+    .kc-tag-ok { background: #D9EFEC; color: #0A4A45; } .kc-tag-no { background: #FDEBC8; color: #7A4300; } .kc-tag-w { background: #E6ECEB; color: #3E5552; }
+    .kc-empty { margin: 0; font-size: 13.5px; color: var(--k-text-2); }
+
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -1466,11 +1501,11 @@
               </div>
 
               <div class="flex items-center gap-2 flex-wrap">
-                <button data-roles="Admin,Komite,KetuaKomite,Manajemen,Direktur" onclick="exportExcelRekap()" class="bg-clinical-teal hover:bg-teal-dark text-white text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm transition">
+                <button data-roles="Admin,Komite,KetuaKomite,Manajemen,Direktur" onclick="exportExcelRekap()" class="k-btn bg-clinical-teal hover:bg-teal-dark text-white text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm transition">
                   <span class="material-symbols-outlined text-[16px]">file_download</span>
                   <span>Ekspor Excel</span>
                 </button>
-                <button onclick="openModalLaporan()" class="bg-primary hover:bg-navy-interactive text-white text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm transition">
+                <button onclick="openModalLaporan()" class="k-btn bg-primary hover:bg-navy-interactive text-white text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm transition">
                   <span class="material-symbols-outlined text-[16px]">add_circle</span>
                   <span>+ Buat Laporan Baru</span>
                 </button>
@@ -1482,12 +1517,12 @@
               <!-- Search -->
               <div class="lg:col-span-5 relative">
                 <span class="material-symbols-outlined absolute left-2.5 top-2 text-text-muted text-[16px]">search</span>
-                <input type="text" id="filter-search" oninput="filterLaporanTable()" placeholder="Cari ID, pasien, no. RM, unit, pelapor..." class="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary"/>
+                <input type="text" id="filter-search" oninput="filterLaporanTable()" placeholder="Cari ID, pasien, no. RM, unit, pelapor..." aria-label="Cari laporan insiden" class="k-field w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary"/>
               </div>
 
               <!-- Unit Filter -->
               <div class="lg:col-span-3">
-                <select id="filter-unit" onchange="filterLaporanTable()" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary bg-white">
+                <select id="filter-unit" onchange="filterLaporanTable()" aria-label="Filter unit kerja" class="k-field w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary bg-white">
                   <option value="">Semua Unit Kerja</option>
                   <option value="Admisi">Admisi</option>
                   <option value="Audit CP">Audit CP</option>
@@ -1545,7 +1580,7 @@
 
               <!-- Incident Type Filter -->
               <div class="lg:col-span-2">
-                <select id="filter-jenis" onchange="filterLaporanTable()" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary bg-white">
+                <select id="filter-jenis" onchange="filterLaporanTable()" aria-label="Filter jenis insiden" class="k-field w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary bg-white">
                   <option value="">Semua Jenis</option>
                   <option value="KPCS">KPCS</option>
                   <option value="KNC">KNC</option>
@@ -1557,7 +1592,7 @@
 
               <!-- Status Filter -->
               <div class="lg:col-span-2">
-                <select id="filter-status" onchange="filterLaporanTable()" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary bg-white">
+                <select id="filter-status" onchange="filterLaporanTable()" aria-label="Filter status" class="k-field w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-1 focus:ring-primary bg-white">
                   <option value="">Semua Status</option>
                   <option value="Menunggu Grading Karu">Menunggu Karu</option>
                   <option value="Menunggu Regrading Komite">Menunggu Komite</option>
@@ -2214,6 +2249,21 @@
 <!-- TAB 1: DASHBOARD REKAP DATA MUTU -->
       <div id="tabContent-dashboard" class="hidden space-y-4">
 
+        <!-- KELENGKAPAN INPUT per kategori (dirender oleh kcRender, memakai data capaian tahunan yang sudah dimuat) -->
+        <section id="kcWrap" class="kc-wrap" aria-labelledby="kcTitle">
+          <div class="kc-head">
+            <div>
+              <h3 id="kcTitle" class="kc-title">Kelengkapan Input Data Mutu</h3>
+              <p class="kc-sub">Jumlah indikator per ruangan yang sudah ada laporannya pada bulan terpilih.</p>
+            </div>
+            <div>
+              <label for="kcBulan" class="kc-lbl">Bulan</label>
+              <select id="kcBulan" onchange="kcRender()" class="k-field kc-sel"></select>
+            </div>
+          </div>
+          <div id="kcCards" class="kc-grid"><p class="kc-empty">Memuat kelengkapan input...</p></div>
+        </section>
+
         <!-- CAPAIAN MUTU TAHUNAN: INM / IMP RS / IMP Unit, seluruh ruangan, tiap bulan dalam setahun -->
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div class="p-4 bg-slate-50 border-b border-slate-200 space-y-3">
@@ -2553,7 +2603,7 @@
               <h3 class="font-bold text-slate-700 text-sm">Daftar Laporan Membutuhkan Validasi</h3>
               <p class="text-xs text-slate-500">Laporan berstatus "Diajukan" dari unit. Buka untuk memeriksa isian sebelum disetujui.</p>
             </div>
-            <button onclick="loadValidationList()" class="text-xs bg-sky-100 text-sky-700 font-bold px-3 py-1.5 rounded-lg hover:bg-sky-200"><i class="fa-solid fa-rotate mr-1"></i> Muat Ulang</button>
+            <button onclick="loadValidationList()" class="k-btn text-xs bg-sky-100 text-sky-700 font-bold px-3 py-1.5 rounded-lg hover:bg-sky-200"><i class="fa-solid fa-rotate mr-1"></i> Muat Ulang</button>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-xs text-left">
@@ -2576,19 +2626,19 @@
             <p class="text-xs text-slate-500">Hasil (N, D, capaian) terisi otomatis dari form pelaporan tiap indikator pada bulan yang dipilih. Kolom "Tanggal Belum Terisi" menunjukkan hari yang belum ada datanya (untuk bulan berjalan dihitung sampai hari ini).</p>
           </div>
           <div class="flex flex-wrap items-end gap-3">
-            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Ruangan</label>
-              <select id="rbUnit" onchange="loadRekapBulanan()" class="text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50 min-w-[200px]"></select></div>
-            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Bulan</label>
-              <input id="rbBulan" type="month" onchange="loadRekapBulanan()" class="text-xs border border-slate-300 rounded-lg p-2 bg-slate-50"></div>
-            <button onclick="loadRekapBulanan()" class="text-xs bg-sky-100 text-sky-700 font-bold px-3 py-2 rounded-lg hover:bg-sky-200"><i class="fa-solid fa-rotate mr-1"></i> Muat Ulang</button>
-            <button onclick="rbPrint()" class="text-xs bg-slate-800 text-white font-bold px-3 py-2 rounded-lg hover:bg-slate-900"><i class="fa-solid fa-print mr-1"></i> Cetak</button>
-            <button onclick="rbExportExcel()" class="text-xs bg-emerald-600 text-white font-bold px-3 py-2 rounded-lg hover:bg-emerald-700"><i class="fa-solid fa-file-excel mr-1"></i> Unduh Excel</button>
+            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="rbUnit">Ruangan</label>
+              <select id="rbUnit" onchange="loadRekapBulanan()" class="k-field text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50 min-w-[200px]"></select></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="rbBulan">Bulan</label>
+              <input id="rbBulan" type="month" onchange="loadRekapBulanan()" class="k-field text-xs border border-slate-300 rounded-lg p-2 bg-slate-50"></div>
+            <button onclick="loadRekapBulanan()" class="k-btn text-xs bg-sky-100 text-sky-700 font-bold px-3 py-2 rounded-lg hover:bg-sky-200"><i class="fa-solid fa-rotate mr-1"></i> Muat Ulang</button>
+            <button onclick="rbPrint()" class="k-btn text-xs bg-slate-800 text-white font-bold px-3 py-2 rounded-lg hover:bg-slate-900"><i class="fa-solid fa-print mr-1"></i> Cetak</button>
+            <button onclick="rbExportExcel()" class="k-btn text-xs bg-emerald-600 text-white font-bold px-3 py-2 rounded-lg hover:bg-emerald-700"><i class="fa-solid fa-file-excel mr-1"></i> Unduh Excel</button>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Tanggal (pada tanda tangan)</label><input id="rbTanggal" type="date" class="w-full text-xs border border-slate-300 rounded-lg p-2"></div>
-            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Kepala Instalasi</label><input id="rbKepala" type="text" maxlength="80" class="w-full text-xs border border-slate-300 rounded-lg p-2" placeholder="Nama (opsional)"></div>
-            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Penanggung Jawab Data</label><input id="rbPj" type="text" maxlength="80" class="w-full text-xs border border-slate-300 rounded-lg p-2" placeholder="Nama (opsional)"></div>
-            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pengumpul Data</label><input id="rbPengumpul" type="text" maxlength="80" class="w-full text-xs border border-slate-300 rounded-lg p-2" placeholder="Nama (opsional)"></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="rbTanggal">Tanggal (pada tanda tangan)</label><input id="rbTanggal" type="date" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2"></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="rbKepala">Kepala Instalasi</label><input id="rbKepala" type="text" maxlength="80" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" placeholder="Nama (opsional)"></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="rbPj">Penanggung Jawab Data</label><input id="rbPj" type="text" maxlength="80" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" placeholder="Nama (opsional)"></div>
+            <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="rbPengumpul">Pengumpul Data</label><input id="rbPengumpul" type="text" maxlength="80" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" placeholder="Nama (opsional)"></div>
           </div>
         </div>
         <div id="rbView" class="bg-white rounded-xl shadow-sm border border-slate-200 p-4"></div>
@@ -9877,9 +9927,55 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
 
     function ctRender() {
       if (!CT.ready) return;
+      try { kcRender(); } catch (e) { console.warn(e); }
       const r = ctBuild();
       $('ctView').innerHTML = (r.judul ? `<div class="mb-2"><div class="text-sm font-bold text-slate-700">${emEsc(r.judul)}</div><div class="text-[11px] text-slate-500">${emEsc(r.sub)}</div></div>` : '') + r.html
         + (r.judul ? '<p class="text-[11px] text-slate-500 mt-2">Capaian dihitung dari form pelaporan ruangan (Numerator / Denominator). Warna hijau = memenuhi standar, merah = belum memenuhi. Bulan tanpa laporan ditampilkan "-".</p>' : '');
+    }
+
+    /* ===== Kartu Kelengkapan Input (V2): terisi = ada laporan pada bulan terpilih untuk pasangan template x ruangan ===== */
+    const KC_KAT = [
+      { k: 'INM', warna: '#0F766E', latar: '#EAF5F3' },
+      { k: 'IMP RS', warna: '#6D4BC4', latar: '#F3EFFB' },
+      { k: 'IMP Unit', warna: '#B45309', latar: '#FDF4E5' }
+    ];
+    function kcDonut(pct, warna) {
+      const C = 2 * Math.PI * 36, d = Math.max(0, Math.min(100, pct)) * C / 100;
+      return `<svg width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Kelengkapan ${pct}%">`
+        + `<circle cx="48" cy="48" r="36" fill="none" stroke="#FFFFFF" stroke-width="12"/>`
+        + `<circle cx="48" cy="48" r="36" fill="none" stroke="${warna}" stroke-width="12" stroke-linecap="butt" stroke-dasharray="${d.toFixed(2)} ${C.toFixed(2)}" transform="rotate(-90 48 48)"/>`
+        + `<text x="48" y="54" text-anchor="middle" font-size="20" font-weight="800" fill="#12302F">${pct}%</text></svg>`;
+    }
+    function kcRender() {
+      const box = $('kcCards'), sel = $('kcBulan');
+      if (!box || !sel || !CT.ready || !INDIKATOR.length) return;
+      if (!sel.options.length) {
+        sel.innerHTML = BULAN.map((n, i) => `<option value="${i + 1}">${n}</option>`).join('');
+        const now = new Date();
+        sel.value = String(String(now.getFullYear()) === String(CT.tahun) ? now.getMonth() + 1 : 12);
+      }
+      const bln = Number(sel.value) || 1, ada = new Set(), valid = new Set();
+      CT.reports.forEach(r => {
+        if (Number(String(r.bulan_tahun).slice(5, 7)) !== bln) return;
+        const key = r.id_form + '|' + r.unit; ada.add(key); if (r.status === 'Tervalidasi') valid.add(key);
+      });
+      box.innerHTML = KC_KAT.map(c => {
+        const exp = new Set();
+        INDIKATOR.forEach(i => {
+          if ((i.kategori || 'Lainnya') !== c.k) return;
+          const tpl = templateForInd(i); if (tpl) exp.add(tpl.id + '|' + i.nama_unit);
+        });
+        const total = exp.size; let terisi = 0, tervalidasi = 0;
+        exp.forEach(k => { if (ada.has(k)) terisi++; if (valid.has(k)) tervalidasi++; });
+        const pct = total ? Math.round(terisi / total * 100) : 0, sisa = total - terisi;
+        const tag = !total ? '<span class="kc-tag kc-tag-w">Belum ada indikator</span>'
+          : sisa === 0 ? '<span class="kc-tag kc-tag-ok">Lengkap</span>'
+          : `<span class="kc-tag kc-tag-no">${sisa} belum input</span>`;
+        return `<article class="kc-card" style="background:${c.latar}">`
+          + `<div><h4 class="kc-k">${c.k}</h4><p class="kc-n"><b>${terisi}</b> dari ${total} indikator-ruangan terisi</p>`
+          + `<p class="kc-v">${tervalidasi} tervalidasi</p>${tag}</div>`
+          + `<div class="kc-d">${kcDonut(pct, c.warna)}<span class="kc-dl">Kelengkapan input</span></div></article>`;
+      }).join('');
     }
 
     function ctDocHTML() {
