@@ -544,6 +544,27 @@
     .kc-legend li { display: flex; align-items: center; gap: 8px; }
     .kc-sw { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
 
+    /* ---------- Langkah 6: halaman Validasi ---------- */
+    .vl-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .vl-card { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-height: 88px; padding: 16px 20px; border-radius: var(--k-radius-card); border: 2px solid transparent; text-align: left; cursor: pointer; font-family: var(--k-font); }
+    .vl-card[aria-pressed="true"] { border-color: currentColor; }
+    .vl-card-n { font-size: 30px; line-height: 1.1; font-weight: 800; }
+    .vl-card-t { font-size: 13.5px; font-weight: 700; }
+    .vl-filters { display: flex; flex-wrap: wrap; gap: 16px; padding: 16px 16px 4px; }
+    .vl-lbl { display: block; margin-bottom: 4px; font-size: 12.5px; font-weight: 600; color: var(--k-text-2); }
+    .vl-sel { min-width: 200px; padding: 0 12px; border: 1px solid #BFD0CD; background: #fff; color: var(--k-text); }
+    .vl-tabs { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px 14px; }
+    .vl-tab { min-height: var(--k-touch); padding: 0 16px; border-radius: 999px; border: 1px solid #BFD0CD; background: #fff; color: var(--k-text); font-size: 13.5px; font-weight: 600; font-family: var(--k-font); }
+    .vl-tab.is-on { background: var(--k-side); border-color: var(--k-side); color: #fff; }
+    .vl-tab-n { display: inline-block; min-width: 22px; margin-left: 4px; padding: 1px 7px; border-radius: 999px; background: #E6ECEB; color: #3E5552; font-size: 12px; font-weight: 800; }
+    .vl-tab.is-on .vl-tab-n { background: rgba(255,255,255,.22); color: #fff; }
+    .vl-btn { min-height: var(--k-touch); padding: 0 14px; margin: 2px 3px; border-radius: 10px; font-size: 13px; font-weight: 700; font-family: var(--k-font); }
+    .vl-link { color: #0F4A48; text-decoration: underline; background: transparent; }
+    .vl-ok { background: var(--k-side); color: #fff; }
+    .vl-ok:hover { background: #0F4A48; }
+    .vl-no { background: #fff; color: #7F1D1D; border: 1px solid #B83A3A; }
+    .vl-no:hover { background: #FBDDDD; }
+    .vl-note { margin-top: 4px; font-size: 12px; color: #7F1D1D; }
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -2620,21 +2641,33 @@
 
       <!-- TAB 4: VALIDASI KOMITE MUTU -->
       <div id="tabContent-validation" class="hidden space-y-4">
+        <!-- Kartu ringkasan status (dirender oleh valRender; kartu juga berfungsi sebagai pintasan ke tab status) -->
+        <section id="vlSummary" class="vl-cards" aria-label="Ringkasan status laporan"></section>
+
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
+          <div class="p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap justify-between items-center gap-3">
             <div>
-              <h3 class="font-bold text-slate-700 text-sm">Daftar Laporan Membutuhkan Validasi</h3>
-              <p class="text-xs text-slate-500">Laporan berstatus "Diajukan" dari unit. Buka untuk memeriksa isian sebelum disetujui.</p>
+              <h3 class="font-bold text-slate-700 text-sm">Validasi Laporan Mutu</h3>
+              <p class="text-xs text-slate-500">Laporan berstatus "Diajukan" selalu tampil, berapa pun umurnya. Buka untuk memeriksa isian sebelum disetujui.</p>
             </div>
             <button onclick="loadValidationList()" class="k-btn text-xs bg-sky-100 text-sky-700 font-bold px-3 py-1.5 rounded-lg hover:bg-sky-200"><i class="fa-solid fa-rotate mr-1"></i> Muat Ulang</button>
           </div>
+          <div class="vl-filters">
+            <div><label for="vlUnit" class="vl-lbl">Ruangan</label>
+              <select id="vlUnit" onchange="valSetUnit(this.value)" class="k-field vl-sel"><option value="">Semua ruangan</option></select></div>
+            <div><label for="vlPeriode" class="vl-lbl">Periode (selain yang menunggu)</label>
+              <select id="vlPeriode" onchange="loadValidationList()" class="k-field vl-sel">
+                <option value="1">Bulan ini</option><option value="3" selected>3 bulan terakhir</option><option value="6">6 bulan terakhir</option><option value="12">1 tahun terakhir</option>
+              </select></div>
+          </div>
+          <div id="vlTabs" class="vl-tabs" role="tablist" aria-label="Filter status"></div>
           <div class="overflow-x-auto">
             <table class="w-full text-xs text-left">
               <thead class="bg-slate-100 text-slate-600 uppercase font-bold text-[10px] border-b">
-                <tr><th class="p-3">Periode</th><th class="p-3">Unit</th><th class="p-3">Form</th><th class="p-3 text-center">Num / Denum</th><th class="p-3 text-center">Capaian</th><th class="p-3 text-center">Aksi</th></tr>
+                <tr><th class="p-3">Periode</th><th class="p-3">Unit</th><th class="p-3">Form</th><th class="p-3 text-center">Num / Denum</th><th class="p-3 text-center">Capaian</th><th class="p-3 text-center">Status</th><th class="p-3 text-center">Aksi</th></tr>
               </thead>
               <tbody id="validationBody" class="divide-y divide-slate-100">
-                <tr><td colspan="6" class="p-6 text-center text-slate-400">Memuat...</td></tr>
+                <tr><td colspan="7" class="p-6 text-center text-slate-400">Memuat...</td></tr>
               </tbody>
             </table>
           </div>
@@ -9700,25 +9733,58 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
     }
 
     /* ---------- Validasi Komite ---------- */
+    /* ===== Halaman Validasi (V2): kartu ringkasan, tab status berjumlah, filter ruangan ===== */
+    const VAL = { rows: [], tab: 'Diajukan', unit: '' };
+    const VAL_STATUS = [
+      { k: 'Diajukan', t: 'Menunggu validasi', bg: '#DCE8F8', fg: '#173F7A' },
+      { k: 'Tervalidasi', t: 'Tervalidasi', bg: '#D9EFEC', fg: '#0A4A45' },
+      { k: 'Ditolak', t: 'Ditolak', bg: '#FBDDDD', fg: '#7F1D1D' },
+      { k: 'Draft', t: 'Draft', bg: '#FDEBC8', fg: '#7A4300' }
+    ];
     async function loadValidationList() {
       const body = $('validationBody'); if (!isKomite()) return;
-      body.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-slate-400">Memuat...</td></tr>';
+      body.innerHTML = '<tr><td colspan="7" class="p-6 text-center text-slate-400">Memuat...</td></tr>';
       try {
-        const list = await api('listFormReports', tok(), { status: 'Diajukan' });
-        body.innerHTML = list.length ? list.map(r => `
-          <tr class="hover:bg-slate-50">
+        const months = parseInt($('vlPeriode').value, 10) || 3;
+        // yang menunggu validasi diambil tanpa batas waktu supaya tidak ada yang terlewat; status lain mengikuti periode
+        const [pend, per] = await Promise.all([api('listFormReports', tok(), { status: 'Diajukan' }), api('listFormReports', tok(), { months })]);
+        const seen = new Set(); VAL.rows = [];
+        (pend || []).concat(per || []).forEach(r => { if (!seen.has(r.id_laporan)) { seen.add(r.id_laporan); VAL.rows.push(r); } });
+        VAL.rows.sort((x, y) => x.bulan_tahun < y.bulan_tahun ? 1 : x.bulan_tahun > y.bulan_tahun ? -1 : 0);
+        const sel = $('vlUnit'), cur = VAL.unit, units = [...new Set(VAL.rows.map(r => r.unit))].sort(cmpAbjad);
+        sel.innerHTML = '<option value="">Semua ruangan</option>' + units.map(u => `<option value="${emEsc(u)}">${emEsc(u)}</option>`).join('');
+        if (units.includes(cur)) sel.value = cur; else VAL.unit = '';
+        valRender();
+      } catch (e) { body.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-rose-500">${emEsc(e.message)}</td></tr>`; }
+    }
+    function valSetTab(t) { VAL.tab = t; valRender(); }
+    function valSetUnit(u) { VAL.unit = u || ''; valRender(); }
+    function valRender() {
+      const rows = VAL.rows.filter(r => !VAL.unit || r.unit === VAL.unit), cnt = {};
+      rows.forEach(r => { cnt[r.status] = (cnt[r.status] || 0) + 1; });
+      $('vlSummary').innerHTML = VAL_STATUS.map(s => `<button type="button" class="vl-card" style="background:${s.bg};color:${s.fg}" onclick="valSetTab('${s.k}')" aria-pressed="${VAL.tab === s.k}">`
+        + `<span class="vl-card-n">${cnt[s.k] || 0}</span><span class="vl-card-t">${s.t}</span></button>`).join('');
+      const tabs = [['Diajukan', 'Menunggu validasi', cnt.Diajukan || 0], ['all', 'Semua', rows.length], ['Tervalidasi', 'Tervalidasi', cnt.Tervalidasi || 0], ['Ditolak', 'Ditolak', cnt.Ditolak || 0], ['Draft', 'Draft', cnt.Draft || 0]];
+      $('vlTabs').innerHTML = tabs.map(t => `<button type="button" role="tab" class="vl-tab${VAL.tab === t[0] ? ' is-on' : ''}" aria-selected="${VAL.tab === t[0]}" onclick="valSetTab('${t[0]}')">${t[1]} <span class="vl-tab-n">${t[2]}</span></button>`).join('');
+      const list = VAL.tab === 'all' ? rows : rows.filter(r => r.status === VAL.tab);
+      const empty = VAL.tab === 'Diajukan' ? 'Tidak ada laporan yang menunggu validasi.' : 'Tidak ada laporan pada tab ini untuk periode yang dipilih.';
+      $('validationBody').innerHTML = list.length ? list.map(r => {
+        const id = emEsc(r.id_laporan), aksi = r.status === 'Diajukan'
+          ? `<button type="button" onclick="openReport('${id}')" class="vl-btn vl-link">Periksa</button>`
+            + `<button type="button" onclick="doValidasi('${id}','Tervalidasi')" class="vl-btn vl-ok">Setujui</button>`
+            + `<button type="button" onclick="doValidasi('${id}','Ditolak')" class="vl-btn vl-no">Tolak</button>`
+          : `<button type="button" onclick="openReport('${id}')" class="vl-btn vl-link">Lihat</button>`;
+        const cat = r.status === 'Ditolak' && r.catatan_validator ? `<div class="vl-note">Catatan: ${emEsc(r.catatan_validator)}</div>` : '';
+        return `<tr class="hover:bg-slate-50">
             <td class="p-3 font-semibold whitespace-nowrap">${emEsc(fmtBulan(r.bulan_tahun))}</td>
             <td class="p-3">${emEsc(r.unit)}</td>
-            <td class="p-3">${emEsc(r.nama_form)}</td>
+            <td class="p-3">${emEsc(r.nama_form)}${cat}</td>
             <td class="p-3 text-center">${r.num} / ${r.denum}</td>
             <td class="p-3 text-center font-bold">${capFmt(tplById(r.id_form), r.capaian_persen, 1)}</td>
-            <td class="p-3 text-center whitespace-nowrap">
-              <button onclick="openReport('${emEsc(r.id_laporan)}')" class="text-sky-700 hover:underline font-bold mr-2">Periksa</button>
-              <button onclick="doValidasi('${emEsc(r.id_laporan)}','Tervalidasi')" class="bg-emerald-600 text-white px-2 py-1 rounded-lg font-bold mr-1">Setujui</button>
-              <button onclick="doValidasi('${emEsc(r.id_laporan)}','Ditolak')" class="bg-rose-600 text-white px-2 py-1 rounded-lg font-bold">Tolak</button>
-            </td>
-          </tr>`).join('') : '<tr><td colspan="6" class="p-6 text-center text-slate-400">Tidak ada laporan yang menunggu validasi.</td></tr>';
-      } catch (e) { body.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-rose-500">${emEsc(e.message)}</td></tr>`; }
+            <td class="p-3 text-center">${statusBadge(r.status)}</td>
+            <td class="p-3 text-center whitespace-nowrap">${aksi}</td>
+          </tr>`;
+      }).join('') : `<tr><td colspan="7" class="p-6 text-center text-slate-500">${empty}</td></tr>`;
     }
 
     async function doValidasi(id, status) {
