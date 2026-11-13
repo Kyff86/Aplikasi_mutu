@@ -565,6 +565,14 @@
     .vl-no { background: #fff; color: #7F1D1D; border: 1px solid #B83A3A; }
     .vl-no:hover { background: #FBDDDD; }
     .vl-note { margin-top: 4px; font-size: 12px; color: #7F1D1D; }
+    /* ---------- Langkah 7: Rekapitulasi Dashboard & Formulir Bulanan (tampilan layar saja) ---------- */
+    #tabContent-dashboard > .rounded-xl, #rbView { border-radius: var(--k-radius-card); border-color: var(--k-border); }
+    #rekapTable thead { background: transparent; border-bottom: 0; }
+    #rekapTable thead th { background: var(--k-side); color: #fff; font-size: 12px; padding-top: 13px; padding-bottom: 13px; }
+    #rekapTable thead th:first-child { border-radius: 10px 0 0 10px; }
+    #rekapTable thead th:last-child { border-radius: 0 10px 10px 0; }
+    #rekapTable tbody td { font-size: 13px; vertical-align: middle; }
+    #rbView { font-family: var(--k-font); }
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -2359,14 +2367,14 @@
         <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap gap-3 items-center justify-between">
           <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
             <div>
-              <label class="block text-[10px] font-bold text-slate-500 uppercase">Ruangan / Unit</label>
-              <select id="filterUnit" onchange="emLoadDashboardData()" class="text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50">
+              <label for="filterUnit" class="block text-[10px] font-bold text-slate-500 uppercase">Ruangan / Unit</label>
+              <select id="filterUnit" onchange="emLoadDashboardData()" class="k-field text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50">
                 <option value="ALL">-- Semua Ruangan --</option>
               </select>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-500 uppercase">Periode Rentang</label>
-              <select id="filterPeriode" onchange="emLoadDashboardData()" class="text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50">
+              <label for="filterPeriode" class="block text-[10px] font-bold text-slate-500 uppercase">Periode Rentang</label>
+              <select id="filterPeriode" onchange="emLoadDashboardData()" class="k-field text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50">
                 <option value="1">Bulan Ini</option>
                 <option value="3">3 Bulan Terakhir</option>
                 <option value="6">6 Bulan Terakhir</option>
@@ -2374,7 +2382,7 @@
               </select>
             </div>
           </div>
-          <button onclick="emLoadDashboardData()" class="text-xs bg-sky-100 text-sky-700 font-bold px-3 py-2 rounded-lg hover:bg-sky-200">
+          <button onclick="emLoadDashboardData()" class="k-btn text-xs bg-sky-100 text-sky-700 font-bold px-3 py-2 rounded-lg hover:bg-sky-200">
             <i class="fa-solid fa-rotate mr-1"></i> Refresh Data
           </button>
         </div>
@@ -2387,7 +2395,7 @@
             <span class="text-xs text-slate-500" id="totalRecordsBadge">0 Data</span>
           </div>
           <div class="overflow-x-auto">
-            <table class="w-full text-xs text-left">
+            <table id="rekapTable" class="w-full text-xs text-left">
               <thead class="bg-slate-100 text-slate-600 uppercase font-bold text-[10px] border-b">
                 <tr>
                   <th class="p-3">Periode</th>
@@ -9808,13 +9816,14 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
         const list = await api('listFormReports', tok(), { unit: $('filterUnit').value, months: parseInt($('filterPeriode').value, 10) });
         tbody.innerHTML = list.length ? list.map(r => {
           const t = tplById(r.id_form), target = t && t.target != null && t.target !== '' ? Number(t.target) : null;
-          const col = target == null || tplMeets(t, r.capaian_persen) === null ? 'text-slate-700' : (tplMeets(t, r.capaian_persen) ? 'text-emerald-600' : 'text-rose-600');
+          const col = target == null || tplMeets(t, r.capaian_persen) === null ? 'text-slate-700' : (tplMeets(t, r.capaian_persen) ? 'text-emerald-700' : 'text-rose-700');
+          const mk = col === 'text-slate-700' ? '' : col === 'text-emerald-700' ? '<span aria-hidden="true"> ✓</span><span class="sr-only"> tercapai</span>' : '<span aria-hidden="true"> ✗</span><span class="sr-only"> belum tercapai</span>';
           return `<tr class="hover:bg-slate-50">
             <td class="p-3 font-semibold">${emEsc(fmtBulan(r.bulan_tahun))}</td>
             <td class="p-3">${emEsc(r.unit)}</td>
             <td class="p-3 font-medium">${emEsc(r.nama_form)}</td>
             <td class="p-3 text-center">${r.num} / ${r.denum}</td>
-            <td class="p-3 text-center font-bold ${col}">${capFmt(tplById(r.id_form), r.capaian_persen, 1)}</td>
+            <td class="p-3 text-center font-bold ${col}">${capFmt(tplById(r.id_form), r.capaian_persen, 1)}${mk}</td>
             <td class="p-3 text-center">${statusBadge(r.status)}</td></tr>`;
         }).join('') : '<tr><td colspan="6" class="p-6 text-center text-slate-400">Belum ada data pada periode ini.</td></tr>';
         $('totalRecordsBadge').innerText = `${list.length} Data Rekap`;
@@ -10229,21 +10238,21 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
 
     // Tabel formulir (mode: 'screen' | 'print' | 'xls') - gaya inline agar sama di layar, cetak, dan Excel
     function rbTable(d, mode) {
-      const scr = mode === 'screen', bd = scr ? 'border:1px solid #cbd5e1;' : 'border:1px solid #000;', fs = scr ? 'font-size:12px;' : 'font-size:9pt;';
-      const th = (t, extra) => `<th style="${bd}padding:4px 6px;text-align:center;font-weight:700;background:${scr ? '#f1f5f9' : '#e5e7eb'};${scr ? 'font-size:10px;text-transform:uppercase;' : fs}${extra || ''}">${t}</th>`;
+      const scr = mode === 'screen', bd = scr ? 'border:1px solid #DCE5E3;' : 'border:1px solid #000;', fs = scr ? 'font-size:13px;' : 'font-size:9pt;';
+      const th = (t, extra) => `<th style="${bd}padding:4px 6px;text-align:center;font-weight:700;background:${scr ? '#17615F' : '#e5e7eb'};${scr ? 'color:#fff;font-size:12px;text-transform:uppercase;' : fs}${extra || ''}">${t}</th>`;
       const td = (t, extra, attr) => `<td ${attr || ''} style="${bd}${fs}padding:4px 6px;vertical-align:top;${extra || ''}">${t}</td>`;
       const C = 'text-align:center;';
       const by = {}; d.items.forEach(x => { const k = x.ind.kategori || 'Lainnya'; (by[k] = by[k] || []).push(x); });
       let n = 0, body = '';
       Object.keys(by).sort((a, b) => katRank(a) - katRank(b) || a.localeCompare(b)).forEach(k => {
-        body += `<tr><td colspan="8" style="${bd}${fs}padding:4px 6px;font-weight:700;background:${scr ? '#f8fafc' : '#f3f4f6'}">${emEsc((KAT_JUDUL[k] || k).toUpperCase())} · ${by[k].length} indikator</td></tr>`;
+        body += `<tr><td colspan="8" style="${bd}${fs}padding:4px 6px;font-weight:700;background:${scr ? '#EAF5F3' : '#f3f4f6'}">${emEsc((KAT_JUDUL[k] || k).toUpperCase())} · ${by[k].length} indikator</td></tr>`;
         by[k].forEach(it => {
           n++;
           const i = it.ind, s = it.sum, h = it.tpl && it.tpl.hitung;
           const uN = i.numerator_desc || (h && h.num && h.num.label ? h.num.label.replace(/\s*\(Num\)\s*$/i, '') : '') || '-';
           const uD = i.denominator_desc || (h && h.denum && h.denum.label ? h.denum.label.replace(/\s*\(Denum\)\s*$/i, '') : '') || '-';
           const t = i.target_persen, ok = s && t !== '' && t != null && !(it.tpl && tplIsNum(it.tpl)) ? (i.formula_tipe === 'le' ? s.cap <= Number(t) : s.cap >= Number(t)) : null;
-          const capTxt = s ? `<b style="color:${ok === null ? 'inherit' : ok ? '#047857' : '#b91c1c'}">${capFmt(it.tpl, s.cap, 2)}</b>` : '-';
+          const capTxt = s ? `<b style="color:${ok === null ? 'inherit' : ok ? '#047857' : '#b91c1c'}">${capFmt(it.tpl, s.cap, 2)}</b>${scr && ok !== null ? `<div style="margin-top:2px;font-size:11px;color:${ok ? '#047857' : '#b91c1c'}">${ok ? 'Tercapai' : 'Belum tercapai'}</div>` : ''}` : '-';
           let judul = emEsc(i.nama_indikator);
           if (scr) judul += `<div style="margin-top:3px;font-size:10px;color:#64748b">${katBadge(i.kategori)} <span style="font-family:monospace">${emEsc(i.id_indikator)}</span>${it.tpl ? ' · Form: ' + emEsc(it.tpl.kode) : ''} ${it.rep ? statusBadge(it.rep.status) : ''}</div>`;
           if (it.rep && !s) judul += `<div style="font-size:${scr ? '10px' : '8pt'};color:#b45309">Form ini tidak memiliki rumus capaian (${it.nRows} data terisi)</div>`;
@@ -10265,7 +10274,7 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
       const d = RB.data; if (!d) return;
       const [y, m] = d.bulan.split('-').map(Number);
       const tot = d.items.length, ada = d.items.filter(x => x.rep).length, lengkap = d.items.filter(x => x.rep && x.tglCol && !x.missing.length).length;
-      const chip = (t, c) => `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${c}">${t}</span>`;
+      const chip = (t, c) => `<span class="px-3 py-1 rounded-full text-xs font-bold ${c}">${t}</span>`;
       $('rbView').innerHTML = `<div class="flex flex-wrap items-start justify-between gap-3 mb-3">
           <div class="text-xs text-slate-700 leading-relaxed"><div><b class="inline-block w-14">Bulan</b>: ${emEsc(BULAN[m - 1].toUpperCase())}</div><div><b class="inline-block w-14">Tahun</b>: ${y}</div><div><b class="inline-block w-14">Ruangan</b>: ${emEsc(d.unit)}</div></div>
           <div class="flex flex-wrap gap-1.5">${chip(ada + ' dari ' + tot + ' indikator sudah ada laporan', 'bg-sky-100 text-sky-700')}${chip((tot - ada) + ' belum ada laporan', tot - ada ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-500')}${chip(lengkap + ' indikator tanggalnya lengkap', 'bg-emerald-100 text-emerald-700')}</div>
