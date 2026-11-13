@@ -528,6 +528,21 @@
     .kc-tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
     .kc-tag-ok { background: #D9EFEC; color: #0A4A45; } .kc-tag-no { background: #FDEBC8; color: #7A4300; } .kc-tag-w { background: #E6ECEB; color: #3E5552; }
     .kc-empty { margin: 0; font-size: 13.5px; color: var(--k-text-2); }
+    .kc-batas { margin-top: 16px; border-radius: 12px; padding: 14px 18px; font-size: 14px; border: 1px solid transparent; }
+    .kc-b-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    .kc-b-ok { background: #D9EFEC; color: #0A4A45; border-color: #B7DDD8; }
+    .kc-b-warn { background: #FDEBC8; color: #7A4300; border-color: #F2D49A; }
+    .kc-b-late { background: #FBDDDD; color: #7F1D1D; border-color: #F0BFBF; }
+    .kc-b-none { background: #E6ECEB; color: #3E5552; border-color: #D3DDDB; }
+    .kc-b-btn { background: #fff; color: var(--k-text); border: 1px solid #9FB4B1; }
+    .kc-b-btn:hover { background: #F4F8F7; }
+    .kc-b-save { background: var(--k-side); color: #fff; border: 1px solid var(--k-side); }
+    .kc-b-edit { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; margin-top: 12px; }
+    .kc-b-edit label { display: block; width: 100%; font-size: 12.5px; font-weight: 600; }
+    .kc-b-edit input { border: 1px solid #9FB4B1; background: #fff; color: var(--k-text); padding: 0 12px; }
+    .kc-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 16px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--k-text-2); }
+    .kc-legend li { display: flex; align-items: center; gap: 8px; }
+    .kc-sw { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
 
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
@@ -2262,6 +2277,14 @@
             </div>
           </div>
           <div id="kcCards" class="kc-grid"><p class="kc-empty">Memuat kelengkapan input...</p></div>
+          <div id="kcBatas" class="kc-batas" role="status"></div>
+          <ul class="kc-legend" aria-label="Keterangan status laporan">
+            <li><span class="kc-sw" style="background:#D9EFEC;color:#0A4A45">Tervalidasi</span> sudah disahkan Komite</li>
+            <li><span class="kc-sw" style="background:#DCE8F8;color:#173F7A">Diajukan</span> menunggu validasi</li>
+            <li><span class="kc-sw" style="background:#FDEBC8;color:#7A4300">Draft</span> tersimpan, belum diajukan</li>
+            <li><span class="kc-sw" style="background:#FBDDDD;color:#7F1D1D">Ditolak</span> perlu diperbaiki</li>
+            <li><span class="kc-sw" style="background:#E6ECEB;color:#3E5552">Belum input</span> belum ada laporan</li>
+          </ul>
         </section>
 
         <!-- CAPAIAN MUTU TAHUNAN: INM / IMP RS / IMP Unit, seluruh ruangan, tiap bulan dalam setahun -->
@@ -8778,6 +8801,8 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
           save(); return { success: true, jumlah: rows.length };
         }
         case 'deleteIndikator': db.indikator = db.indikator.filter(i => i.id_indikator !== p1); save(); return { success: true };
+        case 'getBatasInput': return Object.assign({}, db.batas || {});
+        case 'saveBatasInput': { db.batas = db.batas || {}; if (p2) db.batas[p1] = p2; else delete db.batas[p1]; save(); return { success: true, map: Object.assign({}, db.batas) }; }
         case 'logoutUser': return { success: true };
       }
       throw new Error('Fungsi tidak tersedia pada mode demo: ' + fn);
@@ -9434,8 +9459,10 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
     }
 
     function statusBadge(s) {
-      const map = { Draft: 'bg-slate-100 text-slate-600', Diajukan: 'bg-amber-100 text-amber-800', Tervalidasi: 'bg-emerald-100 text-emerald-800', Ditolak: 'bg-rose-100 text-rose-800' };
-      return `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${map[s] || 'bg-slate-100 text-slate-600'}">${emEsc(s || 'Baru')}</span>`;
+      // warna mengikuti legenda status desain V2 (teks tetap ditampilkan, tidak hanya warna)
+      const map = { Draft: ['#FDEBC8', '#7A4300'], Diajukan: ['#DCE8F8', '#173F7A'], Tervalidasi: ['#D9EFEC', '#0A4A45'], Ditolak: ['#FBDDDD', '#7F1D1D'] };
+      const c = map[s] || ['#E6ECEB', '#3E5552'];
+      return `<span class="text-xs font-bold px-2.5 py-0.5 rounded-full" style="background:${c[0]};color:${c[1]}">${emEsc(s || 'Baru')}</span>`;
     }
 
     function renderEditor() {
@@ -9976,6 +10003,51 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
           + `<p class="kc-v">${tervalidasi} tervalidasi</p>${tag}</div>`
           + `<div class="kc-d">${kcDonut(pct, c.warna)}<span class="kc-dl">Kelengkapan input</span></div></article>`;
       }).join('');
+      kcBatasRender();
+    }
+
+    /* ===== Banner batas akhir input (disimpan di App_Settings lewat getBatasInput / saveBatasInput) ===== */
+    const KC = { batas: null, loading: false, edit: false };
+    const kcKey = () => String(CT.tahun) + '-' + String($('kcBulan').value).padStart(2, '0');
+    function kcTgl(iso) {
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || '')); if (!m) return null;
+      return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+    }
+    function kcLoadBatas() {
+      if (KC.loading) return; KC.loading = true;
+      api('getBatasInput', tok()).then(r => { KC.batas = r || {}; }).catch(e => { console.warn(e); KC.batas = {}; KC.err = true; })
+        .then(() => { KC.loading = false; kcBatasRender(); });
+    }
+    function kcBatasRender() {
+      const box = $('kcBatas'); if (!box || !$('kcBulan').value) return;
+      if (KC.batas === null) { box.className = 'kc-batas kc-b-none'; box.textContent = 'Memuat batas akhir input...'; kcLoadBatas(); return; }
+      const key = kcKey(), iso = KC.batas[key], d = kcTgl(iso), komite = emUser && emUser.role === 'Komite Mutu';
+      const bulanTxt = BULAN[Number($('kcBulan').value) - 1] + ' ' + CT.tahun;
+      let cls = 'kc-b-none', teks = `Batas akhir input ${emEsc(bulanTxt)} belum ditetapkan.`;
+      if (d) {
+        const now = new Date(), hari = Math.round((d - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
+        const tgl = d.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        const sisa = hari > 0 ? `sisa ${hari} hari` : hari === 0 ? 'berakhir hari ini' : `terlambat ${-hari} hari`;
+        cls = hari < 0 ? 'kc-b-late' : hari <= 3 ? 'kc-b-warn' : 'kc-b-ok';
+        teks = `Batas akhir input ${emEsc(bulanTxt)}: <b>${emEsc(tgl)}</b> &middot; <b>${sisa}</b>`;
+      }
+      const tombol = komite ? `<button type="button" class="k-btn kc-b-btn" onclick="kcBatasEdit(true)">${d ? 'Ubah batas' : 'Tetapkan batas'}</button>` : '';
+      const edit = (komite && KC.edit) ? `<div class="kc-b-edit"><label for="kcBatasTgl">Tanggal batas akhir</label>`
+        + `<input id="kcBatasTgl" type="date" class="k-field" value="${emEsc(iso || '')}" min="${key}-01" max="${key}-31">`
+        + `<button type="button" class="k-btn kc-b-save" onclick="kcBatasSave(false)">Simpan</button>`
+        + (d ? `<button type="button" class="k-btn kc-b-btn" onclick="kcBatasSave(true)">Hapus batas</button>` : '')
+        + `<button type="button" class="k-btn kc-b-btn" onclick="kcBatasEdit(false)">Batal</button></div>` : '';
+      box.className = 'kc-batas ' + cls;
+      box.innerHTML = `<div class="kc-b-row"><span>${teks}</span>${KC.edit ? '' : tombol}</div>${edit}`;
+    }
+    function kcBatasEdit(on) { KC.edit = !!on; kcBatasRender(); if (on) { const i = $('kcBatasTgl'); if (i) i.focus(); } }
+    async function kcBatasSave(hapus) {
+      const key = kcKey(), tgl = hapus ? '' : ($('kcBatasTgl').value || '');
+      if (!hapus && !tgl) { alert('Pilih tanggal terlebih dahulu.'); return; }
+      try {
+        const r = await api('saveBatasInput', tok(), key, tgl);
+        KC.batas = (r && r.map) || KC.batas; KC.edit = false; kcBatasRender();
+      } catch (e) { alert((e && e.message) || e); }
     }
 
     function ctDocHTML() {
