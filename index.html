@@ -573,6 +573,66 @@
     #rekapTable thead th:last-child { border-radius: 0 10px 10px 0; }
     #rekapTable tbody td { font-size: 13px; vertical-align: middle; }
     #rbView { font-family: var(--k-font); }
+    /* ---------- Langkah 8: Master Data ---------- */
+    #tabContent-masterData .rounded-xl { border-radius: var(--k-radius-card); border-color: var(--k-border); }
+    #tabContent-masterData { font-family: var(--k-font); }
+    #tabContent-masterData .bg-emerald-600, #tabContent-masterData .bg-sky-600 { background-color: var(--k-side); }
+    #tabContent-masterData .bg-emerald-600:hover { background-color: #0F4A48; }
+    #tabContent-masterData .k-btn.bg-emerald-600 { color: #fff; }
+    #indUnitList button { min-height: var(--k-touch); font-size: 13.5px; }
+    #indUnitList button.bg-sky-600 { color: #fff; }
+    #indPane thead { background: transparent; border-bottom: 0; }
+    #indPane thead th { background: var(--k-side); color: #fff; font-size: 12px; padding-top: 13px; padding-bottom: 13px; }
+    #indPane thead th:first-child { border-radius: 10px 0 0 10px; }
+    #indPane thead th:last-child { border-radius: 0 10px 10px 0; }
+    #indPane tbody td { font-size: 13px; }
+    /* hapus ruangan = aksi berisiko: garis tepi, bukan isian merah pekat */
+    #indPane .k-btn.bg-rose-50 { background: #fff; color: #7F1D1D; border: 1px solid #B83A3A; }
+    #indPane .k-btn.bg-rose-50:hover { background: #FBDDDD; }
+    .k-icon { min-width: var(--k-touch); min-height: var(--k-touch); font-size: 14px; }
+    /* ---------- Langkah 9: Pengaturan Admin ---------- */
+    #tab-content-admin .rounded-xl { border-radius: var(--k-radius-card); border-color: var(--k-border); }
+    #tab-content-admin { font-family: var(--k-font); }
+    #tab-content-admin .k-btn.bg-primary { background-color: var(--k-side); color: #fff; }
+    #tab-content-admin .k-btn.border-primary { border: 1px solid #9FB4B1; color: var(--k-text); background: #fff; }
+    #tab-content-admin .k-field { font-size: 13.5px; padding-top: 0; padding-bottom: 0; }
+    #tab-content-admin .rtable thead { background: transparent; border-bottom: 0; }
+    #tab-content-admin .rtable thead th { background: var(--k-side); color: #fff; font-size: 12px; padding-top: 13px; padding-bottom: 13px; }
+    #tab-content-admin .rtable thead th:first-child { border-radius: 10px 0 0 10px; }
+    #tab-content-admin .rtable thead th:last-child { border-radius: 0 10px 10px 0; }
+    #tbody-admin-users td { font-size: 13px; vertical-align: middle; }
+    /* tombol aksi akun: 44px; Setujui teal tua (kontras), Tolak bergaris merah bukan isian merah pekat */
+    #tbody-admin-users button { min-height: var(--k-touch); padding-left: 14px; padding-right: 14px; font-size: 13px; border-radius: 10px; }
+    #tbody-admin-users .bg-knc-green { background-color: var(--k-side); }
+    #tbody-admin-users .bg-navy-action { background-color: #fff; color: var(--k-text); border: 1px solid #9FB4B1; }
+    #tbody-admin-users .bg-navy-action:hover { background-color: #F4F8F7; opacity: 1; }
+    #tbody-admin-users .bg-error { background-color: #fff; color: #7F1D1D; border: 1px solid #B83A3A; }
+    #tbody-admin-users .bg-error:hover { background-color: #FBDDDD; opacity: 1; }
+    #container-form-questions button { min-height: var(--k-touch); min-width: var(--k-touch); font-size: 13px; border-radius: 10px; }
+    /* ---------- Langkah 10: Profil & Prioritas (tampilan layar saja) ---------- */
+    #tabContent-profilMutu { font-family: var(--k-font); }
+    #tabContent-profilMutu .rounded-xl, #tabContent-profilMutu .rounded-2xl { border-radius: var(--k-radius-card); }
+    #tabContent-profilMutu .border-slate-200 { border-color: var(--k-border); }
+    #tabContent-profilMutu button { min-height: var(--k-touch); }
+    /* sub-tab & tombol utama: teal tua (kontras) */
+    #tabContent-profilMutu .bg-sky-600, #tabContent-profilMutu .bg-emerald-600 { background-color: var(--k-side); color: #fff; }
+    #tabContent-profilMutu button.bg-sky-600:hover, #tabContent-profilMutu button.bg-emerald-600:hover { background-color: #0F4A48; }
+    #tabContent-profilMutu [id^="subTabBtn-"] { font-size: 13.5px; padding-left: 18px; padding-right: 18px; }
+    #tabContent-profilMutu [id^="subTabBtn-"] i { color: inherit; }
+    #tabContent-profilMutu [id^="subTabBtn-"].text-slate-600 { color: var(--k-text); }
+    /* header kartu IMP-RS: ungu V2 solid (gradien amber/hijau/biru muda + teks putih tidak memenuhi kontras 4,5:1) */
+    #profilPane-imprs .bg-gradient-to-r { background-image: none; background-color: #6D4BC4; }
+    #profilPane-imprs [class*="text-white/"] { color: #fff; }
+    #profilPane-imprs .bg-gradient-to-r span.rounded-full { white-space: nowrap; }
+    #profilBanner .bg-gradient-to-r { background-image: none; background-color: var(--k-side); }
+    #profilBanner [class*="text-white/"] { color: #E3F3F1; }
+    /* tabel prioritas unit */
+    #profilPane-unit thead { background: transparent; border-bottom: 0; }
+    #profilPane-unit thead th { background: var(--k-side); color: #fff; font-size: 12px; padding-top: 13px; padding-bottom: 13px; }
+    #profilPane-unit thead th:first-child { border-radius: 10px 0 0 10px; }
+    #profilPane-unit thead th:last-child { border-radius: 0 10px 10px 0; }
+    #unitPriorityTbody td { font-size: 13px; }
+    #profilPane-kamus .relative > i.absolute { top: 15px; }
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -2469,8 +2529,8 @@
         <div id="profilPane-unit" class="hidden space-y-4">
           <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap justify-between items-center gap-3">
             <div>
-              <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pilih Unit / Ruangan (Lampiran I SK Direktur)</label>
-              <select id="profilUnitSelect" onchange="renderUnitPriorityList()" class="text-xs border border-slate-300 rounded-lg p-2 font-bold bg-slate-50 min-w-[260px]">
+              <label for="profilUnitSelect" class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pilih Unit / Ruangan (Lampiran I SK Direktur)</label>
+              <select id="profilUnitSelect" onchange="renderUnitPriorityList()" class="k-field text-xs border border-slate-300 rounded-lg p-2 font-bold bg-slate-50 min-w-[260px]">
                 <!-- Options populated by JS -->
               </select>
             </div>
@@ -2508,15 +2568,15 @@
           <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap gap-3 items-center justify-between">
             <div class="flex flex-wrap items-center gap-3 w-full md:w-auto flex-1">
               <div class="w-full sm:w-64">
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Cari Indikator / Kata Kunci</label>
+                <label for="kamusSearchInput" class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Cari Indikator / Kata Kunci</label>
                 <div class="relative">
                   <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                  <input id="kamusSearchInput" type="text" oninput="filterProfilKamus()" placeholder="Ketik nama atau kata kunci..." class="w-full pl-8 pr-3 py-1.5 text-xs border border-slate-300 rounded-lg">
+                  <input id="kamusSearchInput" type="text" oninput="filterProfilKamus()" placeholder="Ketik nama atau kata kunci..." class="k-field w-full pl-8 pr-3 py-1.5 text-xs border border-slate-300 rounded-lg">
                 </div>
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Filter Kategori</label>
-                <select id="kamusKatFilter" onchange="filterProfilKamus()" class="text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50">
+                <label for="kamusKatFilter" class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Filter Kategori</label>
+                <select id="kamusKatFilter" onchange="filterProfilKamus()" class="k-field text-xs border border-slate-300 rounded-lg p-2 font-medium bg-slate-50">
                   <option value="ALL">-- Semua Kategori --</option>
                   <option value="IMP RS">IMP-RS 2026 (TB Paru)</option>
                   <option value="INM">Indikator Nasional Mutu (INM)</option>
@@ -2737,16 +2797,16 @@
             <p class="text-xs text-slate-500">Pilih ruangan lalu tambah, ubah, atau hapus indikator mutunya. Perubahan langsung dipakai pada Form Pelaporan.</p>
           </div>
           <div class="flex flex-wrap gap-2">
-            <button onclick="simpanDatabase()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap"><i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Database</button>
-            <button onclick="susunUlangIdInd()" class="bg-sky-50 hover:bg-sky-100 text-sky-700 text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap" title="Beri ulang ID semua indikator berurutan INM, IMP RS, IMP Unit"><i class="fa-solid fa-arrow-down-1-9 mr-1"></i> Susun Ulang ID Indikator</button>
-            <button onclick="restoreDatabaseUI()" class="bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap"><i class="fa-solid fa-clock-rotate-left mr-1"></i> Restore Database</button>
+            <button onclick="simpanDatabase()" class="k-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap"><i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Database</button>
+            <button onclick="susunUlangIdInd()" class="k-btn bg-sky-50 hover:bg-sky-100 text-sky-700 text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap" title="Beri ulang ID semua indikator berurutan INM, IMP RS, IMP Unit"><i class="fa-solid fa-arrow-down-1-9 mr-1"></i> Susun Ulang ID Indikator</button>
+            <button onclick="restoreDatabaseUI()" class="k-btn bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap"><i class="fa-solid fa-clock-rotate-left mr-1"></i> Restore Database</button>
           </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
           <div class="lg:col-span-1 bg-white rounded-xl shadow-sm border border-slate-200 p-3 space-y-2 h-fit">
             <div class="flex items-center justify-between gap-2"><h3 class="font-bold text-slate-700 text-sm">Ruangan</h3>
-              <button onclick="tambahRuangan()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap"><i class="fa-solid fa-plus mr-1"></i> Tambah Ruangan</button></div>
-            <input id="indCariUnit" type="text" oninput="renderIndUnitList()" placeholder="Cari ruangan..." class="w-full text-xs border border-slate-300 rounded-lg p-2">
+              <button onclick="tambahRuangan()" class="k-btn bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap"><i class="fa-solid fa-plus mr-1"></i> Tambah Ruangan</button></div>
+            <input id="indCariUnit" type="text" oninput="renderIndUnitList()" placeholder="Cari ruangan..." aria-label="Cari ruangan" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2">
             <div id="indUnitList" class="space-y-1 max-h-[65vh] overflow-y-auto"></div>
           </div>
           <div class="lg:col-span-3 bg-white rounded-xl shadow-sm border border-slate-200 p-4" id="indPane"></div>
@@ -2767,11 +2827,11 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
-              <input id="af-uq" type="search" oninput="renderAdminUsers()" placeholder="Cari username / nama / NIP..." class="flex-1 min-w-[200px] px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white">
-              <select id="af-urole" onchange="renderAdminUsers()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua peran</option><option value="Staf">Staf Pelapor</option><option value="Karu">Kepala Ruangan</option><option value="Komite">Komite Mutu</option><option value="KetuaKomite">Ketua Komite</option><option value="Manajemen">Manajemen</option><option value="Direktur">Direktur</option><option value="TU">Hukum / TU</option><option value="Admin">Administrator</option></select>
-              <select id="af-ustatus" onchange="renderAdminUsers()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua status</option><option value="Approved">Disetujui</option><option value="Pending">Menunggu</option><option value="Rejected">Ditolak</option></select>
-              <select id="af-uunit" onchange="renderAdminUsers()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua ruangan</option></select>
-              <button type="button" onclick="adminFilterReset('u')" class="px-3 py-1.5 text-xs rounded-lg border border-primary text-primary font-semibold">Reset</button>
+              <input id="af-uq" aria-label="Cari akun" type="search" oninput="renderAdminUsers()" placeholder="Cari username / nama / NIP..." class="k-field flex-1 min-w-[200px] px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white">
+              <select id="af-urole" aria-label="Filter peran" onchange="renderAdminUsers()" class="k-field px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua peran</option><option value="Staf">Staf Pelapor</option><option value="Karu">Kepala Ruangan</option><option value="Komite">Komite Mutu</option><option value="KetuaKomite">Ketua Komite</option><option value="Manajemen">Manajemen</option><option value="Direktur">Direktur</option><option value="TU">Hukum / TU</option><option value="Admin">Administrator</option></select>
+              <select id="af-ustatus" aria-label="Filter status akun" onchange="renderAdminUsers()" class="k-field px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua status</option><option value="Approved">Disetujui</option><option value="Pending">Menunggu</option><option value="Rejected">Ditolak</option></select>
+              <select id="af-uunit" aria-label="Filter ruangan" onchange="renderAdminUsers()" class="k-field px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua ruangan</option></select>
+              <button type="button" onclick="adminFilterReset('u')" class="k-btn px-3 py-1.5 text-xs rounded-lg border border-primary text-primary font-semibold">Reset</button>
               <span id="af-ucount" class="text-[11px] text-text-muted basis-full sm:basis-auto sm:ml-auto"></span>
             </div>
             <div class="admin-scroll">
@@ -2804,17 +2864,17 @@
                 </h3>
                 <p class="text-xs text-text-secondary">Atur tata urutan dan field pelaporan sesuai standar komite mutu</p>
               </div>
-              <button onclick="openModalAddQuestion()" class="bg-primary hover:bg-navy-interactive text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 shadow-sm">
+              <button onclick="openModalAddQuestion()" class="k-btn bg-primary hover:bg-navy-interactive text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 shadow-sm">
                 <span class="material-symbols-outlined text-[16px]">add</span>
                 <span>Tambah Pertanyaan</span>
               </button>
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
-              <input id="af-qq" type="search" oninput="renderFormQuestionsAdmin()" placeholder="Cari pertanyaan..." class="flex-1 min-w-[200px] px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white">
-              <select id="af-qtype" onchange="renderFormQuestionsAdmin()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua tipe</option></select>
-              <select id="af-qreq" onchange="renderFormQuestionsAdmin()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Wajib & opsional</option><option value="1">Wajib diisi</option><option value="0">Opsional</option></select>
-              <button type="button" onclick="adminFilterReset('q')" class="px-3 py-1.5 text-xs rounded-lg border border-primary text-primary font-semibold">Reset</button>
+              <input id="af-qq" aria-label="Cari pertanyaan" type="search" oninput="renderFormQuestionsAdmin()" placeholder="Cari pertanyaan..." class="k-field flex-1 min-w-[200px] px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white">
+              <select id="af-qtype" aria-label="Filter tipe pertanyaan" onchange="renderFormQuestionsAdmin()" class="k-field px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Semua tipe</option></select>
+              <select id="af-qreq" aria-label="Filter wajib atau opsional" onchange="renderFormQuestionsAdmin()" class="k-field px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[130px] sm:flex-none"><option value="">Wajib & opsional</option><option value="1">Wajib diisi</option><option value="0">Opsional</option></select>
+              <button type="button" onclick="adminFilterReset('q')" class="k-btn px-3 py-1.5 text-xs rounded-lg border border-primary text-primary font-semibold">Reset</button>
               <span id="af-qcount" class="text-[11px] text-text-muted basis-full sm:basis-auto sm:ml-auto"></span>
             </div>
             <div class="admin-scroll p-2">
@@ -6616,7 +6676,7 @@
       rows.forEach(u => {
             const tr = document.createElement('tr');
             tr.className = "hover:bg-surface-row-alt transition";
-            const stColor = u.status === 'Approved' ? 'bg-status-approved-bg text-status-approved-text' : (u.status === 'Rejected' ? 'bg-red-100 text-red-700' : 'bg-status-pending-bg text-status-pending-text');
+            const stColor = u.status === 'Approved' ? 'background:#D9EFEC;color:#0A4A45' : (u.status === 'Rejected' ? 'background:#FBDDDD;color:#7F1D1D' : 'background:#FDEBC8;color:#7A4300'); // warna mengikuti legenda status V2
             const stLabel = { Approved: 'Disetujui', Pending: 'Menunggu', Rejected: 'Ditolak' }[u.status] || esc(u.status);
             const isSelf = !!(currentUser && unesc(u.username).toLowerCase() === String(currentUser.username || '').toLowerCase());
             tr.innerHTML = `
@@ -6625,7 +6685,7 @@
               <td data-label="NIP" class="p-3 text-text-secondary whitespace-nowrap">${esc(u.nip || '-')}</td>
               <td data-label="Unit" class="p-3 min-w-[110px]">${esc(u.ruangan)}</td>
               <td data-label="Peran" class="p-3">
-                <select ${isSelf ? 'disabled title="Gunakan menu Profil Saya"' : ''} onchange="updateUserRole('${esc(u.username)}', this.value)" class="border border-border-form rounded px-2 py-1 text-xs bg-white focus:outline-none w-full min-w-[160px]">
+                <select ${isSelf ? 'disabled title="Gunakan menu Profil Saya"' : ''} onchange="updateUserRole('${esc(u.username)}', this.value)" aria-label="Peran untuk ${esc(u.username)}" class="k-field border border-border-form rounded px-2 py-1 text-xs bg-white focus:outline-none w-full min-w-[160px]">
                   <option value="Staf" ${u.role === 'Staf' ? 'selected' : ''}>Staf Pelapor</option>
                   <option value="Karu" ${u.role === 'Karu' ? 'selected' : ''}>Kepala Ruangan</option>
                   <option value="Komite" ${u.role === 'Komite' ? 'selected' : ''}>Komite Mutu</option>
@@ -6637,7 +6697,7 @@
                 </select>
               </td>
               <td data-label="Status" class="p-3 whitespace-nowrap">
-                <span class="inline-block whitespace-nowrap px-2.5 py-0.5 rounded-full text-[10px] font-bold ${stColor}">${stLabel}</span>
+                <span class="inline-block whitespace-nowrap px-2.5 py-0.5 rounded-full text-xs font-bold" style="${stColor}">${stLabel}</span>
               </td>
               <td data-label="Aksi" class="p-3 md:min-w-[250px]">
                 <div class="flex flex-wrap md:flex-nowrap gap-1.5 justify-end">${!isSelf && u.status !== 'Approved' ? `<button onclick="updateUserStatus('${esc(u.username)}', 'Approved')" class="bg-knc-green text-white px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap hover:opacity-90">Setujui</button>` : ''}
@@ -6796,10 +6856,10 @@
             <span class="text-[10px] text-text-muted">Tipe: <strong>${esc(q.type)}</strong> ${q.options ? '| Opsi: ' + esc(q.options) : ''}</span>
           </div>
           <div class="flex flex-wrap items-center gap-1 shrink-0">
-            <button onclick="moveQuestion(${idx}, -1)" ${idx === 0 || filt ? 'disabled' : ''} class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
+            <button onclick="moveQuestion(${idx}, -1)" ${idx === 0 || filt ? 'disabled' : ''} aria-label="Naikkan pertanyaan nomor ${idx + 1}" class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
               <span class="material-symbols-outlined text-[16px]">arrow_upward</span>
             </button>
-            <button onclick="moveQuestion(${idx}, 1)" ${idx === total - 1 || filt ? 'disabled' : ''} class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
+            <button onclick="moveQuestion(${idx}, 1)" ${idx === total - 1 || filt ? 'disabled' : ''} aria-label="Turunkan pertanyaan nomor ${idx + 1}" class="p-1 rounded bg-white border border-border-subtle text-text-secondary hover:text-primary disabled:opacity-30">
               <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
             </button>
             <button onclick="openModalEditQuestion(${idx})" class="px-2 py-1 rounded bg-primary/10 text-primary font-semibold hover:bg-primary/20">
@@ -9110,9 +9170,9 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
       pane.innerHTML = `<div class="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div><h3 class="font-bold text-slate-800 text-sm">${emEsc(IND_SEL)}</h3><p class="text-xs text-slate-500">${list.length} indikator mutu</p></div>
           <div class="flex flex-wrap gap-2">
-            <button onclick="editRuangan()" class="bg-sky-50 hover:bg-sky-100 text-sky-700 text-xs font-bold px-3 py-2 rounded-lg"><i class="fa-solid fa-pen mr-1"></i> Ubah Nama</button>
-            <button onclick="hapusRuangan()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold px-3 py-2 rounded-lg"><i class="fa-solid fa-trash mr-1"></i> Hapus Ruangan</button>
-            <button onclick="addInd()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg"><i class="fa-solid fa-plus mr-1"></i> Tambah Indikator</button></div>
+            <button onclick="editRuangan()" class="k-btn bg-sky-50 hover:bg-sky-100 text-sky-700 text-xs font-bold px-3 py-2 rounded-lg"><i class="fa-solid fa-pen mr-1"></i> Ubah Nama</button>
+            <button onclick="hapusRuangan()" class="k-btn bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold px-3 py-2 rounded-lg"><i class="fa-solid fa-trash mr-1"></i> Hapus Ruangan</button>
+            <button onclick="addInd()" class="k-btn bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg"><i class="fa-solid fa-plus mr-1"></i> Tambah Indikator</button></div>
         </div>
         <div class="overflow-x-auto"><table class="w-full text-xs text-left">
           <thead class="bg-slate-100 text-slate-600 uppercase font-bold text-[10px] border-b"><tr>
@@ -9123,8 +9183,8 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
             <td class="p-2">${katBadge(i.kategori)}<div class="text-[10px] text-slate-400 font-mono mt-1" title="ID indikator (otomatis)">${emEsc(i.id_indikator)}</div></td>
             <td class="p-2 whitespace-nowrap">${emEsc(stdText(i))}</td>
             <td class="p-2 text-center whitespace-nowrap">
-              <button onclick="editInd('${emEsc(i.id_indikator)}')" class="text-sky-600 hover:bg-sky-50 rounded px-2 py-1" title="Ubah"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="delInd('${emEsc(i.id_indikator)}')" class="text-rose-600 hover:bg-rose-50 rounded px-2 py-1" title="Hapus dari ruangan ini"><i class="fa-solid fa-trash"></i></button>
+              <button onclick="editInd('${emEsc(i.id_indikator)}')" class="k-icon text-sky-600 hover:bg-sky-50 rounded px-2 py-1" title="Ubah" aria-label="Ubah indikator: ${emEsc(i.nama_indikator)}"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="delInd('${emEsc(i.id_indikator)}')" class="k-icon text-rose-700 hover:bg-rose-50 rounded px-2 py-1" title="Hapus dari ruangan ini" aria-label="Hapus indikator dari ruangan ini: ${emEsc(i.nama_indikator)}"><i class="fa-solid fa-trash"></i></button>
             </td></tr>`).join('') : '<tr><td colspan="5" class="p-6 text-center text-slate-400">Belum ada indikator pada ruangan ini. Klik "Tambah Indikator".</td></tr>'}</tbody>
         </table></div>`;
     }
