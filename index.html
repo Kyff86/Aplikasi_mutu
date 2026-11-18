@@ -39,8 +39,7 @@
     /* Tema "Lagoon": hanya lapisan visual, tanpa mengubah struktur/fungsi */
     :focus-visible { outline: 2px solid #0f766e; outline-offset: 2px; }
     ::selection { background: #99f6e4; color: #0b3534; }
-    ::-webkit-scrollbar-thumb { background: #b3c4c1; }
-    body h1, body h2 { font-family: "Bricolage Grotesque", "Plus Jakarta Sans", sans-serif; letter-spacing: -.02em; }
+    body h1, body h2 { letter-spacing: -.02em; }
     body header.fixed { background: rgba(255,255,255,.88); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px);
       box-shadow: 0 1px 0 #dfe6e5, 0 10px 28px -18px rgba(11,53,52,.4); }
     body .shadow-sm { box-shadow: 0 1px 2px rgba(11,53,52,.05); }
@@ -67,7 +66,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin=""/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"/></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"/></noscript>
   
   <!-- Icons -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1"/></noscript>
@@ -91,7 +90,7 @@
     /* Print Stylesheet for Official Physical Audit Sheet */
     @media print {
       body { background: white !important; color: black !important; padding: 0 !important; margin: 0 !important; }
-      header, nav, #top-banner, #filter-toolstrip, #preview-footer-actions, .no-print { display: none !important; }
+      header, nav, #top-banner, .no-print { display: none !important; }
       #printableAuditSheet, #printableAuditSheet *:not(.hidden):not(.hidden *) { visibility: visible !important; }
       #printableAuditSheet .hidden, #printableAuditSheet .hidden * { display: none !important; visibility: hidden !important; }
       #printableAuditSheet {
@@ -99,7 +98,7 @@
         box-shadow: none !important; border: none !important;
       }
       img { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      #printableAuditSheet #kop-surat { display: flex !important; visibility: visible !important; break-inside: avoid; page-break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      #printableAuditSheet #kop-surat { display: flex !important; visibility: visible !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       #printableAuditSheet #kop-surat img { display: block !important; }
     }
 
@@ -117,12 +116,6 @@
       #print-report tfoot { display: table-footer-group; }
       #print-report tr { break-inside: avoid; page-break-inside: avoid; }
       #print-report td, #print-report th { vertical-align: top; }
-      #print-report .pr-kop { display: flex; align-items: center; gap: 12px; border-bottom: 3px double #14532d; padding: 0 0 6px 0; margin-bottom: 8px; }
-      #print-report .pr-kop img { height: 46px; width: 46px; object-fit: contain; }
-      #print-report .pr-kop .t1 { font-size: 15px; font-weight: 800; color: #14532d; line-height: 1.2; }
-      #print-report .pr-kop .t2 { font-size: 10px; color: #475569; }
-      #print-report .pr-kop .t3 { font-size: 12px; font-weight: 700; margin-top: 2px; }
-      #print-report .pr-kop .meta { margin-left: auto; text-align: right; font-size: 9.5px; color: #475569; line-height: 1.45; }
       #print-report .pr-block { padding: 0 0 10px 0; }
       #print-report .pr-block img { width: 100%; height: auto; display: block; }
       #print-report .pr-sec { font-size: 12px; font-weight: 800; color: #14532d; border-bottom: 1px solid #cbd5e1; padding: 2px 0 4px; margin: 0 0 6px; }
@@ -138,7 +131,6 @@
       #print-report .pr-block > div, #print-report .pr-block > div > div { break-inside: avoid; page-break-inside: avoid; }
       #print-report .pr-block .h-64 { height: 250px !important; }
       #print-report .pr-block .h-64 img { width: 100%; height: 250px; object-fit: contain; }
-      #print-report .pr-block .h-56 { height: 220px !important; }
       #print-report #matriks-keterangan { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
       #print-report #matriks-risiko { min-width: 0 !important; }
       #print-report .overflow-x-auto { overflow: visible !important; }
@@ -182,11 +174,11 @@
       #print-blank .bf-note { font-size: 9.5px; color: #475569; border-top: 1px solid #cbd5e1; margin-top: 12px; padding-top: 4px; }
     }
 
-    .badge-kpc, .badge-kpcs { background-color: #3b82f6; color: #ffffff; }
-    .badge-knc { background-color: #22c55e; color: #ffffff; }
-    .badge-ktc { background-color: #eab308; color: #000000; }
-    .badge-ktd { background-color: #ef4444; color: #ffffff; }
-    .badge-sentinel { background-color: #a855f7; color: #ffffff; }
+    .badge-kpc, .badge-kpcs { background-color: #2F6FB5; color: #ffffff; }
+    .badge-knc { background-color: #3A7A1F; color: #ffffff; }
+    .badge-ktc { background-color: #E0A030; color: #12302F; }
+    .badge-ktd { background-color: #B83A3A; color: #ffffff; }
+    .badge-sentinel { background-color: #6D4BC4; color: #ffffff; }
 
     /* ===== Lembar cetak: isian formulir tersusun rapi (No. | Pertanyaan | : | Jawaban) ===== */
     #cetak-fields-container .cetak-sec { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; text-transform: uppercase; color: #14532d; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px 8px; margin-top: 12px; line-height: 1.35; break-after: avoid; page-break-after: avoid; }
@@ -215,8 +207,7 @@
     #app-header-logo,
     #login-logo,
     #form-header-logo,
-    #printableAuditSheet img[alt*="Logo"],
-    #print-report .pr-kop img {
+    #printableAuditSheet img[alt*="Logo"] {
       object-fit: contain !important;
       object-position: center center !important;
       max-width: 100% !important;
@@ -229,10 +220,9 @@
     #app-header-logo { width: 44px !important; height: 44px !important; flex: 0 0 44px; border-radius: 0 !important; padding: 0 !important; }
     #login-logo { width: 80px !important; height: 80px !important; display: block; margin-left: auto; margin-right: auto; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; background: transparent !important; }
     #form-header-logo { width: 64px !important; height: 64px !important; flex: 0 0 64px; display: block; }
-    #print-report .pr-kop img { width: 58px !important; height: 58px !important; flex: 0 0 58px; }
     @media print {
       #app-header-logo, #login-logo, #form-header-logo,
-      #printableAuditSheet img[alt*="Logo"], #print-report .pr-kop img {
+      #printableAuditSheet img[alt*="Logo"] {
         display: block !important;
         object-fit: contain !important;
         object-position: center center !important;
@@ -323,16 +313,10 @@
       #cetak-rca-container:not(.hidden) .grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      #cetak-rca-container:not(.hidden) #cetak-rca-ttd {
-        gap: 24px;
-      }
-      #cetak-rca-container:not(.hidden) #cetak-rca-ttd > div {
-        break-inside: avoid;
-      }
     }
   
     /* ===== Sidebar navigasi kiri ===== */
-    :root { --hdr-h: 88px; --sb-w: 232px; }
+    :root { --hdr-h: 88px; }
     #nav-tabstrip { position: fixed; left: 0; top: var(--hdr-h); bottom: 0; width: var(--sb-w); z-index: 30; overflow-y: auto; }
     #nav-tabstrip:not(.hidden) { display: flex; flex-direction: column; }
     #jenis-list summary::-webkit-details-marker { display: none; }
@@ -342,7 +326,7 @@
       body:has(#nav-tabstrip:not(.hidden)) main { padding-left: var(--sb-w); }
     }
     @media (max-width: 767px) {
-      #nav-tabstrip { transform: translateX(-100%); transition: transform .25s ease; box-shadow: 4px 0 18px rgba(0,0,0,.15); max-width: 85vw; }
+      #nav-tabstrip { transform: translateX(-100%); transition: transform .25s ease; max-width: 85vw; }
       #nav-tabstrip.open { transform: translateX(0); }
       #nav-overlay.show { display: block; }
       body:has(#nav-tabstrip:not(.hidden)) #nav-hamburger { display: flex; }
@@ -441,7 +425,6 @@
       --k-side-active: rgba(255,255,255,.14);
       --k-side-hover: rgba(255,255,255,.08);
       --k-gold: #F2B632;          /* garis item aktif */
-      --k-page: #EFF4F6;
       --k-card: #FFFFFF;
       --k-border: #DCE5E3;
       --k-text: #12302F;
@@ -621,9 +604,7 @@
     #tabContent-profilMutu [id^="subTabBtn-"] i { color: inherit; }
     #tabContent-profilMutu [id^="subTabBtn-"].text-slate-600 { color: var(--k-text); }
     /* header kartu IMP-RS: ungu V2 solid (gradien amber/hijau/biru muda + teks putih tidak memenuhi kontras 4,5:1) */
-    #profilPane-imprs .bg-gradient-to-r { background-image: none; background-color: #6D4BC4; }
     #profilPane-imprs [class*="text-white/"] { color: #fff; }
-    #profilPane-imprs .bg-gradient-to-r span.rounded-full { white-space: nowrap; }
     #profilBanner .bg-gradient-to-r { background-image: none; background-color: var(--k-side); }
     #profilBanner [class*="text-white/"] { color: #E3F3F1; }
     /* tabel prioritas unit */
@@ -633,6 +614,33 @@
     #profilPane-unit thead th:last-child { border-radius: 0 10px 10px 0; }
     #unitPriorityTbody td { font-size: 13px; }
     #profilPane-kamus .relative > i.absolute { top: 15px; }
+    /* ---------- Langkah 11: Formulir Pelaporan insiden & Jenis Insiden ---------- */
+    #tab-content-formulir, #tab-content-jenis { font-family: var(--k-font); }
+    #tab-content-formulir .rounded-xl, #tab-content-formulir .rounded-2xl, #tab-content-jenis .rounded-xl { border-radius: var(--k-radius-card); }
+    #tab-content-formulir .bg-clinical-teal { background-color: var(--k-side); }
+    #tab-content-formulir .hover\:bg-teal-dark:hover { background-color: #0F4A48; }
+    /* teks terkecil dinaikkan ke 12px */
+    #tab-content-formulir .text-\[9px\], #tab-content-formulir .text-\[10px\], #tab-content-formulir .text-\[11px\],
+    #tab-content-jenis .text-\[10px\], #tab-content-jenis .text-\[11px\] { font-size: 12px; }
+    /* stepper: dapat difokus keyboard, tahap selesai bertanda centang (bukan hanya warna) */
+    #tab-content-formulir [role="button"][aria-label^="Tahap"] { min-height: var(--k-touch); border-radius: 10px; padding: 4px 6px; }
+    #tab-content-formulir [role="button"][aria-label^="Tahap"]:focus-visible { outline: 3px solid var(--k-side); outline-offset: 2px; }
+    #tab-content-formulir [id^="step-pill-"] { width: 36px; height: 36px; font-size: 13px; flex: none; }
+    #tab-content-formulir [id^="step-pill-"].bg-knc-green { background-color: #0A4A45; font-size: 0; }
+    #tab-content-formulir [id^="step-pill-"].bg-knc-green::before { content: "\2713"; font-size: 16px; }
+    /* kartu pilihan jenis insiden: fokus keyboard terlihat, pilihan bertanda teks */
+    #segmented-incident-cards input:focus-visible + div { outline: 3px solid var(--k-side); outline-offset: 2px; }
+    #segmented-incident-cards input:checked + div::after { content: "\2713  Dipilih"; align-self: flex-end; margin-top: 6px; font-size: 12px; font-weight: 800; color: var(--k-text); }
+    /* kontrol formulir: 44px */
+    #form-pelaporan-wizard button { min-height: var(--k-touch); font-size: 13.5px; border-radius: 10px; }
+    #form-pelaporan-wizard [data-qid]:not([type="radio"]):not([type="checkbox"]) { min-height: var(--k-touch); font-size: 14px; border-radius: 10px; }
+    #form-pelaporan-wizard textarea[data-qid] { min-height: 96px; }
+    #form-pelaporan-wizard label.flex.items-center { min-height: var(--k-touch); font-size: 13.5px; }
+    #form-pelaporan-wizard input[type="radio"] { width: 20px; height: 20px; accent-color: var(--k-side); }
+    /* Jenis Insiden */
+    #tab-content-jenis summary { min-height: var(--k-touch); }
+    #jenis-list .bg-error { background-color: #fff; color: #7F1D1D; border: 1px solid #B83A3A; }
+    #jenis-list .bg-error:hover { background-color: #FBDDDD; opacity: 1; }
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -706,7 +714,6 @@
   <!-- Tailwind Configuration matching Stitch Design System -->
   <script id="tailwind-config">
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
@@ -716,18 +723,15 @@
             "navy-interactive": "#115e59",
             "navy-action": "#0f766e",
             "on-primary": "#ffffff",
-            "on-primary-container": "#99f6e4",
-            secondary: "#006a61",
             "secondary-container": "#86f2e4",
-            "on-secondary-container": "#006f66",
             "clinical-teal": "#0d9488",
             "teal-dark": "#0f766e",
             "teal-tint": "#f0fdfa",
-            "kpc-blue": "#3b82f6",
-            "knc-green": "#22c55e",
-            "ktc-yellow": "#eab308",
-            "ktd-red": "#ef4444",
-            "sentinel-purple": "#a855f7",
+            "kpc-blue": "#2F6FB5",
+            "knc-green": "#3A7A1F",
+            "ktc-yellow": "#E0A030",
+            "ktd-red": "#B83A3A",
+            "sentinel-purple": "#6D4BC4",
             "status-approved-bg": "#d9efec",
             "status-approved-text": "#0f766e",
             "status-pending-bg": "#fef3c7",
@@ -740,7 +744,6 @@
             "surface-container-low": "#f0f7f6",
             "surface-container-high": "#d9efec",
             "surface-container-highest": "#b8e2dd",
-            "border-base": "#c5d0ce",
             "border-subtle": "#DCE5E3",
             "border-form": "#cbd5d3",
             "text-primary": "#12302F",
@@ -1811,28 +1814,28 @@
             <!-- Stepper Progress Bar & Numbers -->
             <div class="w-full bg-surface-app rounded-xl p-4 my-6">
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div onclick="goToFormStep(1)" class="flex items-center gap-3 cursor-pointer group">
+                <div onclick="goToFormStep(1)" role="button" tabindex="0" aria-label="Tahap 1: Data Pasien" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToFormStep(1)}" class="flex items-center gap-3 cursor-pointer group">
                   <div id="step-pill-1" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs shadow-sm transition">1</div>
                   <div class="flex flex-col">
                     <span class="text-[10px] uppercase font-bold text-primary tracking-wider">Tahap 1</span>
                     <span class="text-xs font-bold text-text-primary">Data Pasien</span>
                   </div>
                 </div>
-                <div onclick="goToFormStep(2)" class="flex items-center gap-3 cursor-pointer group">
+                <div onclick="goToFormStep(2)" role="button" tabindex="0" aria-label="Tahap 2: Rincian Kejadian" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToFormStep(2)}" class="flex items-center gap-3 cursor-pointer group">
                   <div id="step-pill-2" class="w-8 h-8 rounded-full bg-surface-container-highest text-text-secondary flex items-center justify-center font-bold text-xs transition">2</div>
                   <div class="flex flex-col">
                     <span class="text-[10px] uppercase font-bold text-text-muted tracking-wider">Tahap 2</span>
                     <span class="text-xs font-bold text-text-secondary group-hover:text-text-primary">Rincian Kejadian</span>
                   </div>
                 </div>
-                <div onclick="goToFormStep(3)" class="flex items-center gap-3 cursor-pointer group">
+                <div onclick="goToFormStep(3)" role="button" tabindex="0" aria-label="Tahap 3: Tindakan &amp; Tim" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToFormStep(3)}" class="flex items-center gap-3 cursor-pointer group">
                   <div id="step-pill-3" class="w-8 h-8 rounded-full bg-surface-container-highest text-text-secondary flex items-center justify-center font-bold text-xs transition">3</div>
                   <div class="flex flex-col">
                     <span class="text-[10px] uppercase font-bold text-text-muted tracking-wider">Tahap 3</span>
                     <span class="text-xs font-bold text-text-secondary group-hover:text-text-primary">Tindakan & Tim</span>
                   </div>
                 </div>
-                <div onclick="goToFormStep(4)" class="flex items-center gap-3 cursor-pointer group">
+                <div onclick="goToFormStep(4)" role="button" tabindex="0" aria-label="Tahap 4: Validasi &amp; Kirim" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goToFormStep(4)}" class="flex items-center gap-3 cursor-pointer group">
                   <div id="step-pill-4" class="w-8 h-8 rounded-full bg-surface-container-highest text-text-secondary flex items-center justify-center font-bold text-xs transition">4</div>
                   <div class="flex flex-col">
                     <span class="text-[10px] uppercase font-bold text-text-muted tracking-wider">Tahap 4</span>
@@ -2042,9 +2045,9 @@
             <div class="flex items-center gap-2">
               <div class="relative">
                 <span class="material-symbols-outlined text-[16px] text-text-muted absolute left-2.5 top-1/2 -translate-y-1/2">search</span>
-                <input type="text" id="jenis-search" oninput="renderJenisInsiden()" placeholder="Cari contoh kasus..." class="border border-border-form rounded-lg pl-8 pr-3 py-1.5 text-xs w-full sm:w-52 focus:ring-1 focus:ring-primary"/>
+                <input type="text" id="jenis-search" oninput="renderJenisInsiden()" placeholder="Cari contoh kasus..." aria-label="Cari contoh kasus" class="k-field border border-border-form rounded-lg pl-8 pr-3 py-1.5 text-xs w-full sm:w-52 focus:ring-1 focus:ring-primary"/>
               </div>
-              <button data-roles="Admin" onclick="openModalJenis()" class="hidden flex bg-primary hover:bg-navy-interactive text-white px-3 py-1.5 rounded-lg text-xs font-semibold items-center gap-1.5 shadow-sm whitespace-nowrap">
+              <button data-roles="Admin" onclick="openModalJenis()" class="k-btn hidden flex bg-primary hover:bg-navy-interactive text-white px-3 py-1.5 rounded-lg text-xs font-semibold items-center gap-1.5 shadow-sm whitespace-nowrap">
                 <span class="material-symbols-outlined text-[16px]">add_circle</span><span>Tambah Jenis</span>
               </button>
             </div>
@@ -2483,13 +2486,13 @@
         <!-- Sub-Navigasi Profil Indikator 2026 -->
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-1 flex overflow-x-auto gap-1">
           <button onclick="switchProfilSubTab('imprs')" id="subTabBtn-imprs" class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap bg-sky-600 text-white">
-            <i class="fa-solid fa-star text-amber-300"></i> <span id="subTabLbl-imprs">IMP-RS 2026 (TB Paru)</span>
+            <i class="fa-solid fa-star text-amber-300"></i> <span id="subTabLbl-imprs">IMP-RS 2026</span>
           </button>
           <button onclick="switchProfilSubTab('inm')" id="subTabBtn-inm" class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-slate-600 hover:bg-slate-100">
-            <i class="fa-solid fa-landmark text-sky-600"></i> <span id="subTabLbl-inm">Indikator Nasional Mutu (13 INM)</span>
+            <i class="fa-solid fa-landmark text-sky-600"></i> <span id="subTabLbl-inm">Indikator Nasional Mutu</span>
           </button>
           <button onclick="switchProfilSubTab('unit')" id="subTabBtn-unit" class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-slate-600 hover:bg-slate-100">
-            <i class="fa-solid fa-hospital text-emerald-600"></i> <span id="subTabLbl-unit">Prioritas Unit (28 Ruangan)</span>
+            <i class="fa-solid fa-hospital text-emerald-600"></i> <span id="subTabLbl-unit">Prioritas Unit</span>
           </button>
           <button onclick="switchProfilSubTab('kamus')" id="subTabBtn-kamus" class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-slate-600 hover:bg-slate-100">
             <i class="fa-solid fa-book-open-reader text-indigo-600"></i> <span>Kamus Profil Lengkap</span>
@@ -2513,7 +2516,7 @@
               <div>
                 <h4 class="font-bold text-sky-900 text-xs">Indikator Nasional Mutu (INM) Kementerian Kesehatan RI</h4>
                 <p class="text-xs text-sky-800 mt-0.5">
-                  <span id="inmCountTxt">13</span> Indikator mutu wajib yang dilaporkan berkala ke Kementerian Kesehatan RI melalui aplikasi SIMAR / INM Kemenkes.
+                  <span id="inmCountTxt"></span> Indikator mutu wajib yang dilaporkan berkala ke Kementerian Kesehatan RI melalui aplikasi SIMAR / INM Kemenkes.
                 </p>
               </div>
             </div>
@@ -3360,7 +3363,6 @@
     // Progres ringkas untuk kolom "Status Alur Kerja" di tabel
     function renderWorkflowMini(item) {
       const rows = workflowState(item);
-      const done = rows.filter(r => r.state === 'done').length;
       const bars = rows.map(r => {
         const c = r.state === 'done' ? 'bg-clinical-teal' : r.state === 'current' ? (r.revisi ? 'bg-orange-500' : 'bg-primary') + ' animate-pulse'
           : r.state === 'skipped' ? 'bg-surface-container-high opacity-40' : 'bg-surface-container-high';
@@ -5369,6 +5371,7 @@
         const stepEl = document.getElementById(`form-step-${s}`);
         const pillEl = document.getElementById(`step-pill-${s}`);
         if (stepEl) stepEl.classList.toggle('hidden', s !== stepNum);
+        if (pillEl && pillEl.parentElement) pillEl.parentElement.setAttribute('aria-current', s === stepNum ? 'step' : 'false');
         if (pillEl) {
           pillEl.className = s === stepNum
             ? "w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs shadow-sm transition"
@@ -5414,16 +5417,16 @@
 
         let inputHtml = '';
         if (q.type === 'text') {
-          inputHtml = `<input type="text" data-qid="${q.id}" ${q.required ? 'required' : ''} placeholder="Masukkan ${esc(q.label)}" class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"/>`;
+          inputHtml = `<input type="text" id="wf-${q.id}" data-qid="${q.id}" ${q.required ? 'required' : ''} placeholder="Masukkan ${esc(q.label)}" class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"/>`;
         } else if (q.type === 'textarea') {
-          inputHtml = `<textarea data-qid="${q.id}" rows="3" ${q.required ? 'required' : ''} placeholder="Tuliskan ${esc(q.label)} secara rinci..." class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"></textarea>`;
+          inputHtml = `<textarea id="wf-${q.id}" data-qid="${q.id}" rows="3" ${q.required ? 'required' : ''} placeholder="Tuliskan ${esc(q.label)} secara rinci..." class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"></textarea>`;
         } else if (q.type === 'datetime-local') {
-          inputHtml = `<input type="datetime-local" data-qid="${q.id}" ${q.required ? 'required' : ''} class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"/>`;
+          inputHtml = `<input type="datetime-local" id="wf-${q.id}" data-qid="${q.id}" ${q.required ? 'required' : ''} class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"/>`;
         } else if (q.type === 'date' || q.type === 'number' || q.type === 'time') {
-          inputHtml = `<input type="${q.type}" ${q.type === 'number' ? 'min="0" step="any"' : ''} data-qid="${q.id}" ${q.required ? 'required' : ''} class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"/>`;
+          inputHtml = `<input type="${q.type}" ${q.type === 'number' ? 'min="0" step="any"' : ''} id="wf-${q.id}" data-qid="${q.id}" ${q.required ? 'required' : ''} class="w-full border border-border-form rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary"/>`;
         } else if (q.type === 'radio') {
           const opts = (q.options || '').split(',').map(o => o.trim()).filter(Boolean);
-          inputHtml = `<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-1">` +
+          inputHtml = `<div role="radiogroup" aria-labelledby="wl-${q.id}" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-1">` +
             opts.map((o, idx) => `
               <label class="flex items-center gap-2 p-2 rounded-lg bg-surface-app border border-border-subtle text-xs cursor-pointer hover:bg-surface-container-high transition">
                 <input type="radio" name="r_${q.id}" data-qid="${q.id}" value="${esc(o)}" ${q.required && idx === 0 ? 'required' : ''} class="text-primary focus:ring-0"/>
@@ -5432,14 +5435,14 @@
             `).join('') + `</div>`;
         } else if (q.type === 'select') {
           const opts = (q.options || '').split(',').map(o => o.trim()).filter(Boolean);
-          inputHtml = `<select data-qid="${q.id}" ${q.required ? 'required' : ''} class="w-full border border-border-form rounded-lg px-3 py-2 text-xs bg-white focus:ring-1 focus:ring-primary">
+          inputHtml = `<select id="wf-${q.id}" data-qid="${q.id}" ${q.required ? 'required' : ''} class="w-full border border-border-form rounded-lg px-3 py-2 text-xs bg-white focus:ring-1 focus:ring-primary">
             <option value="">Pilih ${esc(q.label)}...</option>
             ${opts.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('')}
           </select>`;
         }
 
         div.innerHTML = `
-          <label class="block text-xs font-bold text-text-secondary uppercase">
+          <label id="wl-${q.id}"${q.type === 'radio' ? '' : ` for="wf-${q.id}"`} class="block text-xs font-bold text-text-secondary uppercase">
             ${esc(q.label)} ${q.required ? '<span class="text-error">*</span>' : ''}
           </label>
           ${inputHtml}
@@ -6971,6 +6974,9 @@
     let jenisInsidenData = [];
     const JENIS_WARNA = { KPCS: '#2563eb', KNC: '#0d9488', KTC: '#ca8a04', KTD: '#ea580c', SENTINEL: '#b91c1c' };
     const jenisWarna = kode => JENIS_WARNA[String(unesc(kode)).toUpperCase()] || '#475569';
+    // warna latar lencana (teks putih) dengan kontras >= 4,5:1; warna asli tetap dipakai sebagai garis tepi kartu
+    const JENIS_BADGE = { KPCS: '#2563eb', KNC: '#0F766E', KTC: '#A16207', KTD: '#C2410C', SENTINEL: '#b91c1c' };
+    const jenisBadge = kode => JENIS_BADGE[String(unesc(kode)).toUpperCase()] || '#475569';
     const isAdminNow = () => !!currentUser && currentUser.role === 'Admin';
 
     function loadJenisInsiden() {
@@ -7000,17 +7006,17 @@
         return;
       }
       box.innerHTML = items.map(({ j, contoh }) => {
-        const c = jenisWarna(j.kode);
+        const c = jenisWarna(j.kode), cb = jenisBadge(j.kode);
         const open = q ? ' open' : '';
         const rows = contoh.map((t, i) => '<li class="flex gap-2"><span class="font-bold text-text-muted shrink-0 w-5 text-right">' + (i + 1) + '.</span><span class="whitespace-pre-line break-words min-w-0">' + t + '</span></li>').join('');
         const adminBtns = admin
           ? '<div class="flex gap-2 pt-3 mt-3 border-t border-border-subtle justify-end">' +
-            '<button type="button" onclick="openModalJenis(\'' + j.id + '\')" class="bg-navy-action hover:bg-navy-deep text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">edit</span>Edit</button>' +
-            '<button type="button" onclick="deleteJenis(\'' + j.id + '\')" class="bg-error hover:opacity-90 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">delete</span>Hapus</button></div>'
+            '<button type="button" onclick="openModalJenis(\'' + j.id + '\')" class="k-btn bg-navy-action hover:bg-navy-deep text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">edit</span>Edit</button>' +
+            '<button type="button" onclick="deleteJenis(\'' + j.id + '\')" class="k-btn bg-error hover:opacity-90 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">delete</span>Hapus</button></div>'
           : '';
         return '<details' + open + ' class="group bg-surface-card rounded-xl shadow-sm border border-border-subtle overflow-hidden" style="border-left:4px solid ' + c + '">' +
           '<summary class="cursor-pointer list-none flex items-center gap-3 p-3.5 hover:bg-surface-container-low">' +
-            '<span class="text-[11px] font-extrabold text-white px-2 py-0.5 rounded shrink-0" style="background:' + c + '">' + j.kode + '</span>' +
+            '<span class="text-[11px] font-extrabold text-white px-2 py-0.5 rounded shrink-0" style="background:' + cb + '">' + j.kode + '</span>' +
             '<div class="min-w-0 flex-1"><p class="font-display font-bold text-sm text-text-primary leading-tight">' + j.nama + '</p>' +
             (j.inggris ? '<p class="text-[11px] text-text-muted italic">(' + j.inggris + ')</p>' : '') + '</div>' +
             '<span class="text-[11px] text-text-muted shrink-0 hidden sm:inline">' + contoh.length + ' contoh</span>' +
@@ -11024,26 +11030,26 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
       if (!container) return;
       const imprsKeys = KATALOG_IND.filter(x => x.kat === 'IMP RS').map(x => x.k);
       const badges = {
-        imprs1: { tag: 'IMP-RS 1', icon: 'fa-prescription-bottle-medical', color: 'from-rose-500 to-rose-600' },
-        imprs2: { tag: 'IMP-RS 2', icon: 'fa-route', color: 'from-amber-500 to-amber-600' },
-        imprs3: { tag: 'IMP-RS 3', icon: 'fa-vial-virus', color: 'from-sky-500 to-sky-600' },
-        imprs4: { tag: 'IMP-RS 4', icon: 'fa-user-nurse', color: 'from-indigo-500 to-indigo-600' },
-        imprs5: { tag: 'IMP-RS 5', icon: 'fa-person-falling', color: 'from-emerald-500 to-emerald-600' }
+        imprs1: { tag: 'IMP-RS 1', icon: 'fa-prescription-bottle-medical', color: '#5B3FA8' },
+        imprs2: { tag: 'IMP-RS 2', icon: 'fa-route', color: '#6D4BC4' },
+        imprs3: { tag: 'IMP-RS 3', icon: 'fa-vial-virus', color: '#4F3A9E' },
+        imprs4: { tag: 'IMP-RS 4', icon: 'fa-user-nurse', color: '#6540B5' },
+        imprs5: { tag: 'IMP-RS 5', icon: 'fa-person-falling', color: '#7A4FC9' } // semua nada ungu: kontras teks putih >= 5,5:1
       };
 
       container.innerHTML = imprsKeys.map((key, idx) => {
         const item = getKatalogItem(key);
         if (!item) return '';
-        const b = badges[key] || { tag: 'IMP-RS ' + (idx + 1), icon: 'fa-award', color: 'from-sky-500 to-sky-600' };
+        const b = badges[key] || { tag: 'IMP-RS ' + (idx + 1), icon: 'fa-award', color: '#6D4BC4' };
         const p = item.profil || {};
         const tpl = templateForInd(item);
 
         return `
           <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between overflow-hidden">
             <div>
-              <div class="bg-gradient-to-r ${b.color} text-white p-3.5 flex justify-between items-center">
+              <div class="text-white p-3.5 flex justify-between items-center" style="background:${b.color}">
                 <div class="flex items-center gap-2">
-                  <span class="bg-white/20 backdrop-blur text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">${b.tag}</span>
+                  <span class="bg-white/20 backdrop-blur text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap"><i class="fa-solid ${b.icon} mr-1" aria-hidden="true"></i>${b.tag}</span>
                   <span class="text-xs text-white/90 font-medium">TB Paru 2026</span>
                 </div>
                 <div class="text-right">
@@ -11217,7 +11223,9 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
     }
 
     // Filter Kamus Profil Lengkap 91 Halaman
-    function filterProfilKamus() {
+    const KAMUS_PAGE = 24, KAMUS_VIEW = { limit: 24 }; // kartu Kamus dimuat bertahap agar halaman tetap ringan
+    function filterProfilKamus(keepLimit) {
+      if (!keepLimit) KAMUS_VIEW.limit = KAMUS_PAGE;
       const kt = $('kamusToolbar'); if (kt) kt.innerHTML = profilAddBtn(($('kamusKatFilter') && $('kamusKatFilter').value !== 'ALL') ? $('kamusKatFilter').value : 'IMP Unit', 'Tambah Indikator');
       const q = ($('kamusSearchInput') ? $('kamusSearchInput').value : '').toLowerCase().trim();
       const kat = $('kamusKatFilter') ? $('kamusKatFilter').value : 'ALL';
@@ -11239,7 +11247,8 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
         return;
       }
 
-      container.innerHTML = filtered.map(item => {
+      const shown = filtered.slice(0, KAMUS_VIEW.limit);
+      container.innerHTML = shown.map(item => {
         const p = item.profil || {};
         return `
           <div class="bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition p-4 flex flex-col justify-between">
@@ -11260,7 +11269,7 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
             ${isKomite() ? `<button onclick="openProfilIndForm('${emEsc(item.k)}')" class="mt-2 w-full bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold py-2 px-3 rounded-lg transition flex items-center justify-center gap-1.5"><i class="fa-solid fa-pen-to-square"></i> <span>Ubah Indikator & Profil</span></button>` : ''}
           </div>
         `;
-      }).join('');
+      }).join('') + (filtered.length > shown.length ? `<div class="col-span-full text-center py-2"><p class="text-xs text-slate-500 mb-2" role="status">Menampilkan ${shown.length} dari ${filtered.length} indikator</p><button type="button" onclick="KAMUS_VIEW.limit += KAMUS_PAGE; filterProfilKamus(true)" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-5 rounded-lg">Tampilkan ${Math.min(KAMUS_PAGE, filtered.length - shown.length)} lagi</button></div>` : '');
     }
 
     // Modal Kamus Profil Indikator Format Akreditasi RSUD Merauke
