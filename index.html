@@ -344,25 +344,27 @@
     /* ===== Modul Pelaporan Mutu (E-Mutu) ===== */
 
     /* ---------- Tabel isian form ---------- */
-    table.ft { border-collapse: collapse; font-size: 11px; min-width: 100%; }
+    table.ft { border-collapse: collapse; font-size: 13px; min-width: 100%; }
     table.ft th, table.ft td { border: 1px solid #cbd5e1; padding: 3px 4px; vertical-align: middle; }
-    table.ft thead th { background: #f1f5f9; color: #334155; font-weight: 700; text-align: center; font-size: 10px; }
+    table.ft thead th { background: #17615F; color: #fff; border-color: rgba(255,255,255,.35); font-weight: 700; text-align: center; font-size: 12px; }
     table.ft td.no { text-align: center; color: #64748b; width: 32px; }
     table.ft td.calc { text-align: center; background: #f8fafc; font-weight: 700; min-width: 64px; }
-    table.ft td.ytc { text-align: center; width: 40px; min-width: 40px; }
+    table.ft td.ytc { text-align: center; width: 56px; min-width: 56px; }
     table.ft input[type=text], table.ft input[type=number], table.ft input[type=date],
     table.ft input[type=time], table.ft input[type=datetime-local], table.ft select {
-      width: 100%; font-size: 11px; border: 1px solid #e2e8f0; border-radius: 4px; padding: 3px 4px; background: #fff;
+      width: 100%; font-size: 13px; min-height: 40px; border: 1px solid #7C9693; border-radius: 6px; padding: 3px 6px; background: #fff;
     }
     table.ft input[type=text] { min-width: 130px; }
+    table.ft select { min-width: 120px; }
     table.ft input[type=number] { min-width: 70px; }
     table.ft input[type=date] { min-width: 118px; }
     table.ft input[type=time] { min-width: 86px; }
     table.ft input[type=datetime-local] { min-width: 160px; }
     table.ft input:disabled, table.ft select:disabled { background: #f1f5f9; color: #64748b; }
-    .ytbtn { width: 28px; height: 24px; border: 1px dashed #cbd5e1; border-radius: 4px; color: #fff; font-size: 12px; line-height: 1; }
-    .ytbtn.on { border: 1px solid #0284c7; background: #0284c7; }
-    .ytbtn.on.neg { border-color: #e11d48; background: #e11d48; }
+    .ytbtn { width: 44px; height: 40px; border: 1px dashed #7C9693; border-radius: 6px; color: #fff; font-size: 16px; line-height: 1; }
+    .ytbtn.on { border: 1px solid #17615F; background: #17615F; }
+    .ytbtn.on.neg { border-color: #B83A3A; background: #B83A3A; }
+    @media (pointer: coarse) { table.ft input[type=text], table.ft input[type=number], table.ft input[type=date], table.ft input[type=time], table.ft input[type=datetime-local], table.ft select, .ytbtn { min-height: 44px; } .ytbtn { height: 44px; } }
     .ytbtn:disabled { opacity: .6; cursor: not-allowed; }
 
     /* ---------- Area cetak ---------- */
@@ -641,6 +643,29 @@
     #tab-content-jenis summary { min-height: var(--k-touch); }
     #jenis-list .bg-error { background-color: #fff; color: #7F1D1D; border: 1px solid #B83A3A; }
     #jenis-list .bg-error:hover { background-color: #FBDDDD; opacity: 1; }
+    /* ---------- Langkah 14: Form Pelaporan mutu ---------- */
+    #tabContent-formLapor { font-family: var(--k-font); }
+    #tabContent-formLapor .rounded-xl { border-radius: var(--k-radius-card); border-color: var(--k-border); }
+    #formListView thead { background: transparent; border-bottom: 0; }
+    #formListView thead th { background: var(--k-side); color: #fff; font-size: 12px; padding-top: 13px; padding-bottom: 13px; }
+    #formListView thead th:first-child { border-radius: 10px 0 0 10px; }
+    #formListView thead th:last-child { border-radius: 0 10px 10px 0; }
+    #reportListBody td { font-size: 13px; vertical-align: middle; }
+    #reportListBody button { min-height: var(--k-touch); padding: 0 12px; font-size: 13px; border-radius: 10px; }
+    #reportListBody .text-rose-600 { color: #B83A3A; }
+    /* daftar indikator pada "Buat Laporan Baru": tombol 44px, teal tua */
+    #newFormIndInfo button { min-height: var(--k-touch); font-size: 13px; border-radius: 10px; }
+    #newFormIndInfo button.bg-sky-600 { background-color: var(--k-side); }
+    #newFormIndInfo button.bg-sky-600:hover { background-color: #0F4A48; }
+    #newFormIndInfo .text-amber-600 { color: #92400E; }
+    /* tombol aksi editor: Simpan Draft sekunder, Ajukan utama, Cetak netral */
+    #tabContent-formLapor .k-btn.bg-emerald-50 { background: #fff; color: var(--k-text); border: 1px solid #9FB4B1; }
+    #feBtnSave { background: #fff; color: var(--k-text); border: 1px solid var(--k-side); }
+    #feBtnSave:hover { background: #F4F8F7; }
+    #feBtnSubmit { background: var(--k-side); }
+    #feBtnSubmit:hover { background: #0F4A48; }
+    /* bilah aksi menempel di bawah: dibuat padat agar tidak menimpa isi tabel secara visual */
+    #formEditView .sticky.bottom-2 { background: #fff; border: 1px solid var(--k-border); border-radius: 14px; padding: 10px 12px; box-shadow: 0 -4px 14px rgba(18,48,47,.10); z-index: 20; }
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -2610,12 +2635,12 @@
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-end">
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Bulan</label>
-                <input type="month" id="newFormBulan" onchange="showIndikatorInfo()" class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="newFormBulan">Bulan</label>
+                <input type="month" id="newFormBulan" onchange="showIndikatorInfo()" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Ruangan / Unit</label>
-                <select id="newFormUnit" onchange="showIndikatorInfo()" class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50"></select>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="newFormUnit">Ruangan / Unit</label>
+                <select id="newFormUnit" onchange="showIndikatorInfo()" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50"></select>
               </div>
             </div>
             <div id="newFormIndInfo" class="mt-3"></div>
@@ -2624,7 +2649,7 @@
           <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
             <div class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
               <h3 class="font-bold text-slate-700 text-sm"><i class="fa-solid fa-folder-open text-sky-600 mr-2"></i> Laporan Tersimpan</h3>
-              <button onclick="loadReportList()" class="text-xs bg-sky-100 text-sky-700 font-bold px-3 py-1.5 rounded-lg hover:bg-sky-200"><i class="fa-solid fa-rotate mr-1"></i> Muat Ulang</button>
+              <button onclick="loadReportList()" class="k-btn text-xs bg-sky-100 text-sky-700 font-bold px-3 py-1.5 rounded-lg hover:bg-sky-200"><i class="fa-solid fa-rotate mr-1"></i> Muat Ulang</button>
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-xs text-left">
@@ -2652,19 +2677,19 @@
               </div>
               <div class="flex items-center gap-2">
                 <span id="feStatus" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">Draft</span>
-                <button onclick="closeEditor()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
+                <button onclick="closeEditor()" class="k-btn text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
               </div>
             </div>
             <div id="feCatatan" class="hidden mt-3 p-2 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-700"></div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Bulan</label>
-                <input type="month" id="feBulan" class="w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.bulan=this.value">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="feBulan">Bulan</label>
+                <input type="month" id="feBulan" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.bulan=this.value">
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Ruangan / Unit</label>
-                <select id="feUnit" class="w-full text-xs border border-slate-300 rounded-lg p-2" onchange="FORM.active.unit=this.value"></select>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="feUnit">Ruangan / Unit</label>
+                <select id="feUnit" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" onchange="FORM.active.unit=this.value"></select>
               </div>
             </div>
           </div>
@@ -2672,7 +2697,7 @@
           <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-3 space-y-3">
             <div id="feTableWrap" class="overflow-x-auto"></div>
             <div class="flex flex-wrap gap-2">
-              <button id="feBtnAddRow" onclick="addRow()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-plus mr-1"></i> Tambah Baris</button>
+              <button id="feBtnAddRow" onclick="addRow()" class="k-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-plus mr-1"></i> Tambah Baris</button>
             </div>
           </div>
 
@@ -2682,28 +2707,28 @@
             <h4 class="text-xs font-bold text-slate-600 uppercase mb-3">Tanda Tangan (untuk lembar cetak)</h4>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Nama Kepala Ruangan (Mengetahui)</label>
-                <input type="text" id="feKepala" class="w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.meta.kepala=this.value">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="feKepala">Nama Kepala Ruangan (Mengetahui)</label>
+                <input type="text" id="feKepala" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.meta.kepala=this.value">
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Nama Penanggung Jawab Data</label>
-                <input type="text" id="fePJ" class="w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.meta.pj=this.value">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="fePJ">Nama Penanggung Jawab Data</label>
+                <input type="text" id="fePJ" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.meta.pj=this.value">
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Tanggal Pengesahan</label>
-                <input type="date" id="feTanggal" class="w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.meta.tanggal=this.value">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1" for="feTanggal">Tanggal Pengesahan</label>
+                <input type="date" id="feTanggal" class="k-field w-full text-xs border border-slate-300 rounded-lg p-2" oninput="FORM.active.meta.tanggal=this.value">
               </div>
             </div>
           </div>
 
           <div class="flex flex-wrap gap-2 sticky bottom-2">
-            <button id="feBtnSave" onclick="saveActive('simpan')" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-lg shadow"><i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Draft</button>
-            <button id="feBtnSubmit" onclick="saveActive('ajukan')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg shadow"><i class="fa-solid fa-paper-plane mr-1"></i> Simpan & Ajukan Validasi</button>
-            <button onclick="printActive()" class="bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg shadow"><i class="fa-solid fa-print mr-1"></i> Cetak</button>
-            <select id="fePaper" class="text-xs border border-slate-300 rounded-lg p-2 bg-white" title="Ukuran kertas">
+            <button id="feBtnSave" onclick="saveActive('simpan')" class="k-btn bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-lg shadow"><i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Draft</button>
+            <button id="feBtnSubmit" onclick="saveActive('ajukan')" class="k-btn bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg shadow"><i class="fa-solid fa-paper-plane mr-1"></i> Simpan & Ajukan Validasi</button>
+            <button onclick="printActive()" class="k-btn bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg shadow"><i class="fa-solid fa-print mr-1"></i> Cetak</button>
+            <select id="fePaper" aria-label="Ukuran kertas" class="k-field text-xs border border-slate-300 rounded-lg p-2 bg-white" title="Ukuran kertas">
               <option value="A4">A4</option><option value="F4">F4 (Folio)</option>
             </select>
-            <select id="feOrient" class="text-xs border border-slate-300 rounded-lg p-2 bg-white" title="Orientasi">
+            <select id="feOrient" aria-label="Orientasi kertas" class="k-field text-xs border border-slate-300 rounded-lg p-2 bg-white" title="Orientasi">
               <option value="landscape">Landscape</option><option value="portrait">Portrait</option>
             </select>
           </div>
@@ -9605,7 +9630,7 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
     function rowHTML(tpl, row, i, canEdit) {
       const dis = canEdit ? '' : 'disabled';
       const ytManual = tpl.kolom.filter(c => c.t === 'yt' && !c.auto);
-      const allYa = canEdit && ytManual.length >= 2 ? `<button type="button" data-allya="${i}" class="text-emerald-600 hover:text-emerald-800 px-1 font-bold" title="Tandai semua kolom Ya pada baris ini">✓✓</button>` : '';
+      const allYa = canEdit && ytManual.length >= 2 ? `<button type="button" data-allya="${i}" class="text-emerald-800 hover:text-emerald-900 px-1 font-bold" title="Tandai semua kolom Ya pada baris ini" aria-label="Tandai semua kolom Ya pada baris ${i + 1}">✓✓</button>` : '';
       const bln = (FORM.active && FORM.active.bulan) || '';
       const batasTgl = c => { // kolom tanggal pengamatan dibatasi pada bulan laporan (mencegah salah tahun/bulan)
         if (!/^\d{4}-\d{2}$/.test(bln) || c.t !== 'date' || !(c.k === 'tgl' || c.k === 'tglobs' || c.k === tpl.tglKolom)) return '';
@@ -9614,11 +9639,13 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
       let h = `<td class="no">${i + 1}</td>`;
       tpl.kolom.forEach(c => {
         const v = row[c.k] == null ? '' : row[c.k];
-        const at = `data-r="${i}" data-k="${emEsc(c.k)}"`;
+        const at0 = `data-r="${i}" data-k="${emEsc(c.k)}"`;
+        const nm = emEsc((c.g ? c.g + ' - ' : '') + (c.l || c.k)) + ', baris ' + (i + 1); // nama aksesibel sel
+        const at = `${at0} aria-label="${nm}"`;
         if (c.t === 'yt' && c.auto) {
           h += `<td class="ytc" data-ay="${i}|${emEsc(c.k)}|Ya"></td><td class="ytc" data-ay="${i}|${emEsc(c.k)}|Tidak"></td>`;
         } else if (c.t === 'yt') {
-          h += ['Ya', 'Tidak'].map(opt => `<td class="ytc"><button type="button" class="ytbtn ${v === opt ? 'on' : ''} ${opt === 'Tidak' ? 'neg' : ''}" data-yt ${at} data-v="${opt}" ${dis}>${v === opt ? '✓' : ''}</button></td>`).join('');
+          h += ['Ya', 'Tidak'].map(opt => `<td class="ytc"><button type="button" class="ytbtn ${v === opt ? 'on' : ''} ${opt === 'Tidak' ? 'neg' : ''}" data-yt ${at0} aria-label="${nm}: ${opt}" aria-pressed="${v === opt}" data-v="${opt}" ${dis}>${v === opt ? '✓' : ''}</button></td>`).join('');
         } else if (c.t === 'selisih') {
           h += `<td class="calc" data-calc="${i}|${emEsc(c.k)}"></td>`;
         } else if (c.t === 'cek') {
@@ -9631,7 +9658,7 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
           h += `<td><input type="${type}" ${extra} ${at} value="${emEsc(v)}" ${dis}></td>`;
         }
       });
-      h += canEdit ? `<td class="text-center whitespace-nowrap">${allYa}<button type="button" data-del="${i}" class="text-rose-500 hover:text-rose-700 px-1" title="Hapus baris"><i class="fa-solid fa-xmark"></i></button></td>` : '<td></td>';
+      h += canEdit ? `<td class="text-center whitespace-nowrap">${allYa}<button type="button" data-del="${i}" class="text-rose-700 hover:text-rose-900 px-1" title="Hapus baris" aria-label="Hapus baris ${i + 1}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></td>` : '<td></td>';
       return `<tr>${h}</tr>`;
     }
 
@@ -9672,7 +9699,7 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
         const r = +yt.dataset.r, k = yt.dataset.k, v = yt.dataset.v;
         a.rows[r][k] = a.rows[r][k] === v ? '' : v;
         document.querySelectorAll(`[data-yt][data-r="${r}"][data-k="${k}"]`).forEach(b => {
-          const on = a.rows[r][k] === b.dataset.v; b.classList.toggle('on', on); b.textContent = on ? '✓' : '';
+          const on = a.rows[r][k] === b.dataset.v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '✓' : '';
         });
         return recompute();
       }
@@ -9681,7 +9708,7 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
         const r = +ay.dataset.allya;
         a.tpl.kolom.filter(c => c.t === 'yt' && !c.auto).forEach(c => {
           a.rows[r][c.k] = 'Ya';
-          document.querySelectorAll(`[data-yt][data-r="${r}"][data-k="${c.k}"]`).forEach(b => { const on = b.dataset.v === 'Ya'; b.classList.toggle('on', on); b.textContent = on ? '✓' : ''; });
+          document.querySelectorAll(`[data-yt][data-r="${r}"][data-k="${c.k}"]`).forEach(b => { const on = b.dataset.v === 'Ya'; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '✓' : ''; });
         });
         return recompute();
       }
