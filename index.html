@@ -175,7 +175,7 @@
     }
 
     .badge-kpc, .badge-kpcs { background-color: #2F6FB5; color: #ffffff; }
-    .badge-knc { background-color: #3A7A1F; color: #ffffff; }
+    .badge-knc { background-color: #33701B; color: #ffffff; }
     .badge-ktc { background-color: #E0A030; color: #12302F; }
     .badge-ktd { background-color: #B83A3A; color: #ffffff; }
     .badge-sentinel { background-color: #6D4BC4; color: #ffffff; }
@@ -666,6 +666,17 @@
     #feBtnSubmit:hover { background: #0F4A48; }
     /* bilah aksi menempel di bawah: dibuat padat agar tidak menimpa isi tabel secara visual */
     #formEditView .sticky.bottom-2 { background: #fff; border: 1px solid var(--k-border); border-radius: 14px; padding: 10px 12px; box-shadow: 0 -4px 14px rgba(18,48,47,.10); z-index: 20; }
+    /* ---------- Langkah 15: Dashboard Analitik insiden ---------- */
+    #tab-content-dashboard { font-family: var(--k-font); }
+    #tab-content-dashboard .rounded-xl { border-radius: var(--k-radius-card); }
+    /* teks terkecil dinaikkan ke 12px */
+    #tab-content-dashboard .text-\[9px\], #tab-content-dashboard .text-\[10px\], #tab-content-dashboard .text-\[9\.5px\], #tab-content-dashboard .text-\[10\.5px\], #tab-content-dashboard .text-\[11px\] { font-size: 12px; }
+    #tab-content-dashboard #dash-timeframe { padding: 0 12px; font-size: 13.5px; }
+    #tab-content-dashboard .k-btn.bg-clinical-teal { color: #fff; }
+    /* matriks risiko: teks tetap terbaca di semua tingkat merah (intensitas naik: terang -> sedang -> gelap) */
+    #tab-content-dashboard .h-9.bg-ktd-red\/60 { color: var(--k-text); }
+    #tab-content-dashboard .h-9.bg-ktd-red\/80 { background-color: #B83A3A; color: #fff; }
+    #tab-content-dashboard .h-9.bg-ktd-red { background-color: #8F2A2A; color: #fff; }
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -749,18 +760,18 @@
             "navy-action": "#0f766e",
             "on-primary": "#ffffff",
             "secondary-container": "#86f2e4",
-            "clinical-teal": "#0d9488",
-            "teal-dark": "#0f766e",
+            "clinical-teal": "#0F766E",
+            "teal-dark": "#115E59",
             "teal-tint": "#f0fdfa",
             "kpc-blue": "#2F6FB5",
-            "knc-green": "#3A7A1F",
+            "knc-green": "#33701B",
             "ktc-yellow": "#E0A030",
             "ktd-red": "#B83A3A",
             "sentinel-purple": "#6D4BC4",
             "status-approved-bg": "#d9efec",
             "status-approved-text": "#0f766e",
-            "status-pending-bg": "#fef3c7",
-            "status-pending-text": "#d97706",
+            "status-pending-bg": "#FDEBC8",
+            "status-pending-text": "#7A4300",
             "surface-app": "#EFF4F6",
             "surface-card": "#ffffff",
             "surface-row-alt": "#f6f8f8",
@@ -1090,18 +1101,18 @@
               <!-- Filter & Export Controls -->
               <div class="flex flex-wrap items-center gap-2">
                 <div class="bg-white/10 backdrop-blur-md rounded-lg p-1 flex items-center">
-                  <select id="dash-timeframe" onchange="loadDashboardData()" class="bg-white text-text-primary text-xs font-semibold px-2.5 py-1.5 rounded-md focus:outline-none shadow-sm cursor-pointer">
+                  <select id="dash-timeframe" onchange="loadDashboardData()" aria-label="Rentang waktu" class="k-field bg-white text-text-primary text-xs font-semibold px-2.5 py-1.5 rounded-md focus:outline-none shadow-sm cursor-pointer">
                     <option value="1">1 Bulan Terakhir</option>
                     <option value="3" selected>3 Bulan (Triwulan)</option>
                     <option value="6">6 Bulan (Semester)</option>
                     <option value="12">1 Tahun (Tahunan)</option>
                   </select>
                 </div>
-                <button type="button" onclick="printDashboardPDF()" title="Cetak / simpan PDF: Dashboard + Monitoring Laporan" class="bg-white/15 hover:bg-white/25 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-sm">
+                <button type="button" onclick="printDashboardPDF()" title="Cetak / simpan PDF: Dashboard + Monitoring Laporan" class="k-btn bg-white/15 hover:bg-white/25 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-sm">
                   <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
                   <span>PDF Dashboard</span>
                 </button>
-                <button data-roles="Admin,Komite,KetuaKomite,Manajemen,Direktur" onclick="exportExcelRekap()" class="bg-clinical-teal hover:bg-teal-dark text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-sm">
+                <button data-roles="Admin,Komite,KetuaKomite,Manajemen,Direktur" onclick="exportExcelRekap()" class="k-btn bg-clinical-teal hover:bg-teal-dark text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shadow-sm">
                   <span class="material-symbols-outlined text-[16px]">table_chart</span>
                   <span>Excel KMKP</span>
                 </button>
@@ -4788,7 +4799,7 @@
       if (chartJenis) chartJenis.destroy();
       const ctxJenis = document.getElementById('chart-jenis-insiden');
       if (ctxJenis) {
-        const GC = { Biru: '#3b82f6', Hijau: '#22c55e', Kuning: '#eab308', Merah: '#ef4444', Belum: '#94a3b8' };
+        const GC = { Biru: '#2F6FB5', Hijau: '#3A7A1F', Kuning: '#B7791F', Merah: '#B83A3A', Belum: '#7C8A99' }; // kontras >= 3:1 terhadap latar putih
         const GL = mob
           ? { Biru: 'Biru', Hijau: 'Hijau', Kuning: 'Kuning', Merah: 'Merah', Belum: 'Belum' }
           : { Biru: 'Biru (Rendah)', Hijau: 'Hijau (Moderat)', Kuning: 'Kuning (Tinggi)', Merah: 'Merah (Ekstrim)', Belum: 'Belum Ditentukan' };
@@ -4816,6 +4827,9 @@
             }
           }
         });
+        { const lb = chartData.jenisLabels || ['KPCS', 'KNC', 'KTC', 'KTD', 'Sentinel']; // ringkasan teks grafik untuk pembaca layar
+          const ringkas = lb.map((l, i) => { const p = Object.keys(GC).map(k => [GL[k], chartData.jenisByGrade ? (chartData.jenisByGrade[k] || [])[i] : 0]).filter(x => x[1] > 0).map(x => x[0] + ' ' + x[1]); return l + ': ' + (p.length ? p.join(', ') : 'tidak ada'); }).join('; ');
+          ctxJenis.setAttribute('role', 'img'); ctxJenis.setAttribute('aria-label', 'Grafik batang jenis insiden menurut grading risiko. ' + ringkas); }
       }
 
       // 2. Trend Bulanan Chart
@@ -4852,6 +4866,8 @@
             }
           }
         });
+        { const lb = chartData.trenLabels || [], ct = chartData.trenCounts || []; // ringkasan teks grafik untuk pembaca layar
+          ctxTren.setAttribute('role', 'img'); ctxTren.setAttribute('aria-label', 'Grafik garis tren insiden per bulan. ' + (lb.length ? lb.map((l, i) => l + ': ' + (ct[i] || 0)).join('; ') : 'Belum ada data.')); }
       }
 
       // 3. Question Response Charts
