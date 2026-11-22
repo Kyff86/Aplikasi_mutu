@@ -677,6 +677,26 @@
     #tab-content-dashboard .h-9.bg-ktd-red\/60 { color: var(--k-text); }
     #tab-content-dashboard .h-9.bg-ktd-red\/80 { background-color: #B83A3A; color: #fff; }
     #tab-content-dashboard .h-9.bg-ktd-red { background-color: #8F2A2A; color: #fff; }
+    /* ---------- Langkah 16: layar login & daftar akun ---------- */
+    #view-auth { font-family: var(--k-font); }
+    #view-auth .text-\[11px\] { font-size: 12px; }
+    #view-auth input, #view-auth select { font-size: 14px; border-color: #7C9693; border-radius: 10px; }
+    #view-auth input[type="password"] { padding-right: 48px; }
+    #view-auth .relative > .material-symbols-outlined.absolute { top: 13px; }
+    #view-auth .relative > button.absolute { top: 0; right: 0; width: var(--k-touch); height: var(--k-touch); display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    #view-auth [role="tab"] { min-height: var(--k-touch); font-size: 13.5px; }
+    #view-auth [role="tab"]:focus-visible { outline: 3px solid var(--k-side); outline-offset: -3px; }
+    #view-auth button[type="submit"] { font-size: 14px; border-radius: 10px; }
+    /* tautan "Lupa Password?": target sentuh 44px */
+    .k-link { min-height: var(--k-touch); padding: 0 8px; font-size: 13px; }
+    /* ---------- Langkah 17: modul Komite (Beranda, Jadwal, Perpustakaan, SOP) ---------- */
+    #tab-content-home, #tab-content-jadwal, #tab-content-perpus, #tab-content-sopall { font-family: var(--k-font); }
+    :is(#tab-content-home, #tab-content-jadwal, #tab-content-perpus, #tab-content-sopall, .kmo) :is(.text-\[9px\], .text-\[10px\], .text-\[11px\]) { font-size: 12px; }
+    :is(#tab-content-home, #tab-content-jadwal, #tab-content-perpus, #tab-content-sopall) :is(button, select, input[type="search"], input[type="text"]) { min-height: var(--k-touch); font-size: 13.5px; }
+    :is(#tab-content-home, #tab-content-jadwal, #tab-content-perpus, #tab-content-sopall) .rounded-2xl { border-radius: var(--k-radius-card); border-color: var(--k-border); }
+    :is(#tab-content-home, #tab-content-jadwal, #tab-content-perpus, #tab-content-sopall) label:has(> input[type="checkbox"]) { min-height: var(--k-touch); display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+    #tab-content-jadwal button.w-8 { width: var(--k-touch); height: var(--k-touch); }
+    :is(#tab-content-home, #tab-content-jadwal, #tab-content-perpus, #tab-content-sopall) input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--k-side); }
     @media (min-width: 768px) {
       /* menu samping setinggi layar; bilah atas bergeser ke kolom konten */
       #nav-tabstrip { top: 0; }
@@ -784,7 +804,7 @@
             "border-form": "#cbd5d3",
             "text-primary": "#12302F",
             "text-secondary": "#4B6360",
-            "text-muted": "#6b7280",
+            "text-muted": "#566879",
             "error-container": "#ffdad6",
             "on-error-container": "#93000a",
             error: "#ba1a1a"
@@ -938,76 +958,76 @@
           </div>
 
           <!-- Tab Selector: Masuk vs Daftar -->
-          <div class="flex border-b border-border-subtle">
-            <button id="btn-tab-login" onclick="switchAuthTab('login')" class="flex-1 py-3 text-center text-xs font-bold text-primary border-b-2 border-primary transition-all">
+          <div class="flex border-b border-border-subtle" role="tablist" aria-label="Masuk atau daftar akun">
+            <button id="btn-tab-login" role="tab" aria-selected="true" aria-controls="form-login" onclick="switchAuthTab('login')" class="flex-1 py-3 text-center text-xs font-bold text-primary border-b-2 border-primary transition-all">
               Masuk Sistem
             </button>
-            <button id="btn-tab-register" onclick="switchAuthTab('register')" class="flex-1 py-3 text-center text-xs font-bold text-text-muted border-b-2 border-transparent hover:text-text-primary transition-all">
+            <button id="btn-tab-register" role="tab" aria-selected="false" aria-controls="form-register" onclick="switchAuthTab('register')" class="flex-1 py-3 text-center text-xs font-bold text-text-muted border-b-2 border-transparent hover:text-text-primary transition-all">
               Daftar Akun Baru
             </button>
           </div>
 
           <div class="p-6">
             <!-- Form Login -->
-            <form id="form-login" onsubmit="handleLogin(event)" class="space-y-4">
+            <form id="form-login" role="tabpanel" aria-labelledby="btn-tab-login" onsubmit="handleLogin(event)" class="space-y-4">
               <div>
                 <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="login-username">Username</label>
                 <div class="relative">
-                  <span class="material-symbols-outlined absolute left-3 top-2.5 text-text-muted text-[18px]">person</span>
-                  <input type="text" id="login-username" required placeholder="Masukkan username" class="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
+                  <span aria-hidden="true" class="material-symbols-outlined absolute left-3 top-2.5 text-text-muted text-[18px]">person</span>
+                  <input type="text" id="login-username" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Masukkan username" class="k-field w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
                 </div>
               </div>
               <div>
                 <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="login-password">Password</label>
                 <div class="relative">
-                  <span class="material-symbols-outlined absolute left-3 top-2.5 text-text-muted text-[18px]">lock</span>
-                  <input type="password" id="login-password" required placeholder="Masukkan kata sandi" class="w-full pl-9 pr-10 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
-                  <button type="button" onclick="togglePasswordVisibility('login-password')" class="absolute right-3 top-2.5 text-text-muted hover:text-text-primary">
-                    <span class="material-symbols-outlined text-[18px]">visibility</span>
+                  <span aria-hidden="true" class="material-symbols-outlined absolute left-3 top-2.5 text-text-muted text-[18px]">lock</span>
+                  <input type="password" id="login-password" required autocomplete="current-password" placeholder="Masukkan kata sandi" class="k-field w-full pl-9 pr-10 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
+                  <button type="button" onclick="togglePasswordVisibility('login-password')" aria-label="Tampilkan atau sembunyikan password" aria-controls="login-password" class="absolute right-3 top-2.5 text-text-muted hover:text-text-primary">
+                    <span aria-hidden="true" class="material-symbols-outlined text-[18px]">visibility</span>
                   </button>
                 </div>
               </div>
               <div class="-mt-2 text-right">
-                <button type="button" id="btn-forgot-password" onclick="forgotPassword()" class="text-[11px] font-semibold text-navy-interactive hover:text-primary hover:underline">Lupa Password?</button>
+                <button type="button" id="btn-forgot-password" onclick="forgotPassword()" class="k-link text-[11px] font-semibold text-navy-interactive hover:text-primary hover:underline">Lupa Password?</button>
               </div>
               <div class="p-2.5 rounded-lg bg-surface-container-low text-[11px] text-text-secondary flex items-start gap-2">
-                <span class="material-symbols-outlined text-clinical-teal text-[16px] shrink-0 mt-0.5">security</span>
+                <span aria-hidden="true" class="material-symbols-outlined text-clinical-teal text-[16px] shrink-0 mt-0.5">security</span>
                 <span>Dilengkapi pembatasan percobaan login (Rate Limiting 5x) dan enkripsi sesi token server 6 jam.</span>
               </div>
-              <button type="submit" class="w-full py-2.5 px-4 bg-primary hover:bg-navy-interactive text-white text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-[16px]">login</span>
+              <button type="submit" class="k-btn w-full py-2.5 px-4 bg-primary hover:bg-navy-interactive text-white text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                <span aria-hidden="true" class="material-symbols-outlined text-[16px]">login</span>
                 <span>Masuk ke Aplikasi</span>
               </button>
             </form>
 
             <!-- Form Registrasi -->
-            <form id="form-register" onsubmit="handleRegister(event)" class="space-y-3 hidden">
+            <form id="form-register" role="tabpanel" aria-labelledby="btn-tab-register" onsubmit="handleRegister(event)" class="space-y-3 hidden">
               <div>
-                <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1">Nama Lengkap & Gelar</label>
-                <input type="text" id="reg-nama" required placeholder="Cth: dr. Dewi Kartika, Sp.PK" class="w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
+                <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="reg-nama">Nama Lengkap & Gelar</label>
+                <input type="text" id="reg-nama" required placeholder="Cth: dr. Dewi Kartika, Sp.PK" autocomplete="name" class="k-field w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
               </div>
               <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1">Username</label>
-                  <input type="text" id="reg-username" required placeholder="Huruf kecil/angka" class="w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
+                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="reg-username">Username</label>
+                  <input type="text" id="reg-username" required placeholder="Huruf kecil/angka" autocomplete="username" autocapitalize="none" spellcheck="false" class="k-field w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1">Password</label>
-                  <input type="password" id="reg-password" required placeholder="Min. 8 karakter" class="w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
+                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="reg-password">Password</label>
+                  <input type="password" id="reg-password" required placeholder="Min. 8 karakter" autocomplete="new-password" class="k-field w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
                 </div>
               </div>
               <div>
-                <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1">Email Aktif (Untuk OTP Lupa Password & Alert)</label>
-                <input type="email" id="reg-email" placeholder="nama@rsudmerauke.go.id" class="w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary" required />
+                <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="reg-email">Email Aktif (Untuk OTP Lupa Password & Alert)</label>
+                <input type="email" id="reg-email" placeholder="nama@rsudmerauke.go.id" autocomplete="email" class="k-field w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary" required />
               </div>
               <div>
-                <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1">NIP <span class="normal-case font-normal text-text-muted">(khusus pegawai; kosongkan jika non-pegawai)</span></label>
-                <input type="text" id="reg-nip" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="Contoh: 19820412 201001 2 018" class="w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
+                <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="reg-nip">NIP <span class="normal-case font-normal text-text-muted">(khusus pegawai; kosongkan jika non-pegawai)</span></label>
+                <input type="text" id="reg-nip" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="Contoh: 19820412 201001 2 018" class="k-field w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary"/>
               </div>
               <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1">Peran (Role)</label>
-                  <select id="reg-role" required class="w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="reg-role">Peran (Role)</label>
+                  <select id="reg-role" required class="k-field w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary bg-white">
                     <option value="Staf">Staf Pelapor</option>
                     <option value="Karu">Kepala Ruangan (Karu)</option>
                     <option value="Komite">Komite Mutu (KMKPRS)</option>
@@ -1018,8 +1038,8 @@
                   </select>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1">Unit / Ruangan</label>
-                  <select id="reg-ruangan" required class="w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+                  <label class="block text-[11px] font-bold text-text-secondary uppercase mb-1" for="reg-ruangan">Unit / Ruangan</label>
+                  <select id="reg-ruangan" required class="k-field w-full px-3 py-2 text-xs rounded-lg border border-border-form focus:outline-none focus:ring-2 focus:ring-primary bg-white">
                     <option value="">Pilih Unit...</option>
                     <option value="Admisi">Admisi</option>
                     <option value="Audit CP">Audit CP</option>
@@ -1057,11 +1077,11 @@
                 </div>
               </div>
               <div class="p-2.5 rounded-lg bg-status-pending-bg/60 text-[11px] text-status-pending-text flex items-start gap-2">
-                <span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">info</span>
+                <span aria-hidden="true" class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">info</span>
                 <span>Akun <strong>Staf</strong> langsung aktif setelah mendaftar. Peran lain (Kepala Ruangan, Komite, Ketua Komite, Manajemen, Direktur) akan berstatus <strong>Pending</strong> dan memerlukan persetujuan Administrator.</span>
               </div>
-              <button type="submit" class="w-full py-2.5 px-4 bg-clinical-teal hover:bg-teal-dark text-white text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-[16px]">person_add</span>
+              <button type="submit" class="k-btn w-full py-2.5 px-4 bg-clinical-teal hover:bg-teal-dark text-white text-xs font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                <span aria-hidden="true" class="material-symbols-outlined text-[16px]">person_add</span>
                 <span>Daftarkan Akun</span>
               </button>
             </form>
@@ -2361,9 +2381,9 @@
           <div class="flex flex-wrap items-center justify-between gap-2">
             <h2 class="font-display font-extrabold text-lg text-primary">Jadwal Kegiatan</h2>
             <div class="flex items-center gap-1">
-              <button onclick="kCalMove(-1)" class="w-8 h-8 rounded-lg border border-border-form bg-white"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+              <button onclick="kCalMove(-1)" aria-label="Bulan sebelumnya" class="w-8 h-8 rounded-lg border border-border-form bg-white"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">chevron_left</span></button>
               <span id="k-cal-label" class="text-sm font-bold text-text-primary min-w-[130px] text-center"></span>
-              <button onclick="kCalMove(1)" class="w-8 h-8 rounded-lg border border-border-form bg-white"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+              <button onclick="kCalMove(1)" aria-label="Bulan berikutnya" class="w-8 h-8 rounded-lg border border-border-form bg-white"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">chevron_right</span></button>
             </div>
           </div>
           <div id="k-jadwal-body"></div>
@@ -2378,10 +2398,10 @@
             <div class="flex flex-wrap items-center gap-2"><span id="k-sop-count" class="text-[11px] text-text-muted"></span><button onclick="kTplBlankDownload()" class="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-primary text-primary text-xs font-semibold"><span class="material-symbols-outlined text-[16px]">description</span>Template Kosong</button><button data-roles="Karu,Komite,KetuaKomite,Admin" onclick="kArsipOpen()" class="hidden flex items-center gap-1 px-3 py-1.5 rounded-lg border border-purple-600 text-purple-700 text-xs font-semibold"><span class="material-symbols-outlined text-[16px]">inventory_2</span>Arsip Audit</button><button data-roles="Karu,Komite,KetuaKomite,Admin" onclick="kTplOpen()" class="hidden flex items-center gap-1 bg-primary text-white px-3 py-1.5 rounded-lg text-xs font-semibold" style="color:#fff"><span class="material-symbols-outlined text-[16px]">upload_file</span>Unggah SOP</button></div>
           </div>
           <div class="flex flex-wrap items-center gap-2">
-            <input id="k-sopall-q" type="search" oninput="kSopPubRender()" placeholder="Cari judul / nomor / ruangan..." class="px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white w-full sm:w-56">
-            <select id="k-sopall-unit" onchange="kSopPubRender()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[140px] sm:flex-none"><option value="">Semua ruangan</option></select>
-            <select id="k-sopall-kat" onchange="kSopPubRender()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[140px] sm:flex-none"><option value="">Semua kategori</option></select>
-            <select id="k-sopall-st" onchange="kSopPubRender()" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[140px] sm:flex-none"><option value="">Semua SOP</option><option value="Aktif">Berlaku</option><option value="Kadaluarsa">Perlu ditinjau ulang</option></select>
+            <input id="k-sopall-q" type="search" oninput="kSopPubRender()" placeholder="Cari judul / nomor / ruangan..." aria-label="Cari SOP berdasarkan judul, nomor, atau ruangan" class="px-3 py-1.5 text-xs rounded-lg border border-border-form bg-white w-full sm:w-56">
+            <select id="k-sopall-unit" onchange="kSopPubRender()" aria-label="Filter ruangan" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[140px] sm:flex-none"><option value="">Semua ruangan</option></select>
+            <select id="k-sopall-kat" onchange="kSopPubRender()" aria-label="Filter kategori" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[140px] sm:flex-none"><option value="">Semua kategori</option></select>
+            <select id="k-sopall-st" onchange="kSopPubRender()" aria-label="Filter status SOP" class="px-2 py-1.5 text-xs rounded-lg border border-border-form bg-white flex-1 min-w-[140px] sm:flex-none"><option value="">Semua SOP</option><option value="Aktif">Berlaku</option><option value="Kadaluarsa">Perlu ditinjau ulang</option></select>
             <label class="text-xs flex items-center gap-1"><input id="k-sopall-bm" type="checkbox" onchange="kSopPubRender()"> Tersimpan &#9733;</label>
             <button id="k-filt-btn" onclick="kFilterOpen()" class="hidden items-center gap-1 px-2 py-1.5 text-xs rounded-lg border border-primary text-primary font-semibold"><span class="material-symbols-outlined text-[15px]">tune</span>Kelola Filter</button>
             <label class="text-xs flex items-center gap-1"><input id="k-sopall-grp" type="checkbox" onchange="kSopPubRender()"> Per ruangan</label>
@@ -4145,6 +4165,8 @@
       document.getElementById('btn-tab-login').className = isLogin
         ? "flex-1 py-3 text-center text-xs font-bold text-primary border-b-2 border-primary transition-all"
         : "flex-1 py-3 text-center text-xs font-bold text-text-muted border-b-2 border-transparent hover:text-text-primary transition-all";
+      document.getElementById('btn-tab-login').setAttribute('aria-selected', String(isLogin));
+      document.getElementById('btn-tab-register').setAttribute('aria-selected', String(type === 'register'));
       document.getElementById('btn-tab-register').className = type === 'register'
         ? "flex-1 py-3 text-center text-xs font-bold text-primary border-b-2 border-primary transition-all"
         : "flex-1 py-3 text-center text-xs font-bold text-text-muted border-b-2 border-transparent hover:text-text-primary transition-all";
@@ -11578,19 +11600,19 @@ function kFilterDel(j, i) { const n = kUnion(K.filt[j], [])[i]; if (n !== undefi
    ===== Beranda Komite: grafik capaian indikator mutu per ruangan (filter ruangan & periode)       ===== */
 (function () {
   const st = document.createElement('style');
-  st.textContent = '.kmo{position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.55);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:12px}'
+  st.textContent = '.kmo{position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.55);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:12px;font-family:var(--k-font)}'
     + '.kmo-box{background:#fff;border-radius:16px;width:100%;max-width:1000px;margin:auto;box-shadow:0 20px 50px rgba(0,0,0,.3);display:flex;flex-direction:column;max-height:calc(100vh - 24px)}'
-    + '.kmo-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-bottom:1px solid #e2e8f0}'
+    + '.kmo-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-bottom:1px solid #DCE5E3}'
     + '.kmo-body{padding:12px 16px;overflow-y:auto;flex:1}'
-    + '.kmo-foot{padding:10px 16px;border-top:1px solid #e2e8f0;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}'
-    + '.kt-f{margin-top:10px}.kt-f>label{display:block;font-size:11px;font-weight:700;color:#475569;margin-bottom:3px}.kt-h{font-weight:400;color:#94a3b8}'
-    + '.kt-f input,.kt-f textarea,.kt-f select,.kt-in{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:6px 8px;font-size:12px;background:#fff}'
+    + '.kmo-foot{padding:10px 16px;border-top:1px solid #DCE5E3;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}'
+    + '.kt-f{margin-top:10px}.kt-f>label{display:block;font-size:12.5px;font-weight:700;color:#4B6360;margin-bottom:4px}.kt-h{font-weight:400;color:#5B706D}'
+    + '.kt-f input,.kt-f textarea,.kt-f select,.kt-in{width:100%;box-sizing:border-box;border:1px solid #7C9693;border-radius:10px;padding:8px 10px;font-size:14px;min-height:44px;background:#fff}.kt-f textarea{min-height:88px}.kt-f input[type=checkbox],.kt-f input[type=radio]{width:20px;min-height:20px;accent-color:#17615F}'
     + '.kt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0 12px}'
-    + '.kt-sec{margin-top:18px;padding-top:6px;border-top:2px solid #dcfce7;font-size:12px;font-weight:800;color:#166534;text-transform:uppercase;letter-spacing:.04em}'
-    + '.kt-wrap{overflow-x:auto}.kt-tbl{width:100%;min-width:720px;border-collapse:collapse;font-size:11px;margin-top:6px}.kt-tbl th{background:#f1f5f9;border:1px solid #cbd5e1;padding:4px;text-align:left;font-size:10px}.kt-tbl td{border:1px solid #e2e8f0;padding:3px;vertical-align:top}'
-    + '.kb{border:0;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;color:#fff;background:#166534}.kb.s{background:#475569}.kb.o{background:#fff;color:#166534;border:1px solid #166534}.kb.b{background:#0369a1}.kb.r{background:#b91c1c}.kb.p{background:#7c3aed}'
-    + '.ka-tbl{width:100%;min-width:640px;border-collapse:collapse;font-size:11px}.ka-tbl th{background:#e2e8f0;border:1px solid #94a3b8;padding:4px;font-size:10px}.ka-tbl td{border:1px solid #cbd5e1;padding:4px;vertical-align:top}.ka-c{text-align:center}'
-    + '.km-sel{font-size:11px;border:1px solid #cbd5e1;border-radius:8px;padding:5px 7px;background:#fff;max-width:190px}';
+    + '.kt-sec{margin-top:18px;padding-top:6px;border-top:2px solid #B7DDD8;font-size:12.5px;font-weight:800;color:#0A4A45;text-transform:uppercase;letter-spacing:.04em}'
+    + '.kt-wrap{overflow-x:auto}.kt-tbl{width:100%;min-width:720px;border-collapse:collapse;font-size:13px;margin-top:6px}.kt-tbl th{background:#17615F;color:#fff;border:1px solid #0F4A48;padding:8px 6px;text-align:left;font-size:12px}.kt-tbl td{border:1px solid #DCE5E3;padding:6px;vertical-align:top}'
+    + '.kb{border:0;border-radius:10px;padding:0 16px;min-height:44px;font-size:13.5px;font-weight:700;cursor:pointer;color:#fff;background:#17615F}.kb.s{background:#475569}.kb.o{background:#fff;color:#17615F;border:1px solid #17615F}.kb.b{background:#0369a1}.kb.r{background:#b91c1c}.kb.p{background:#7c3aed}'
+    + '.ka-tbl{width:100%;min-width:640px;border-collapse:collapse;font-size:12.5px}.ka-tbl th{background:#17615F;color:#fff;border:1px solid #0F4A48;padding:6px 4px;font-size:12px}.ka-tbl td{border:1px solid #B8C9C6;padding:5px;vertical-align:top}.ka-c{text-align:center}'
+    + '.km-sel{font-size:13.5px;border:1px solid #7C9693;border-radius:10px;padding:0 10px;min-height:44px;background:#fff;max-width:220px}';
   document.head.appendChild(st);
 })();
 
@@ -11998,7 +12020,9 @@ async function kmRender(force) {
 const KH = { seq: { i: 0, k: 0 }, cache: {}, keg: null };
 const KI = { charts: [] }, KK = { charts: [] };
 const KI_STATUS = { karu: ['Menunggu Grading Karu'], komite: ['Menunggu Regrading Komite', 'Proses RCA', 'Revisi RCA'], direksi: ['Menunggu Review Direksi'], selesai: ['Selesai'] };
-const KI_GRADE = ['Biru', 'Hijau', 'Kuning', 'Merah', 'Belum'], KI_GCOL = { Biru: '#3b82f6', Hijau: '#22c55e', Kuning: '#eab308', Merah: '#ef4444', Belum: '#94a3b8' };
+const KI_GRADE = ['Biru', 'Hijau', 'Kuning', 'Merah', 'Belum'], KI_GCOL = { Biru: '#2F6FB5', Hijau: '#3A7A1F', Kuning: '#B7791F', Merah: '#B83A3A', Belum: '#7C8A99' };
+// ringkasan teks grafik untuk pembaca layar (canvas tidak dapat dibaca langsung)
+const kAriaSum = (el, title, labels, data, suffix) => { if (!el) return; el.setAttribute('role', 'img'); el.setAttribute('aria-label', title + '. ' + (labels.length ? labels.map((l, i) => l + ': ' + (data[i] == null ? '-' : data[i] + (suffix || ''))).join('; ') : 'Belum ada data.')); };
 const khKpi = (c, v, l, sub) => '<div class="rounded-xl border border-border-subtle p-3" style="border-left:4px solid ' + c + '"><p class="text-xl font-extrabold text-text-primary leading-none">' + v + '</p><p class="text-[11px] font-semibold text-text-secondary mt-1">' + l + '</p><p class="text-[10px] text-text-muted">' + sub + '</p></div>';
 const khDestroy = list => { list.forEach(c => { try { c.destroy(); } catch (e) {} }); list.length = 0; };
 const khUnitTxt = () => (KM.unit === 'ALL' ? 'Seluruh ruangan' : KM.unit);
@@ -12042,11 +12066,13 @@ async function kiRender(force) {
   body.innerHTML = '<div class="grid lg:grid-cols-2 gap-4">' + cv('ki-c1', 'Jenis insiden', 240) + cv('ki-c2', 'Grading risiko (hasil akhir)', 240) + cv('ki-c3', 'Tren insiden per bulan', 240) + (two ? cv('ki-c4', 'Insiden per ruangan (10 terbanyak)', Math.max(240, r.units.length * 26 + 60)) : '') + '</div>'
     + '<p class="text-xs font-bold text-text-primary mt-4 mb-1">Laporan insiden terbaru</p><div class="kt-wrap"><table class="kt-tbl" style="min-width:520px"><thead><tr><th>Tanggal</th><th>Ruangan</th><th>Jenis</th><th>Status</th></tr></thead><tbody>' + rec + '</tbody></table></div>';
   const bar = (id, labels, data, colors, horiz) => { const el = kEl(id); if (el) KI.charts.push(new Chart(el.getContext('2d'), { type: 'bar', data: { labels: labels, datasets: [{ data: data, backgroundColor: colors, borderRadius: 4 }] }, options: { indexAxis: horiz ? 'y' : 'x', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { [horiz ? 'x' : 'y']: { beginAtZero: true, ticks: { precision: 0 } } } } })); };
-  const jc = { KNC: '#3b82f6', KTC: '#f59e0b', KTD: '#ef4444', Sentinel: '#7f1d1d', KPCS: '#10b981' };
-  bar('ki-c1', r.jl, r.jl.map(j => r.jenis[j] || 0), r.jl.map(j => jc[j] || '#64748b'));
+  bar('ki-c1', r.jl, r.jl.map(j => r.jenis[j] || 0), r.jl.map(j => jenisBadge(j)));
+  kAriaSum(kEl('ki-c1'), 'Grafik batang jenis insiden', r.jl, r.jl.map(j => r.jenis[j] || 0));
   bar('ki-c2', KI_GRADE, KI_GRADE.map(g => r.grade[g]), KI_GRADE.map(g => KI_GCOL[g]));
+  kAriaSum(kEl('ki-c2'), 'Grafik batang grading risiko hasil akhir', KI_GRADE, KI_GRADE.map(g => r.grade[g]));
   const c3 = kEl('ki-c3'); if (c3) KI.charts.push(new Chart(c3.getContext('2d'), { type: 'line', data: { labels: r.yms.map(kmLabel), datasets: [{ data: r.tren, borderColor: '#0284c7', backgroundColor: 'rgba(2,132,199,.12)', fill: true, tension: .25, pointRadius: 5, pointBackgroundColor: '#0284c7' }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } } }));
-  if (two) bar('ki-c4', r.units.map(x => x[0]), r.units.map(x => x[1]), '#0ea5e9', true);
+  kAriaSum(kEl('ki-c3'), 'Grafik garis tren insiden per bulan', r.yms.map(kmLabel), r.tren);
+  if (two) { bar('ki-c4', r.units.map(x => x[0]), r.units.map(x => x[1]), '#2F6FB5', true); kAriaSum(kEl('ki-c4'), 'Grafik batang insiden per ruangan', r.units.map(x => x[0]), r.units.map(x => x[1])); }
 }
 
 // Kegiatan Komite Mutu: dihitung dari jadwal kegiatan (tanggal, nama, bukti)
@@ -12072,6 +12098,7 @@ async function kkRender(force) {
     + '<div><p class="text-xs font-bold text-text-primary mb-1">Kegiatan 30 hari ke depan</p>' + (r.up.length ? '<ul class="divide-y divide-border-subtle max-h-56 overflow-auto">' + r.up.map(k => li(k, false)).join('') + '</ul>' : kEmpty('Tidak ada kegiatan terjadwal dalam 30 hari ke depan.')) + '</div></div>'
     + '<p class="text-xs font-bold text-text-primary mt-4 mb-1">Kegiatan terlaksana terbaru</p>' + (r.past.length ? '<ul class="divide-y divide-border-subtle max-h-64 overflow-auto">' + r.past.slice(0, 8).map(k => li(k, true)).join('') + '</ul>' : kEmpty('Belum ada kegiatan terlaksana pada periode ini.'));
   const el = kEl('kk-c1'); if (el) KK.charts.push(new Chart(el.getContext('2d'), { type: 'bar', data: { labels: yms.map(kmLabel), datasets: [{ data: r.bulan, backgroundColor: '#7c3aed', borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } } }));
+  kAriaSum(kEl('kk-c1'), 'Grafik batang jumlah kegiatan per bulan', yms.map(kmLabel), r.bulan);
 }
 
 function khSection(id, ic, title, go) {
@@ -12103,7 +12130,7 @@ function kHome() {
   }).catch(e => { if (kEl('km-body')) kEl('km-body').innerHTML = '<p class="text-xs text-red-600 p-4">Capaian mutu belum dapat dimuat: ' + esc((e && e.message) || e) + '</p>'; });
 }
 function kmDraw(r) {
-  const clr = ok => ok === null ? '#94a3b8' : ok ? '#16a34a' : '#dc2626', cut = (t, n) => (String(t).length > n ? String(t).slice(0, n - 1) + '\u2026' : String(t));
+  const clr = ok => ok === null ? '#7C8A99' : ok ? '#3A7A1F' : '#B83A3A', cut = (t, n) => (String(t).length > n ? String(t).slice(0, n - 1) + '\u2026' : String(t));
   const tgtTxt = m => m.target === '' ? 'tanpa target' : 'target ' + (m.tipe === 'le' ? '\u2264 ' : m.tipe === 'none' ? '' : '\u2265 ') + m.target + '%';
   const tick = { id: 'kmTarget', afterDatasetsDraw(chart, a, o) {
     const t = o && o.targets; if (!t) return; const c = chart.ctx, x = chart.scales.x; c.save(); c.strokeStyle = '#f59e0b'; c.lineWidth = 2.5;
@@ -12120,8 +12147,11 @@ function kmDraw(r) {
     options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100, ticks: { callback: v => v + '%' } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: i => { const x = r.trend[i.dataIndex]; return x.tot ? x.pct + '% (' + x.ok + ' dari ' + x.tot + ' indikator memenuhi target)' : 'Belum ada laporan'; } } } } } }));
   const c3 = kEl('km-c3');
   if (c3) KM.charts.push(new Chart(c3.getContext('2d'), { type: 'bar',
-    data: { labels: r.units.map(x => x.unit + ' (' + x.ok + '/' + x.tot + ')'), datasets: [{ data: r.units.map(x => x.pct), backgroundColor: r.units.map(x => x.pct >= K_AUDIT_HIJAU ? '#16a34a' : x.pct >= K_AUDIT_KUNING ? '#d97706' : '#dc2626'), borderRadius: 4, barThickness: 14 }] },
+    data: { labels: r.units.map(x => x.unit + ' (' + x.ok + '/' + x.tot + ')'), datasets: [{ data: r.units.map(x => x.pct), backgroundColor: r.units.map(x => x.pct >= K_AUDIT_HIJAU ? '#3A7A1F' : x.pct >= K_AUDIT_KUNING ? '#B7791F' : '#B83A3A'), borderRadius: 4, barThickness: 14 }] },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { min: 0, max: 100, ticks: { callback: v => v + '%' } }, y: { ticks: { autoSkip: false, font: { size: 10 } } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: i => r.units[i.dataIndex].pct + '% indikator memenuhi target' } } } } }));
+  kAriaSum(c1, 'Grafik batang capaian per indikator (%)', r.list.map(x => x.m.nama), r.list.map(x => Math.round(x.cap * 10) / 10), '%');
+  kAriaSum(c2, 'Grafik garis tren indikator memenuhi target per bulan (%)', r.trend.map(x => kmLabel(x.ym)), r.trend.map(x => x.pct), '%');
+  kAriaSum(c3, 'Grafik batang perbandingan ruangan: indikator memenuhi target (%)', r.units.map(x => x.unit), r.units.map(x => x.pct), '%');
 }
 </script>
 </body>
